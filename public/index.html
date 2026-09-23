@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Neocrédito – Asistente de registro</title>
+  <meta name="description" content="Completa tu registro para solicitar un microcrédito en Neocrédito conversando con un asistente.">
+  <meta name="theme-color" content="#4B4A7C">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='9' fill='%234B4A7C'/><path d='M9 22V10l14 12V10' stroke='%2322DDB6' stroke-width='3.2' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-name">neocrédito</span>
+      <span class="brand-sub">Asistente de registro</span>
+    </div>
+    <div class="topbar-actions">
+      <span class="mode" id="mode" hidden></span>
+      <button type="button" class="link-btn" id="reset">Empezar de nuevo</button>
+    </div>
+  </header>
+
+  <main class="layout">
+    <section class="chat" aria-label="Conversación con el asistente">
+      <button type="button" class="progress-toggle" id="progressToggle" aria-expanded="false" aria-controls="formPanel">
+        <span class="progress-track"><span class="progress-fill" id="progressFillMobile"></span></span>
+        <span id="progressTextMobile">Tu formulario</span>
+      </button>
+
+      <div class="messages" id="messages" role="log" aria-live="polite" aria-relevant="additions"></div>
+
+      <div class="composer-wrap">
+        <div class="chips" id="chips" aria-label="Respuestas sugeridas"></div>
+        <form class="composer" id="composer" autocomplete="off">
+          <label for="input" class="sr-only">Tu respuesta</label>
+          <input id="input" name="message" type="text" maxlength="1000" placeholder="Escribe tu respuesta" autocomplete="off" required>
+          <button type="submit" id="send">Enviar</button>
+        </form>
+      </div>
+    </section>
+
+    <aside class="panel" id="formPanel" aria-label="Datos de tu formulario">
+      <button type="button" class="panel-close link-btn" id="panelClose">Volver al chat</button>
+      <div class="panel-head">
+        <h2>Tu formulario</h2>
+        <p id="progressText">Cargando…</p>
+        <span class="progress-track"><span class="progress-fill" id="progressFill"></span></span>
+      </div>
+      <div id="radicado" class="radicado" hidden></div>
+      <div id="steps"></div>
+    </aside>
+  </main>
+
+  <script src="/app.js" type="module"></script>
+</body>
+</html>
