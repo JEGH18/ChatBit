@@ -1,0 +1,1174 @@
+{
+ "descripcion": "Subconjunto curado de actividades CIIU Rev. 4 A.C. frecuentes en microempresas, con explicación en lenguaje sencillo y palabras coloquiales para la búsqueda.",
+ "clases": [
+  {
+   "codigo": "0113",
+   "descripcion": "Cultivo de hortalizas, raíces y tubérculos",
+   "corto": "Cultivo de verduras y tubérculos",
+   "simple": "Siembra y cosecha de verduras, papa, yuca, cebolla o tomate.",
+   "palabras": "papa yuca cebolla tomate hortalizas verduras huerta zanahoria arracacha cultivo siembra"
+  },
+  {
+   "codigo": "0121",
+   "descripcion": "Cultivo de frutas tropicales y subtropicales",
+   "corto": "Cultivo de frutas",
+   "simple": "Siembra y cosecha de frutas como mango, piña, aguacate o maracuyá.",
+   "palabras": "frutas mango pina aguacate maracuya guayaba papaya limon naranja cultivo finca"
+  },
+  {
+   "codigo": "0122",
+   "descripcion": "Cultivo de plátano y banano",
+   "corto": "Cultivo de plátano",
+   "simple": "Siembra y cosecha de plátano o banano.",
+   "palabras": "platano banano bananera cultivo"
+  },
+  {
+   "codigo": "0123",
+   "descripcion": "Cultivo de café",
+   "corto": "Cultivo de café",
+   "simple": "Siembra y cosecha de café en finca.",
+   "palabras": "cafe cafetero finca cafetal cosecha cultivo"
+  },
+  {
+   "codigo": "0125",
+   "descripcion": "Cultivo de flor de corte",
+   "corto": "Cultivo de flores",
+   "simple": "Siembra de flores para corte y venta.",
+   "palabras": "flores floricultura rosas claveles cultivo"
+  },
+  {
+   "codigo": "0128",
+   "descripcion": "Cultivo de especias y de plantas aromáticas y medicinales",
+   "corto": "Plantas aromáticas y medicinales",
+   "simple": "Cultivo de hierbas aromáticas, especias o plantas medicinales.",
+   "palabras": "aromaticas hierbas medicinales especias cilantro albahaca cultivo"
+  },
+  {
+   "codigo": "0130",
+   "descripcion": "Propagación de plantas (actividades de los viveros, excepto viveros forestales)",
+   "corto": "Vivero de plantas",
+   "simple": "Vivero: producción y venta de plantas y matas.",
+   "palabras": "vivero plantas matas plantulas semilleros"
+  },
+  {
+   "codigo": "0141",
+   "descripcion": "Cría de ganado bovino y bufalino",
+   "corto": "Ganadería",
+   "simple": "Cría de vacas o búfalos para leche o carne.",
+   "palabras": "ganado vacas ganaderia bovino leche novillos terneros reses"
+  },
+  {
+   "codigo": "0144",
+   "descripcion": "Cría de ganado porcino",
+   "corto": "Cría de cerdos",
+   "simple": "Cría de cerdos o marranos.",
+   "palabras": "cerdos marranos porcicultura porcinos chanchos cochera"
+  },
+  {
+   "codigo": "0145",
+   "descripcion": "Cría de aves de corral",
+   "corto": "Cría de pollos o gallinas",
+   "simple": "Cría de pollos, gallinas o codornices, incluida la producción de huevos.",
+   "palabras": "pollos gallinas huevos aves galpon avicola codornices ponedoras engorde"
+  },
+  {
+   "codigo": "0149",
+   "descripcion": "Cría de otros animales n.c.p",
+   "corto": "Cría de otros animales",
+   "simple": "Cría de otros animales: abejas, conejos, cuyes, peces ornamentales.",
+   "palabras": "abejas miel apicultura conejos cuyes curies animales cria"
+  },
+  {
+   "codigo": "0150",
+   "descripcion": "Explotación mixta (agrícola y pecuaria)",
+   "corto": "Finca mixta (cultivos y animales)",
+   "simple": "Finca que combina cultivos con cría de animales.",
+   "palabras": "finca mixta agricola pecuaria parcela campo"
+  },
+  {
+   "codigo": "0161",
+   "descripcion": "Actividades de apoyo a la agricultura",
+   "corto": "Servicios para la agricultura",
+   "simple": "Servicios a otros agricultores: fumigación, preparación de tierra, jornales.",
+   "palabras": "fumigacion jornales jornalero preparacion tierra arado servicios agricolas"
+  },
+  {
+   "codigo": "0322",
+   "descripcion": "Acuicultura de agua dulce",
+   "corto": "Piscicultura (peces de agua dulce)",
+   "simple": "Cría de peces en estanques: tilapia, trucha o cachama.",
+   "palabras": "tilapia trucha cachama estanques piscicultura peces mojarra lagos"
+  },
+  {
+   "codigo": "0312",
+   "descripcion": "Pesca de agua dulce",
+   "corto": "Pesca en río o lago",
+   "simple": "Pesca artesanal en ríos, ciénagas o lagos.",
+   "palabras": "pesca pescador rio cienaga artesanal"
+  },
+  {
+   "codigo": "1011",
+   "descripcion": "Procesamiento y conservación de carne y productos cárnicos",
+   "corto": "Procesamiento de carnes",
+   "simple": "Preparación de carnes y embutidos: chorizos, salchichas, morcilla.",
+   "palabras": "embutidos chorizo chorizos salchichas morcilla rellena carnes procesadas longaniza"
+  },
+  {
+   "codigo": "1020",
+   "descripcion": "Procesamiento y conservación de frutas, legumbres, hortalizas y tubérculos",
+   "corto": "Conservas de frutas y verduras",
+   "simple": "Pulpas de fruta, mermeladas, encurtidos o verduras procesadas.",
+   "palabras": "pulpa pulpas fruta mermeladas encurtidos conservas deshidratados"
+  },
+  {
+   "codigo": "1040",
+   "descripcion": "Elaboración de productos lácteos",
+   "corto": "Productos lácteos",
+   "simple": "Elaboración de quesos, yogur, kumis, cuajada o arequipe.",
+   "palabras": "queso quesos yogur kumis cuajada arequipe lacteos quesillo mantequilla suero"
+  },
+  {
+   "codigo": "1051",
+   "descripcion": "Elaboración de productos de molinería",
+   "corto": "Molinería",
+   "simple": "Molino: harinas, maíz trillado o productos de molienda.",
+   "palabras": "molino harina maiz trillado molienda"
+  },
+  {
+   "codigo": "1062",
+   "descripcion": "Descafeinado, tostión y molienda del café",
+   "corto": "Tostión de café",
+   "simple": "Tostar, moler y empacar café con marca propia.",
+   "palabras": "cafe tostado tostion molido marca de cafe cafe especial"
+  },
+  {
+   "codigo": "1072",
+   "descripcion": "Elaboración de panela",
+   "corto": "Elaboración de panela",
+   "simple": "Trapiche: producción de panela.",
+   "palabras": "panela trapiche caña molienda"
+  },
+  {
+   "codigo": "1081",
+   "descripcion": "Elaboración de productos de panadería",
+   "corto": "Panadería y repostería",
+   "simple": "Elaboración de pan, tortas, pasteles o galletas.",
+   "palabras": "panaderia pan pasteleria reposteria tortas ponques pasteles galletas almojabanas pandebono buñuelos hojaldre bizcochos"
+  },
+  {
+   "codigo": "1082",
+   "descripcion": "Elaboración de cacao, chocolate y productos de confitería",
+   "corto": "Chocolates y dulces",
+   "simple": "Elaboración de chocolates, dulces, bocadillos o cocadas.",
+   "palabras": "chocolate chocolates cacao dulces confiteria bocadillos cocadas caramelos postres dulceria"
+  },
+  {
+   "codigo": "1084",
+   "descripcion": "Elaboración de comidas y platos preparados",
+   "corto": "Comidas preparadas para distribuir",
+   "simple": "Preparación de comidas o platos empacados para vender a terceros (tamales, comida congelada).",
+   "palabras": "tamales comida congelada platos preparados empacados viandas"
+  },
+  {
+   "codigo": "1089",
+   "descripcion": "Elaboración de otros productos alimenticios n.c.p",
+   "corto": "Otros alimentos elaborados",
+   "simple": "Elaboración de arepas, empanadas congeladas, salsas, snacks u otros alimentos.",
+   "palabras": "arepas empanadas congeladas salsas snacks pasabocas mecato envueltos alimentos procesados chicharrones"
+  },
+  {
+   "codigo": "1090",
+   "descripcion": "Elaboración de alimentos preparados para animales",
+   "corto": "Alimentos para animales",
+   "simple": "Elaboración de concentrados o alimento para mascotas o animales.",
+   "palabras": "concentrado concentrados alimento animales mascotas purina"
+  },
+  {
+   "codigo": "1103",
+   "descripcion": "Producción de malta, elaboración de cervezas y otras bebidas malteadas",
+   "corto": "Cerveza artesanal",
+   "simple": "Elaboración de cerveza artesanal u otras bebidas de malta.",
+   "palabras": "cerveza artesanal cerveceria malta"
+  },
+  {
+   "codigo": "1104",
+   "descripcion": "Elaboración de bebidas no alcohólicas, producción de aguas minerales y de otras aguas embotelladas",
+   "corto": "Bebidas no alcohólicas",
+   "simple": "Elaboración de jugos embotellados, agua envasada o refrescos.",
+   "palabras": "jugos embotellados agua envasada bebidas refrescos gaseosas"
+  },
+  {
+   "codigo": "1313",
+   "descripcion": "Acabado de productos textiles",
+   "corto": "Estampado y acabado textil",
+   "simple": "Estampado, sublimación o teñido de telas y camisetas.",
+   "palabras": "estampado estampados sublimacion camisetas tintoreria teñido serigrafia bordado"
+  },
+  {
+   "codigo": "1392",
+   "descripcion": "Confección de artículos con materiales textiles, excepto prendas de vestir",
+   "corto": "Lencería para el hogar",
+   "simple": "Confección de cortinas, sábanas, cojines, toallas u otros artículos de tela.",
+   "palabras": "cortinas sabanas cojines toallas lenceria cubrelechos manteles"
+  },
+  {
+   "codigo": "1410",
+   "descripcion": "Confección de prendas de vestir, excepto prendas de piel",
+   "corto": "Confección de ropa",
+   "simple": "Confección de prendas de vestir: ropa, uniformes, pijamas.",
+   "palabras": "confeccion ropa costura modisteria taller textil prendas uniformes satelite maquila pijamas jeans costurera modista"
+  },
+  {
+   "codigo": "1430",
+   "descripcion": "Fabricación de artículos de punto y ganchillo",
+   "corto": "Tejidos de punto",
+   "simple": "Tejidos a mano o en máquina: sacos, gorros, crochet.",
+   "palabras": "tejidos crochet croche sacos gorros punto ganchillo tejer"
+  },
+  {
+   "codigo": "1513",
+   "descripcion": "Fabricación de artículos de viaje, bolsos de mano y artículos similares; artículos de talabartería y guarnicionería elaborados en otros materiales",
+   "corto": "Bolsos y marroquinería",
+   "simple": "Fabricación de bolsos, billeteras, correas o artículos de talabartería.",
+   "palabras": "bolsos marroquineria billeteras correas cinturones talabarteria morrales maletas"
+  },
+  {
+   "codigo": "1521",
+   "descripcion": "Fabricación de calzado de cuero y piel, con cualquier tipo de suela",
+   "corto": "Fabricación de calzado de cuero",
+   "simple": "Fabricación de zapatos de cuero.",
+   "palabras": "zapatos calzado cuero zapateria fabricacion botas"
+  },
+  {
+   "codigo": "1522",
+   "descripcion": "Fabricación de otros tipos de calzado, excepto calzado de cuero y piel",
+   "corto": "Fabricación de otro calzado",
+   "simple": "Fabricación de calzado sintético, tenis o chanclas.",
+   "palabras": "chanclas tenis calzado sintetico sandalias"
+  },
+  {
+   "codigo": "1630",
+   "descripcion": "Fabricación de partes y piezas de madera, de carpintería y ebanistería para la construcción",
+   "corto": "Carpintería para construcción",
+   "simple": "Fabricación de puertas, ventanas, closets o cocinas en madera.",
+   "palabras": "puertas ventanas closets cocinas integrales madera carpinteria"
+  },
+  {
+   "codigo": "1690",
+   "descripcion": "Fabricación de otros productos de madera; fabricación de artículos de corcho, cestería y espartería",
+   "corto": "Artesanías en madera y cestería",
+   "simple": "Artesanías de madera, canastos, cestería.",
+   "palabras": "artesanias madera canastos cesteria tallas"
+  },
+  {
+   "codigo": "1811",
+   "descripcion": "Actividades de impresión",
+   "corto": "Imprenta",
+   "simple": "Impresión de volantes, tarjetas, etiquetas o litografía.",
+   "palabras": "imprenta impresion litografia volantes tarjetas etiquetas pendones tipografia"
+  },
+  {
+   "codigo": "2023",
+   "descripcion": "Fabricación de jabones y detergentes, preparados para limpiar y pulir; perfumes y preparados de tocador",
+   "corto": "Jabones, aseo y perfumes",
+   "simple": "Elaboración de jabones, productos de aseo, perfumes o cosméticos.",
+   "palabras": "jabones jabon productos de aseo detergentes perfumes cosmeticos champu limpieza artesanales"
+  },
+  {
+   "codigo": "2229",
+   "descripcion": "Fabricación de artículos de plástico n.c.p",
+   "corto": "Productos de plástico",
+   "simple": "Fabricación de artículos de plástico.",
+   "palabras": "plastico plasticos bolsas envases articulos plastico"
+  },
+  {
+   "codigo": "2392",
+   "descripcion": "Fabricación de materiales de arcilla para la construcción",
+   "corto": "Ladrillos y tejas",
+   "simple": "Ladrillera: fabricación de ladrillos, tejas o materiales de arcilla.",
+   "palabras": "ladrillos ladrillera tejas arcilla chircal"
+  },
+  {
+   "codigo": "2393",
+   "descripcion": "Fabricación de otros productos de cerámica y porcelana",
+   "corto": "Cerámica y alfarería",
+   "simple": "Artesanías y piezas de cerámica o barro.",
+   "palabras": "ceramica alfareria barro porcelana vasijas"
+  },
+  {
+   "codigo": "2395",
+   "descripcion": "Fabricación de artículos de hormigón, cemento y yeso",
+   "corto": "Bloques y prefabricados",
+   "simple": "Fabricación de bloques, adoquines o prefabricados de cemento.",
+   "palabras": "bloques adoquines prefabricados cemento concreto postes"
+  },
+  {
+   "codigo": "2511",
+   "descripcion": "Fabricación de productos metálicos para uso estructural",
+   "corto": "Ornamentación y estructuras metálicas",
+   "simple": "Fabricación de rejas, puertas metálicas, estructuras o soldadura.",
+   "palabras": "ornamentacion rejas puertas metalicas estructuras soldadura herreria marquesinas metalmecanica"
+  },
+  {
+   "codigo": "2592",
+   "descripcion": "Tratamiento y revestimiento de metales; mecanizado",
+   "corto": "Tornería y mecanizado",
+   "simple": "Taller de tornería, mecanizado o tratamiento de metales.",
+   "palabras": "torno torneria mecanizado fresadora piezas metalicas"
+  },
+  {
+   "codigo": "3110",
+   "descripcion": "Fabricación de muebles",
+   "corto": "Fabricación de muebles",
+   "simple": "Fabricación de muebles de madera, metal u otros materiales.",
+   "palabras": "muebles carpinteria ebanisteria madera mueblería salas comedores camas"
+  },
+  {
+   "codigo": "3120",
+   "descripcion": "Fabricación de colchones y somieres",
+   "corto": "Colchones",
+   "simple": "Fabricación de colchones.",
+   "palabras": "colchones colchoneria"
+  },
+  {
+   "codigo": "3210",
+   "descripcion": "Fabricación de joyas, bisutería y artículos conexos",
+   "corto": "Joyería y bisutería",
+   "simple": "Fabricación de joyas, bisutería o accesorios.",
+   "palabras": "joyas joyeria bisuteria accesorios aretes collares manillas pulseras oro plata"
+  },
+  {
+   "codigo": "3240",
+   "descripcion": "Fabricación de juegos, juguetes y rompecabezas",
+   "corto": "Juguetes",
+   "simple": "Fabricación de juegos y juguetes.",
+   "palabras": "juguetes juegos didacticos munecos"
+  },
+  {
+   "codigo": "3290",
+   "descripcion": "Otras industrias manufactureras n.c.p",
+   "corto": "Otras manufacturas y artesanías",
+   "simple": "Velas, escobas, artesanías y otros productos fabricados a mano.",
+   "palabras": "velas escobas trapeadores artesanias manualidades souvenirs flores artificiales"
+  },
+  {
+   "codigo": "3312",
+   "descripcion": "Mantenimiento y reparación especializado de maquinaria y equipo",
+   "corto": "Reparación de maquinaria",
+   "simple": "Mantenimiento y reparación de maquinaria y equipo industrial.",
+   "palabras": "maquinaria mantenimiento reparacion industrial maquinas"
+  },
+  {
+   "codigo": "3830",
+   "descripcion": "Recuperación de materiales",
+   "corto": "Reciclaje",
+   "simple": "Recuperación y clasificación de material reciclable.",
+   "palabras": "reciclaje reciclador reciclar carton plastico botellas material reciclable"
+  },
+  {
+   "codigo": "4111",
+   "descripcion": "Construcción de edificios residenciales",
+   "corto": "Construcción de vivienda",
+   "simple": "Construcción de casas o edificios de vivienda.",
+   "palabras": "construccion casas vivienda edificios constructor obra"
+  },
+  {
+   "codigo": "4321",
+   "descripcion": "Instalaciones eléctricas",
+   "corto": "Instalaciones eléctricas",
+   "simple": "Electricista: instalaciones y reparaciones eléctricas en casas o locales.",
+   "palabras": "electricista instalaciones electricas redes cableado"
+  },
+  {
+   "codigo": "4322",
+   "descripcion": "Instalaciones de fontanería, calefacción y aire acondicionado",
+   "corto": "Plomería, gas y aire acondicionado",
+   "simple": "Plomero: instalaciones de agua, gas o aire acondicionado.",
+   "palabras": "plomero plomeria fontaneria gas aire acondicionado tuberias"
+  },
+  {
+   "codigo": "4330",
+   "descripcion": "Terminación y acabado de edificios y obras de ingeniería civil",
+   "corto": "Acabados de construcción",
+   "simple": "Pintura, estuco, drywall, enchape o remodelación.",
+   "palabras": "pintura pintor estuco drywall enchape remodelacion acabados pisos baldosa"
+  },
+  {
+   "codigo": "4390",
+   "descripcion": "Otras actividades especializadas para la construcción de edificios y obras de ingeniería civil",
+   "corto": "Obras especializadas (albañilería)",
+   "simple": "Albañilería y otros trabajos especializados de construcción.",
+   "palabras": "albañil albanil albañileria maestro de obra mamposteria cimientos techos impermeabilizacion"
+  },
+  {
+   "codigo": "4512",
+   "descripcion": "Comercio de vehículos automotores usados",
+   "corto": "Compraventa de carros usados",
+   "simple": "Compra y venta de vehículos usados.",
+   "palabras": "compraventa carros usados vehiculos"
+  },
+  {
+   "codigo": "4520",
+   "descripcion": "Mantenimiento y reparación de vehículos automotores",
+   "corto": "Taller de carros",
+   "simple": "Taller mecánico, latonería, pintura o lavado de carros.",
+   "palabras": "taller mecanico mecanica carros vehiculos reparacion latoneria pintura automotriz lavadero montallantas"
+  },
+  {
+   "codigo": "4530",
+   "descripcion": "Comercio de partes, piezas (autopartes) y accesorios (lujos) para vehículos automotores",
+   "corto": "Venta de autopartes",
+   "simple": "Venta de repuestos y accesorios (lujos) para carros.",
+   "palabras": "autopartes repuestos lujos accesorios carros llantas"
+  },
+  {
+   "codigo": "4541",
+   "descripcion": "Comercio de motocicletas y de sus partes, piezas y accesorios",
+   "corto": "Venta de motos y repuestos",
+   "simple": "Venta de motos, repuestos y accesorios para motos.",
+   "palabras": "motos motocicletas repuestos moto accesorios cascos"
+  },
+  {
+   "codigo": "4542",
+   "descripcion": "Mantenimiento y reparación de motocicletas y de sus partes y piezas",
+   "corto": "Taller de motos",
+   "simple": "Mantenimiento y reparación de motos.",
+   "palabras": "taller motos mecanica de motos reparacion moto"
+  },
+  {
+   "codigo": "4620",
+   "descripcion": "Comercio al por mayor de materias primas agropecuarias; animales vivos",
+   "corto": "Compraventa de productos del campo",
+   "simple": "Compra y venta al por mayor de productos agrícolas o animales vivos.",
+   "palabras": "compra venta cosechas granos cafe ganado productos del campo acopio"
+  },
+  {
+   "codigo": "4631",
+   "descripcion": "Comercio al por mayor de productos alimenticios",
+   "corto": "Venta mayorista de alimentos",
+   "simple": "Distribución de alimentos al por mayor.",
+   "palabras": "mayorista distribuidora distribucion alimentos por mayor abarrotes"
+  },
+  {
+   "codigo": "4632",
+   "descripcion": "Comercio al por mayor de bebidas y tabaco",
+   "corto": "Distribuidora de bebidas",
+   "simple": "Distribución al por mayor de bebidas o licores.",
+   "palabras": "distribuidora bebidas cerveza gaseosas licores por mayor"
+  },
+  {
+   "codigo": "4642",
+   "descripcion": "Comercio al por mayor de prendas de vestir",
+   "corto": "Ropa al por mayor",
+   "simple": "Venta de ropa al por mayor.",
+   "palabras": "ropa por mayor mayorista prendas distribucion"
+  },
+  {
+   "codigo": "4645",
+   "descripcion": "Comercio al por mayor de productos farmacéuticos, medicinales, cosméticos y de tocador",
+   "corto": "Cosméticos o medicamentos al por mayor",
+   "simple": "Distribución al por mayor de medicamentos, cosméticos o productos de aseo personal.",
+   "palabras": "cosmeticos medicamentos por mayor distribuidora productos de belleza"
+  },
+  {
+   "codigo": "4663",
+   "descripcion": "Comercio al por mayor de materiales de construcción, artículos de ferretería, pinturas, productos de vidrio, equipo y materiales de fontanería y calefacción",
+   "corto": "Depósito de materiales",
+   "simple": "Venta de materiales de construcción, ferretería o pinturas al por mayor.",
+   "palabras": "deposito materiales construccion cemento arena ladrillos por mayor"
+  },
+  {
+   "codigo": "4665",
+   "descripcion": "Comercio al por mayor de desperdicios, desechos y chatarra",
+   "corto": "Chatarrería",
+   "simple": "Compra y venta de chatarra, desechos y material reciclable al por mayor.",
+   "palabras": "chatarreria chatarra reciclaje compra de reciclaje metales"
+  },
+  {
+   "codigo": "4690",
+   "descripcion": "Comercio al por mayor no especializado",
+   "corto": "Mayorista de varios productos",
+   "simple": "Venta al por mayor de productos variados.",
+   "palabras": "mayorista varios productos distribuidora surtido"
+  },
+  {
+   "codigo": "4711",
+   "descripcion": "Comercio al por menor en establecimientos no especializados con surtido compuesto principalmente por alimentos, bebidas o tabaco",
+   "corto": "Tienda de barrio o minimercado",
+   "simple": "Tienda, granero o minimercado que vende principalmente alimentos y bebidas.",
+   "palabras": "tienda barrio minimercado supermercado abarrotes viveres granero mercado tiendita surtido"
+  },
+  {
+   "codigo": "4719",
+   "descripcion": "Comercio al por menor en establecimientos no especializados, con surtido compuesto principalmente por productos diferentes de alimentos (víveres en general), bebidas y tabaco",
+   "corto": "Miscelánea o variedades",
+   "simple": "Miscelánea, cacharrería o almacén de variedades.",
+   "palabras": "miscelanea variedades cacharreria bazar todo a mil piñateria"
+  },
+  {
+   "codigo": "4721",
+   "descripcion": "Comercio al por menor de productos agrícolas para el consumo en establecimientos especializados",
+   "corto": "Frutas y verduras (fruver)",
+   "simple": "Venta de frutas, verduras y legumbres en local.",
+   "palabras": "fruver frutas verduras legumbres plaza hortalizas"
+  },
+  {
+   "codigo": "4722",
+   "descripcion": "Comercio al por menor de leche, productos lácteos y huevos, en establecimientos especializados",
+   "corto": "Venta de lácteos y huevos",
+   "simple": "Venta de leche, quesos, lácteos o huevos en local.",
+   "palabras": "huevos lacteos queso leche quesera huevera"
+  },
+  {
+   "codigo": "4723",
+   "descripcion": "Comercio al por menor de carnes (incluye aves de corral), productos cárnicos, pescados y productos de mar, en establecimientos especializados",
+   "corto": "Carnicería o pescadería",
+   "simple": "Venta de carne, pollo o pescado.",
+   "palabras": "carniceria pescaderia pollo fama carne pescado salsamentaria pollos asaderos crudo"
+  },
+  {
+   "codigo": "4724",
+   "descripcion": "Comercio al por menor de bebidas y productos del tabaco, en establecimientos especializados",
+   "corto": "Licorera o estanco",
+   "simple": "Venta de licores, cerveza o cigarrillos para llevar.",
+   "palabras": "licores licorera estanco cerveza cigarrillos trago"
+  },
+  {
+   "codigo": "4729",
+   "descripcion": "Comercio al por menor de otros productos alimenticios n.c.p., en establecimientos especializados",
+   "corto": "Otros alimentos en local",
+   "simple": "Venta de otros alimentos: dulcería, productos naturistas, café en grano.",
+   "palabras": "dulceria confiteria granos venta de alimentos naturista"
+  },
+  {
+   "codigo": "4732",
+   "descripcion": "Comercio al por menor de lubricantes (aceites, grasas), aditivos y productos de limpieza para vehículos automotores",
+   "corto": "Lubricentro",
+   "simple": "Venta de aceites, lubricantes y productos de limpieza para vehículos.",
+   "palabras": "lubricantes aceites lubricentro cambio de aceite"
+  },
+  {
+   "codigo": "4741",
+   "descripcion": "Comercio al por menor de computadores, equipos periféricos, programas de informática y equipos de telecomunicaciones en establecimientos especializados",
+   "corto": "Venta de celulares y tecnología",
+   "simple": "Venta de celulares, computadores, accesorios y tecnología.",
+   "palabras": "celulares computadores tecnologia accesorios electronica telefonos cargadores audifonos"
+  },
+  {
+   "codigo": "4742",
+   "descripcion": "Comercio al por menor de equipos y aparatos de sonido y de video, en establecimientos especializados",
+   "corto": "Sonido y video",
+   "simple": "Venta de equipos de sonido, televisores o video.",
+   "palabras": "sonido televisores equipos de sonido parlantes video"
+  },
+  {
+   "codigo": "4751",
+   "descripcion": "Comercio al por menor de productos textiles en establecimientos especializados",
+   "corto": "Venta de telas",
+   "simple": "Venta de telas, hilos y artículos de mercería.",
+   "palabras": "telas textiles merceria hilos botones encajes"
+  },
+  {
+   "codigo": "4752",
+   "descripcion": "Comercio al por menor de artículos de ferretería, pinturas y productos de vidrio en establecimientos especializados",
+   "corto": "Ferretería",
+   "simple": "Venta de herramientas, tornillos, pinturas, vidrios y materiales.",
+   "palabras": "ferreteria herramientas pinturas vidrios materiales tornillos cerraduras"
+  },
+  {
+   "codigo": "4754",
+   "descripcion": "Comercio al por menor de electrodomésticos y gasodomésticos de uso doméstico, muebles y equipos de iluminación",
+   "corto": "Electrodomésticos y muebles",
+   "simple": "Venta de electrodomésticos, muebles o lámparas.",
+   "palabras": "electrodomesticos neveras estufas muebles lamparas almacen"
+  },
+  {
+   "codigo": "4755",
+   "descripcion": "Comercio al por menor de artículos y utensilios de uso doméstico",
+   "corto": "Artículos para el hogar",
+   "simple": "Venta de ollas, vajillas, plásticos y utensilios de cocina.",
+   "palabras": "ollas vajillas utensilios cocina plasticos hogar menaje"
+  },
+  {
+   "codigo": "4759",
+   "descripcion": "Comercio al por menor de otros artículos domésticos en establecimientos especializados",
+   "corto": "Otros artículos para el hogar",
+   "simple": "Venta de decoración y otros artículos para el hogar.",
+   "palabras": "decoracion hogar cuadros adornos articulos domesticos"
+  },
+  {
+   "codigo": "4761",
+   "descripcion": "Comercio al por menor de libros, periódicos, materiales y artículos de papelería y escritorio, en establecimientos especializados",
+   "corto": "Papelería o librería",
+   "simple": "Venta de útiles escolares, papelería, libros o revistas.",
+   "palabras": "papeleria libreria utiles escolares cuadernos libros revistas"
+  },
+  {
+   "codigo": "4762",
+   "descripcion": "Comercio al por menor de artículos deportivos, en establecimientos especializados",
+   "corto": "Artículos deportivos",
+   "simple": "Venta de artículos y ropa deportiva.",
+   "palabras": "deportes deportivos balones bicicletas tienda deportiva"
+  },
+  {
+   "codigo": "4769",
+   "descripcion": "Comercio al por menor de otros artículos culturales y de entretenimiento n.c.p. en establecimientos especializados",
+   "corto": "Juguetería y entretenimiento",
+   "simple": "Venta de juguetes, juegos y artículos de entretenimiento.",
+   "palabras": "jugueteria juguetes juegos entretenimiento piñatas"
+  },
+  {
+   "codigo": "4771",
+   "descripcion": "Comercio al por menor de prendas de vestir y sus accesorios (incluye artículos de piel) en establecimientos especializados",
+   "corto": "Venta de ropa",
+   "simple": "Almacén o boutique de ropa y accesorios.",
+   "palabras": "ropa boutique almacen prendas vestir accesorios lenceria ropa interior"
+  },
+  {
+   "codigo": "4772",
+   "descripcion": "Comercio al por menor de todo tipo de calzado y artículos de cuero y sucedáneos del cuero en establecimientos especializados",
+   "corto": "Venta de zapatos y bolsos",
+   "simple": "Venta de calzado, bolsos y artículos de cuero.",
+   "palabras": "zapatos calzado venta zapateria bolsos tenis"
+  },
+  {
+   "codigo": "4773",
+   "descripcion": "Comercio al por menor de productos farmacéuticos y medicinales, cosméticos y artículos de tocador en establecimientos especializados",
+   "corto": "Droguería o cosméticos",
+   "simple": "Droguería, farmacia, tienda naturista o de cosméticos y belleza.",
+   "palabras": "drogueria farmacia cosmeticos maquillaje belleza productos naturista perfumeria"
+  },
+  {
+   "codigo": "4774",
+   "descripcion": "Comercio al por menor de otros productos nuevos en establecimientos especializados",
+   "corto": "Otros productos nuevos",
+   "simple": "Floristería, óptica, relojería, tienda de mascotas u otros productos nuevos.",
+   "palabras": "floristeria flores optica relojeria mascotas veterinaria pet shop regalos joyeria"
+  },
+  {
+   "codigo": "4775",
+   "descripcion": "Comercio al por menor de artículos de segunda mano",
+   "corto": "Artículos de segunda mano",
+   "simple": "Compraventa de artículos usados o ropa de segunda.",
+   "palabras": "segunda mano usados compraventa ropa usada"
+  },
+  {
+   "codigo": "4781",
+   "descripcion": "Comercio al por menor de alimentos, bebidas y tabaco, en puestos de venta móviles",
+   "corto": "Venta de alimentos en puesto móvil",
+   "simple": "Venta de alimentos sin preparar en puesto, carreta o en la calle (frutas, dulces, bebidas).",
+   "palabras": "ambulante calle puesto carreta frutas dulces bebidas chazas esquina movil vendedor informal"
+  },
+  {
+   "codigo": "4782",
+   "descripcion": "Comercio al por menor de productos textiles, prendas de vestir y calzado, en puestos de venta móviles",
+   "corto": "Venta de ropa en puesto móvil",
+   "simple": "Venta de ropa o calzado en puesto móvil o en la calle.",
+   "palabras": "ambulante calle puesto ropa calzado movil vendedor"
+  },
+  {
+   "codigo": "4789",
+   "descripcion": "Comercio al por menor de otros productos en puestos de venta móviles",
+   "corto": "Otros productos en puesto móvil",
+   "simple": "Venta de otros productos en puesto, carreta o en la calle.",
+   "palabras": "ambulante calle puesto carreta movil vendedor informal chaza"
+  },
+  {
+   "codigo": "4791",
+   "descripcion": "Comercio al por menor realizado a través de internet",
+   "corto": "Ventas por internet",
+   "simple": "Venta de productos por internet o redes sociales (tienda virtual).",
+   "palabras": "internet redes sociales instagram facebook whatsapp tienda virtual en linea online ventas por internet"
+  },
+  {
+   "codigo": "4792",
+   "descripcion": "Comercio al por menor realizado a través de casas de venta o por correo",
+   "corto": "Venta por catálogo",
+   "simple": "Venta por catálogo o por correo.",
+   "palabras": "catalogo catalogos venta por catalogo pedidos"
+  },
+  {
+   "codigo": "4799",
+   "descripcion": "Otros tipos de comercio al por menor no realizado en establecimientos, puestos de venta o mercados",
+   "corto": "Venta directa puerta a puerta",
+   "simple": "Venta directa, puerta a puerta o por encargo, sin local.",
+   "palabras": "puerta a puerta venta directa revendedor encargo multinivel"
+  },
+  {
+   "codigo": "4921",
+   "descripcion": "Transporte de pasajeros",
+   "corto": "Transporte de pasajeros",
+   "simple": "Taxi, buseta, van, mototaxi o transporte escolar.",
+   "palabras": "taxi transporte pasajeros buseta van mototaxi escolar colectivo conductor plataforma"
+  },
+  {
+   "codigo": "4922",
+   "descripcion": "Transporte mixto",
+   "corto": "Transporte mixto",
+   "simple": "Transporte de pasajeros y carga en el mismo vehículo (chiva, campero).",
+   "palabras": "chiva campero mixto veredal yipao"
+  },
+  {
+   "codigo": "4923",
+   "descripcion": "Transporte de carga por carretera",
+   "corto": "Transporte de carga",
+   "simple": "Camión o furgón para carga, acarreos o trasteos.",
+   "palabras": "carga camion acarreos trasteos fletes furgon volqueta"
+  },
+  {
+   "codigo": "5320",
+   "descripcion": "Actividades de mensajería",
+   "corto": "Mensajería y domicilios",
+   "simple": "Mensajería o domicilios en moto o bicicleta.",
+   "palabras": "mensajeria domicilios domiciliario mensajero envios"
+  },
+  {
+   "codigo": "5511",
+   "descripcion": "Alojamiento en hoteles",
+   "corto": "Hotel",
+   "simple": "Hotel u hospedaje.",
+   "palabras": "hotel hospedaje alojamiento"
+  },
+  {
+   "codigo": "5514",
+   "descripcion": "Alojamiento rural",
+   "corto": "Alojamiento rural",
+   "simple": "Finca turística o alojamiento rural.",
+   "palabras": "finca turistica alojamiento rural ecoturismo glamping cabañas"
+  },
+  {
+   "codigo": "5519",
+   "descripcion": "Otros tipos de alojamientos para visitantes",
+   "corto": "Hostal o apartamentos turísticos",
+   "simple": "Hostal, casa de huéspedes o apartamento para turistas.",
+   "palabras": "hostal huespedes apartamento turistico airbnb residencias"
+  },
+  {
+   "codigo": "5611",
+   "descripcion": "Expendio a la mesa de comidas preparadas",
+   "corto": "Restaurante",
+   "simple": "Restaurante con servicio a la mesa: almuerzos, corrientazo, asadero.",
+   "palabras": "restaurante almuerzos corrientazo comida asadero menu del dia comedor"
+  },
+  {
+   "codigo": "5612",
+   "descripcion": "Expendio por autoservicio de comidas preparadas",
+   "corto": "Autoservicio de comidas",
+   "simple": "Venta de comidas en autoservicio.",
+   "palabras": "autoservicio buffet comidas"
+  },
+  {
+   "codigo": "5613",
+   "descripcion": "Expendio de comidas preparadas en cafeterías",
+   "corto": "Cafetería",
+   "simple": "Cafetería: tinto, café, jugos, pasteles para consumir en el local.",
+   "palabras": "cafeteria cafe tinto jugos juguería heladeria fuente de soda"
+  },
+  {
+   "codigo": "5619",
+   "descripcion": "Otros tipos de expendio de comidas preparadas n.c.p",
+   "corto": "Comidas rápidas o venta de comida en la calle",
+   "simple": "Comidas rápidas o comida preparada en puesto, carrito o en la calle (empanadas, arepas, perros, fritos).",
+   "palabras": "comidas rapidas hamburguesas perros pizza empanadas puesto fritos chuzos arepas salchipapas fritanga carrito esquina calle"
+  },
+  {
+   "codigo": "5621",
+   "descripcion": "Catering para eventos",
+   "corto": "Banquetes y catering",
+   "simple": "Preparación y servicio de comidas para eventos.",
+   "palabras": "catering banquetes eventos buffets matrimonios"
+  },
+  {
+   "codigo": "5629",
+   "descripcion": "Actividades de otros servicios de comidas",
+   "corto": "Otros servicios de comida",
+   "simple": "Almuerzos por encargo o suministro de comidas a empresas o colegios.",
+   "palabras": "almuerzos encargo empresas casino lonchera suministro comida domicilio"
+  },
+  {
+   "codigo": "5630",
+   "descripcion": "Expendio de bebidas alcohólicas para el consumo dentro del establecimiento",
+   "corto": "Bar o discoteca",
+   "simple": "Bar, discoteca, cantina o venta de bebidas para consumir en el local.",
+   "palabras": "bar discoteca cantina taberna gastrobar billar con licor"
+  },
+  {
+   "codigo": "5911",
+   "descripcion": "Actividades de producción de películas cinematográficas, videos, programas, anuncios y comerciales de televisión",
+   "corto": "Producción de videos",
+   "simple": "Producción y grabación de videos o comerciales.",
+   "palabras": "videos produccion audiovisual grabacion videografo comerciales"
+  },
+  {
+   "codigo": "5920",
+   "descripcion": "Actividades de grabación de sonido y edición de música",
+   "corto": "Estudio de grabación",
+   "simple": "Grabación de música y sonido.",
+   "palabras": "estudio grabacion musica sonido"
+  },
+  {
+   "codigo": "6190",
+   "descripcion": "Otras actividades de telecomunicaciones",
+   "corto": "Minutos, recargas e internet",
+   "simple": "Venta de minutos, recargas o servicio de café internet.",
+   "palabras": "minutos recargas internet cafe internet cabinas llamadas telecomunicaciones"
+  },
+  {
+   "codigo": "6201",
+   "descripcion": "Actividades de desarrollo de sistemas informáticos (planificación, análisis, diseño, programación, pruebas)",
+   "corto": "Desarrollo de software",
+   "simple": "Desarrollo de programas, aplicaciones o páginas web.",
+   "palabras": "software desarrollo programacion paginas web aplicaciones sistemas apps programador"
+  },
+  {
+   "codigo": "6202",
+   "descripcion": "Actividades de consultoría informática y actividades de administración de instalaciones informáticas",
+   "corto": "Consultoría informática",
+   "simple": "Asesoría y soporte en sistemas y tecnología.",
+   "palabras": "consultoria informatica soporte tecnico sistemas redes"
+  },
+  {
+   "codigo": "6810",
+   "descripcion": "Actividades inmobiliarias realizadas con bienes propios o arrendados",
+   "corto": "Arriendo de inmuebles propios",
+   "simple": "Arrendar locales, casas o apartamentos propios.",
+   "palabras": "arriendo arrendamiento alquiler local casa apartamento propiedades"
+  },
+  {
+   "codigo": "6820",
+   "descripcion": "Actividades inmobiliarias realizadas a cambio de una retribución o por contrata",
+   "corto": "Inmobiliaria",
+   "simple": "Intermediación en venta o arriendo de inmuebles.",
+   "palabras": "inmobiliaria finca raiz corretaje propiedades"
+  },
+  {
+   "codigo": "6910",
+   "descripcion": "Actividades jurídicas",
+   "corto": "Servicios jurídicos",
+   "simple": "Abogado o servicios legales.",
+   "palabras": "abogado juridico legal tramites"
+  },
+  {
+   "codigo": "6920",
+   "descripcion": "Actividades de contabilidad, teneduría de libros, auditoría financiera y asesoría tributaria",
+   "corto": "Contabilidad",
+   "simple": "Contador, contabilidad o asesoría tributaria.",
+   "palabras": "contador contabilidad tributaria impuestos declaraciones"
+  },
+  {
+   "codigo": "7020",
+   "descripcion": "Actividades de consultaría de gestión",
+   "corto": "Asesoría empresarial",
+   "simple": "Consultoría y asesoría a empresas.",
+   "palabras": "consultoria asesoria empresarial gestion"
+  },
+  {
+   "codigo": "7110",
+   "descripcion": "Actividades de arquitectura e ingeniería y otras actividades conexas de consultoría técnica",
+   "corto": "Arquitectura e ingeniería",
+   "simple": "Servicios de arquitectura, ingeniería o topografía.",
+   "palabras": "arquitectura ingenieria planos topografia disenos"
+  },
+  {
+   "codigo": "7310",
+   "descripcion": "Publicidad",
+   "corto": "Publicidad",
+   "simple": "Agencia o servicios de publicidad y marketing.",
+   "palabras": "publicidad marketing agencia redes sociales mercadeo"
+  },
+  {
+   "codigo": "7410",
+   "descripcion": "Actividades especializadas de diseño",
+   "corto": "Diseño",
+   "simple": "Diseño gráfico, de interiores o de modas.",
+   "palabras": "diseno grafico interiores moda disenador"
+  },
+  {
+   "codigo": "7420",
+   "descripcion": "Actividades de fotografía",
+   "corto": "Fotografía",
+   "simple": "Estudio o servicios de fotografía.",
+   "palabras": "fotografia fotografo fotos estudio"
+  },
+  {
+   "codigo": "7500",
+   "descripcion": "Actividades veterinarias",
+   "corto": "Veterinaria",
+   "simple": "Consultorio o servicios veterinarios.",
+   "palabras": "veterinaria veterinario mascotas animales clinica"
+  },
+  {
+   "codigo": "7710",
+   "descripcion": "Alquiler y arrendamiento de vehículos automotores",
+   "corto": "Alquiler de vehículos",
+   "simple": "Alquiler de carros o motos.",
+   "palabras": "alquiler carros vehiculos motos renta"
+  },
+  {
+   "codigo": "7729",
+   "descripcion": "Alquiler y arrendamiento de otros efectos personales y enseres domésticos n.c.p",
+   "corto": "Alquiler de artículos",
+   "simple": "Alquiler de trajes, sillas, mesas o menaje para eventos.",
+   "palabras": "alquiler trajes disfraces sillas mesas menaje eventos"
+  },
+  {
+   "codigo": "7730",
+   "descripcion": "Alquiler y arrendamiento de otros tipos de maquinaria, equipo y bienes tangibles n.c.p",
+   "corto": "Alquiler de maquinaria",
+   "simple": "Alquiler de maquinaria, andamios o equipos.",
+   "palabras": "alquiler maquinaria andamios equipos formaleta"
+  },
+  {
+   "codigo": "7911",
+   "descripcion": "Actividades de las agencias de viaje",
+   "corto": "Agencia de viajes",
+   "simple": "Venta de tiquetes y planes de viaje.",
+   "palabras": "agencia viajes tiquetes planes turismo"
+  },
+  {
+   "codigo": "7912",
+   "descripcion": "Actividades de operadores turísticos",
+   "corto": "Operador turístico",
+   "simple": "Tours, guía turístico o planes turísticos propios.",
+   "palabras": "tours guia turistico operador turistico excursiones"
+  },
+  {
+   "codigo": "8010",
+   "descripcion": "Actividades de seguridad privada",
+   "corto": "Vigilancia",
+   "simple": "Servicios de seguridad privada y vigilancia.",
+   "palabras": "vigilancia seguridad privada celaduria"
+  },
+  {
+   "codigo": "8121",
+   "descripcion": "Limpieza general interior de edificios",
+   "corto": "Aseo de oficinas y casas",
+   "simple": "Servicios de limpieza y aseo de oficinas, casas o edificios.",
+   "palabras": "aseo limpieza oficinas casas edificios servicio de aseo"
+  },
+  {
+   "codigo": "8129",
+   "descripcion": "Otras actividades de limpieza de edificios e instalaciones industriales",
+   "corto": "Fumigación y limpieza especializada",
+   "simple": "Fumigación, control de plagas o limpieza especializada.",
+   "palabras": "fumigacion plagas desinfeccion limpieza especializada lavado tanques"
+  },
+  {
+   "codigo": "8130",
+   "descripcion": "Actividades de paisajismo y servicios de mantenimiento conexos",
+   "corto": "Jardinería",
+   "simple": "Jardinería y mantenimiento de zonas verdes.",
+   "palabras": "jardineria jardinero zonas verdes poda paisajismo"
+  },
+  {
+   "codigo": "8219",
+   "descripcion": "Fotocopiado, preparación de documentos y otras actividades especializadas de apoyo a oficina",
+   "corto": "Fotocopias y servicios de oficina",
+   "simple": "Fotocopias, impresiones, digitación o trámites de documentos.",
+   "palabras": "fotocopias fotocopiadora impresiones digitacion internet tramites plastificado"
+  },
+  {
+   "codigo": "8230",
+   "descripcion": "Organización de convenciones y eventos comerciales",
+   "corto": "Organización de eventos",
+   "simple": "Organización y decoración de eventos y fiestas.",
+   "palabras": "eventos fiestas decoracion organizacion matrimonios quinceañeras"
+  },
+  {
+   "codigo": "8551",
+   "descripcion": "Formación académica no formal",
+   "corto": "Cursos y clases particulares",
+   "simple": "Cursos de idiomas, preparación para exámenes o clases particulares.",
+   "palabras": "cursos clases particulares tutorias idiomas ingles preicfes refuerzo"
+  },
+  {
+   "codigo": "8552",
+   "descripcion": "Enseñanza deportiva y recreativa",
+   "corto": "Enseñanza deportiva",
+   "simple": "Escuela de fútbol, natación o entrenamiento deportivo.",
+   "palabras": "escuela de futbol natacion entrenador gimnasio instructor deportivo"
+  },
+  {
+   "codigo": "8553",
+   "descripcion": "Enseñanza cultural",
+   "corto": "Clases de arte, música o baile",
+   "simple": "Enseñanza de música, baile, pintura u otras artes.",
+   "palabras": "clases musica baile danza pintura arte academia"
+  },
+  {
+   "codigo": "8559",
+   "descripcion": "Otros tipos de educación n.c.p",
+   "corto": "Otros cursos y academias",
+   "simple": "Otras academias y cursos (conducción, belleza, sistemas).",
+   "palabras": "academia cursos conduccion belleza sistemas capacitacion educacion"
+  },
+  {
+   "codigo": "8621",
+   "descripcion": "Actividades de la práctica médica, sin internación",
+   "corto": "Consultorio médico",
+   "simple": "Consultorio o servicios médicos sin hospitalización.",
+   "palabras": "consultorio medico medicina salud doctor"
+  },
+  {
+   "codigo": "8622",
+   "descripcion": "Actividades de la práctica odontológica",
+   "corto": "Consultorio odontológico",
+   "simple": "Consultorio odontológico o dentista.",
+   "palabras": "odontologia odontologo dentista consultorio"
+  },
+  {
+   "codigo": "8692",
+   "descripcion": "Actividades de apoyo terapéutico",
+   "corto": "Terapias",
+   "simple": "Fisioterapia, terapia ocupacional, psicología u otras terapias.",
+   "palabras": "fisioterapia terapia psicologia terapeuta masajes terapeuticos"
+  },
+  {
+   "codigo": "8699",
+   "descripcion": "Otras actividades de atención de la salud humana",
+   "corto": "Otros servicios de salud",
+   "simple": "Enfermería a domicilio y otros servicios de salud.",
+   "palabras": "enfermeria domicilio salud cuidados"
+  },
+  {
+   "codigo": "8730",
+   "descripcion": "Actividades de atención en instituciones para el cuidado de personas mayores y/o discapacitadas",
+   "corto": "Hogar geriátrico",
+   "simple": "Hogar para el cuidado de personas mayores (con alojamiento).",
+   "palabras": "hogar geriatrico ancianato adultos mayores abuelitos"
+  },
+  {
+   "codigo": "8810",
+   "descripcion": "Actividades de asistencia social sin alojamiento para personas mayores y discapacitadas",
+   "corto": "Cuidado de adultos mayores",
+   "simple": "Cuidado diurno de personas mayores o con discapacidad (sin alojamiento).",
+   "palabras": "cuidado adultos mayores discapacidad centro dia acompañamiento"
+  },
+  {
+   "codigo": "8890",
+   "descripcion": "Otras actividades de asistencia social sin alojamiento",
+   "corto": "Cuidado de niños",
+   "simple": "Guardería o cuidado de niños sin alojamiento.",
+   "palabras": "guarderia cuidado ninos niñera jardin infantil hogar comunitario"
+  },
+  {
+   "codigo": "9005",
+   "descripcion": "Artes plásticas y visuales",
+   "corto": "Artes plásticas",
+   "simple": "Pintura, escultura u obras artísticas.",
+   "palabras": "artista pintura escultura arte obras"
+  },
+  {
+   "codigo": "9007",
+   "descripcion": "Actividades de espectáculos musicales en vivo",
+   "corto": "Música en vivo",
+   "simple": "Músico, orquesta, mariachi o conciertos.",
+   "palabras": "musico orquesta mariachi serenatas conciertos grupo musical"
+  },
+  {
+   "codigo": "9200",
+   "descripcion": "Actividades de juegos de azar y apuestas",
+   "corto": "Chance y apuestas",
+   "simple": "Juegos de azar: chance, lotería o apuestas.",
+   "palabras": "chance loteria apuestas juegos de azar"
+  },
+  {
+   "codigo": "9311",
+   "descripcion": "Gestión de instalaciones deportivas",
+   "corto": "Canchas deportivas",
+   "simple": "Alquiler de canchas sintéticas o instalaciones deportivas.",
+   "palabras": "cancha sintetica canchas instalaciones deportivas"
+  },
+  {
+   "codigo": "9319",
+   "descripcion": "Otras actividades deportivas",
+   "corto": "Otras actividades deportivas",
+   "simple": "Otras actividades deportivas.",
+   "palabras": "deporte deportivas torneos"
+  },
+  {
+   "codigo": "9329",
+   "descripcion": "Otras actividades recreativas y de esparcimiento n.c.p",
+   "corto": "Recreación y billares",
+   "simple": "Billares, recreación, parques infantiles o juegos.",
+   "palabras": "billar billares recreacion recreacionista parque infantil juegos maquinitas"
+  },
+  {
+   "codigo": "9511",
+   "descripcion": "Mantenimiento y reparación de computadores y de equipo periférico",
+   "corto": "Reparación de computadores",
+   "simple": "Mantenimiento y reparación de computadores e impresoras.",
+   "palabras": "reparacion computadores mantenimiento tecnico impresoras portatiles"
+  },
+  {
+   "codigo": "9512",
+   "descripcion": "Mantenimiento y reparación de equipos de comunicación",
+   "corto": "Reparación de celulares",
+   "simple": "Reparación de celulares y equipos de comunicación.",
+   "palabras": "reparacion celulares arreglo de celulares arreglo celulares telefonos pantallas servicio tecnico"
+  },
+  {
+   "codigo": "9521",
+   "descripcion": "Mantenimiento y reparación de aparatos electrónicos de consumo",
+   "corto": "Reparación de electrónicos",
+   "simple": "Reparación de televisores y equipos de sonido.",
+   "palabras": "reparacion televisores sonido electronica tecnico"
+  },
+  {
+   "codigo": "9522",
+   "descripcion": "Mantenimiento y reparación de aparatos y equipos domésticos y de jardinería",
+   "corto": "Reparación de electrodomésticos",
+   "simple": "Reparación de neveras, lavadoras y otros electrodomésticos.",
+   "palabras": "reparacion neveras lavadoras electrodomesticos refrigeracion tecnico"
+  },
+  {
+   "codigo": "9523",
+   "descripcion": "Reparación de calzado y artículos de cuero",
+   "corto": "Reparación de calzado",
+   "simple": "Zapatería: arreglo de zapatos y artículos de cuero.",
+   "palabras": "zapatero remendon arreglo de zapatos reparacion calzado"
+  },
+  {
+   "codigo": "9524",
+   "descripcion": "Reparación de muebles y accesorios para el hogar",
+   "corto": "Tapicería y arreglo de muebles",
+   "simple": "Reparación y tapizado de muebles.",
+   "palabras": "tapiceria tapizado arreglo muebles restauracion"
+  },
+  {
+   "codigo": "9529",
+   "descripcion": "Mantenimiento y reparación de otros efectos personales y enseres domésticos",
+   "corto": "Otras reparaciones",
+   "simple": "Arreglos de ropa, cerrajería, relojería o bicicletas.",
+   "palabras": "arreglos ropa modisteria arreglos cerrajeria relojeria bicicletas reparacion"
+  },
+  {
+   "codigo": "9601",
+   "descripcion": "Lavado y limpieza, incluso la limpieza en seco, de productos textiles y de piel",
+   "corto": "Lavandería",
+   "simple": "Lavado y planchado de ropa, tintorería.",
+   "palabras": "lavanderia lavado ropa tintoreria planchado"
+  },
+  {
+   "codigo": "9602",
+   "descripcion": "Peluquería y otros tratamientos de belleza",
+   "corto": "Peluquería o salón de belleza",
+   "simple": "Peluquería, barbería, uñas, manicure o estética.",
+   "palabras": "peluqueria barberia salon belleza unas manicure pedicure estetica cejas pestanas maquillaje"
+  },
+  {
+   "codigo": "9603",
+   "descripcion": "Pompas fúnebres y actividades relacionadas",
+   "corto": "Funeraria",
+   "simple": "Servicios funerarios.",
+   "palabras": "funeraria funerarios exequias"
+  },
+  {
+   "codigo": "9609",
+   "descripcion": "Otras actividades de servicios personales n.c.p",
+   "corto": "Otros servicios personales",
+   "simple": "Spa, tatuajes, peluquería de mascotas u otros servicios personales.",
+   "palabras": "spa tatuajes piercing peluqueria mascotas servicios personales"
+  }
+ ]
+}
