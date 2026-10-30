@@ -135,7 +135,6 @@ Tomadas sin bloquear el trabajo (todas configurables):
 - **Persistencia**: en Vercel sin Postgres la analítica se guarda en memoria y se pierde al reciclar la instancia. Los límites de uso (`lib/servidor/limites.ts`) también son por instancia.
 - **Voz**: depende del navegador (Chrome, Edge y Safari reconocen voz; Firefox no). Siempre se puede escribir.
 - **Panel**: contraseña simple y cookie firmada; en producción debería usarse el SSO de la entidad.
-- **Base local de desarrollo**: `prisma/dev.db` conserva 63 sinónimos y 4 preguntas de las primeras cargas sintéticas, anteriores a la marca `sintetica`. Para empezar limpio: `npx prisma migrate reset` (borra la base local) y `npm run db:demo`.
 
 ## Documentación
 
