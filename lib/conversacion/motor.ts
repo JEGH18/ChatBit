@@ -100,7 +100,7 @@ export function campoMencionado(texto: string): CampoId | null {
 
 // ---------- construcción del turno ----------
 
-class Turnero {
+export class Turnero {
   e: EstadoConversacion;
   mensajes: MensajeBot[] = [];
   chips: Chip[] | null = null;
@@ -612,6 +612,16 @@ class Turnero {
   // ----- texto libre -----
 
   texto(crudo: string) {
+    if (this.intentarDeterminista(crudo)) return;
+    this.responderCampo(crudo.trim().slice(0, 1000));
+  }
+
+  /**
+   * Lo que siempre se resuelve con reglas, con o sin IA: seguridad, asesor, formulario manual,
+   * correcciones, subdiálogos (confirmar documento, elegir CIIU, confirmar ventas…), revisión
+   * final y consentimientos. Devuelve false si el mensaje necesita comprensión de lenguaje.
+   */
+  intentarDeterminista(crudo: string): boolean {
     const texto = crudo.trim().slice(0, 1000);
     const t = normalizar(texto);
 
@@ -625,28 +635,42 @@ class Turnero {
           "⚠️ Por tu seguridad, **no compartas claves, contraseñas, códigos que te lleguen por mensaje ni números de tarjeta**. No los necesito y no los guardé. Neocrédito nunca te los pedirá.",
         ),
       );
-      return this.preguntarSiguiente();
+      this.preguntarSiguiente();
+      return true;
     }
     if (detectarInyeccion(texto)) {
       this.eventos.push({ tipo: "seguridad", motivo: "inyeccion" });
       this.decir(this.t("Solo puedo ayudarle con su registro en Neocrédito, y mis reglas no se pueden cambiar desde el chat.", "Solo puedo ayudarte con tu registro en Neocrédito, y mis reglas no se pueden cambiar desde el chat."));
-      return this.preguntarSiguiente(this.t("Sigamos.", "Sigamos."));
+      this.preguntarSiguiente(this.t("Sigamos.", "Sigamos."));
+      return true;
     }
 
     // 2. Intenciones que funcionan en cualquier momento.
-    if (/\b(asesor|asesora|humano|persona real|hablar con alguien|agente|operador|hablar con una persona)\b/.test(t)) return this.escalar("texto");
-    if (/\b(formulario manual|llenar(lo)? yo|prefiero el formulario|llenarlo solo|llenarlo sola|sin chat|formulario normal)\b/.test(t))
-      return this.accion({ tipo: "formularioManual" });
+    if (/\b(asesor|asesora|humano|persona real|hablar con alguien|agente|operador|hablar con una persona)\b/.test(t)) {
+      this.escalar("texto");
+      return true;
+    }
+    if (/\b(formulario manual|llenar(lo)? yo|prefiero el formulario|llenarlo solo|llenarlo sola|sin chat|formulario normal)\b/.test(t)) {
+      this.accion({ tipo: "formularioManual" });
+      return true;
+    }
     const correccion = t.match(/^(?:quiero |necesito |me gustaria )?(corregir|cambiar|editar|modificar|me equivoque en|me equivoque|arreglar)\b(.*)$/);
-    if (correccion) return this.accion({ tipo: "corregir", campo: campoMencionado(correccion[2]) ?? undefined });
+    if (correccion) {
+      this.accion({ tipo: "corregir", campo: campoMencionado(correccion[2]) ?? undefined });
+      return true;
+    }
+    if (/\bno tengo (correo|email|e mail|mail)\b/.test(t) && !texto.includes("@")) {
+      this.accion({ tipo: "ayudaCorreo" });
+      return true;
+    }
 
     // 3. Subdiálogo activo.
-    if (this.e.subdialogo && this.subdialogo(texto)) return;
+    if (this.e.subdialogo && this.subdialogo(texto)) return true;
     this.e = { ...this.e, subdialogo: null };
 
     // 4. Registro ya enviado.
     if (this.e.fase === "encuesta" || this.e.fase === "enviado" || this.e.fase === "fin") {
-      if (this.responderPregunta(texto, false)) return;
+      if (this.responderPregunta(texto, false)) return true;
       this.decir(
         this.t(
           `Su registro ya quedó listo (radicado **${this.e.radicado}**). Si tiene otra pregunta, escríbala.`,
@@ -654,18 +678,35 @@ class Turnero {
         ),
       );
       this.chips = [];
-      return;
+      return true;
     }
 
     // 5. Revisión final.
     if (this.e.fase === "revision") {
       const si = interpretarSiNo(texto);
-      if (si === true || /\bfinaliz/.test(t)) return this.accion({ tipo: "finalizar" });
-      if (si === false) return this.accion({ tipo: "corregir" });
+      if (si === true || /\bfinaliz/.test(t)) {
+        this.accion({ tipo: "finalizar" });
+        return true;
+      }
+      if (si === false) {
+        this.accion({ tipo: "corregir" });
+        return true;
+      }
     }
 
-    // 6. Respuesta al campo actual y extracción de varios campos.
-    this.responderCampo(texto);
+    // 6. Consentimientos: solo con una aceptación explícita de la persona.
+    const c = campoActual(this.e);
+    if (c === "aceptaPoliticaDatos" || c === "aceptaTerminos") {
+      if (/^(si |)acepto\b|^(si|de acuerdo|ok|listo|dale)$/.test(t)) {
+        this.accion({ tipo: "aceptar", campo: c });
+        return true;
+      }
+      if (/^no\b/.test(t)) {
+        this.accion({ tipo: "rechazar", campo: c });
+        return true;
+      }
+    }
+    return false;
   }
 
   /** Maneja la respuesta dentro de un subdiálogo. Devuelve false si no aplica. */
@@ -883,12 +924,9 @@ class Turnero {
       if (!CAMPO[c].obligatorio) return this.accion({ tipo: "omitir", campo: c });
       return this.explicar(c);
     }
-    if (/\bno tengo (correo|email|e mail|mail)\b/.test(t)) return this.accion({ tipo: "ayudaCorreo" });
     if (/^(prefiero no (decir|responder|decirlo|contestar)|omitir|saltar|siguiente|paso)$/.test(t) && !CAMPO[c].obligatorio)
       return this.accion({ tipo: "omitir", campo: c });
     if (c === "aceptaPoliticaDatos" || c === "aceptaTerminos") {
-      if (/^(si |)acepto\b|^(si|de acuerdo|ok|listo|dale)$/.test(t)) return this.accion({ tipo: "aceptar", campo: c });
-      if (/^no\b/.test(t)) return this.accion({ tipo: "rechazar", campo: c });
       if (this.responderPregunta(texto)) return;
       return this.pedirConsentimiento(c);
     }
@@ -1012,6 +1050,31 @@ class Turnero {
     if (intentos >= 3) this.chips = [...this.chips, chipAsesor(), { etiqueta: "Llenar el formulario yo", texto: "Prefiero llenar el formulario yo", accion: { tipo: "formularioManual" } }];
   }
 
+  /** Botones del subdiálogo activo (modo IA: la IA redacta el texto, el código pone los botones). */
+  chipsDeSubdialogo(): boolean {
+    const sub = this.e.subdialogo;
+    if (!sub) return false;
+    switch (sub.tipo) {
+      case "elegirCiiu":
+        this.chips = [
+          ...sub.opciones.map((o, i) => ({ etiqueta: `${i + 1}. ${o.corto}`, texto: `${o.codigo} - ${o.corto}`, accion: { tipo: "elegirCiiu", codigo: o.codigo } as Accion })),
+          { etiqueta: "Ninguna se parece", texto: "Ninguna se parece", accion: { tipo: "ningunCiiu" } },
+        ];
+        return true;
+      case "confirmarVentas":
+        this.chips = [
+          { etiqueta: `Sí, usar ${formatoCOP(sub.propuesta)}`, texto: `Sí, usar ${formatoCOP(sub.propuesta)}`, accion: { tipo: "usarVentas", valor: sub.propuesta }, variante: "primario" },
+          { etiqueta: "No, la cifra es otra", texto: "No, la cifra es otra", accion: { tipo: "rechazarVentas" } },
+        ];
+        return true;
+      case "elegirOpcion":
+        this.chips = chipsSugeridas(sub.campo, sub.opciones);
+        return true;
+      default:
+        return false;
+    }
+  }
+
   respuestaDirectaValida(c: CampoId, texto: string) {
     return interpretarCampo(c, texto, this.e.valores).ok;
   }
@@ -1044,12 +1107,28 @@ export function procesarTurno(estado: EstadoConversacion, entrada: Entrada, ctx:
   return turno.resultado();
 }
 
+/**
+ * Para el modo con IA: resuelve con reglas todo lo que no requiere comprensión de lenguaje.
+ * Devuelve `turno` si ya quedó resuelto; si no, `estado` (con el contador actualizado) para la IA.
+ */
+export function resolverSinIA(
+  estado: EstadoConversacion,
+  entrada: Entrada,
+  ctx: ContextoMotor = {},
+): { turno: Turno } | { estado: EstadoConversacion } {
+  if (entrada.accion || !entrada.texto?.trim()) return { turno: procesarTurno(estado, entrada, ctx) };
+  const e = { ...estado, mensajesUsuario: estado.mensajesUsuario + 1 };
+  if (e.mensajesUsuario > CONFIG.maxMensajesSesion) return { turno: procesarTurno(estado, entrada, ctx) };
+  const turno = new Turnero(e, ctx);
+  if (turno.intentarDeterminista(entrada.texto)) return { turno: turno.resultado() };
+  return { estado: e };
+}
+
 /** Botones y bloques que corresponden al estado actual (para el modo IA, que redacta el texto). */
 export function interfazPara(estado: EstadoConversacion, ctx: ContextoMotor = {}) {
   const turno = new Turnero(estado, ctx);
-  turno.preguntarSiguiente();
+  if (!turno.chipsDeSubdialogo()) turno.preguntarSiguiente();
   const r = turno.resultado();
   return { estado: r.estado, chips: r.chips, bloque: r.mensajes.find((m) => m.bloque)?.bloque, pregunta: r.mensajes.at(-1)?.texto ?? "" };
 }
 
-export { Turnero as _TurneroParaPruebas };
