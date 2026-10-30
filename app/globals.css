@@ -96,7 +96,7 @@
 /* Alto contraste (WCAG AAA en texto): fondo negro, texto blanco, acentos amarillos. */
 html.alto-contraste {
   --neo-morado: #000000;
-  --neo-morado-oscuro: #000000;
+  --neo-morado-oscuro: #ffffff;
   --neo-morado-claro: #1a1a1a;
   --neo-verde: #ffeb3b;
   --neo-verde-oscuro: #ffeb3b;

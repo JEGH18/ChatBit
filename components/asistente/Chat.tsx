@@ -129,7 +129,7 @@ export function Chat(p: Props) {
                   "inline-flex min-h-11 items-center gap-1.5 rounded-full border-2 px-4 py-1.5 text-[0.95rem] font-semibold transition-colors disabled:opacity-50",
                   c.variante === "primario"
                     ? "border-primary bg-primary text-primary-foreground hover:bg-primary/90"
-                    : "border-[var(--neo-morado)] bg-background text-[var(--neo-morado)] hover:bg-secondary",
+                    : "border-primary bg-background text-primary hover:bg-secondary",
                 )}
               >
                 {c.etiqueta}

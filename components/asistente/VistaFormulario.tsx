@@ -40,6 +40,9 @@ export function VistaFormulario({ estado, manual, recienLlenados, editar, enviar
   return (
     <div ref={contenedor} className="flex h-full flex-col overflow-y-auto bg-[var(--neo-morado)] text-white" aria-label="Vista previa del formulario oficial">
       <div className="mx-auto w-full max-w-4xl px-4 py-5 sm:px-6">
+        <p id="ayuda-tocar-campo" className="sr-only">
+          Toque un campo para llenarlo o corregirlo.
+        </p>
         <h2 className="text-center text-xl font-bold sm:text-2xl">
           Formulario de registro <span className="text-[var(--neo-verde)]">persona natural</span>
         </h2>
@@ -200,7 +203,7 @@ function Campo({
         type="button"
         disabled={bloqueado}
         onClick={() => editar(def.id)}
-        aria-label={`${def.etiqueta}: ${valor || (omitido ? "sin responder" : "vacío")}. Tocar para ${valor ? "corregir" : "llenar"}.`}
+        aria-describedby="ayuda-tocar-campo"
         className={cn(
           "mt-1 flex min-h-11 w-full items-center gap-2 rounded-md border-2 border-transparent bg-white px-3 py-2 text-left text-[0.95rem] text-[#23223f] shadow-sm transition-shadow",
           "hover:border-[var(--neo-verde)] focus-visible:border-[var(--neo-verde)] disabled:cursor-default",

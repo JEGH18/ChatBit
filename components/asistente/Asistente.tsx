@@ -81,7 +81,7 @@ export function Asistente({ opciones, sesion, encabezadoExtra }: Props) {
         variant="outline"
         size="sm"
         onClick={() => setPref({ texto: pref.texto === "normal" ? "grande" : pref.texto === "grande" ? "muy-grande" : "normal" })}
-        aria-label={`Tamaño del texto: ${pref.texto}. Cambiar`}
+        title="Cambiar el tamaño del texto"
       >
         <Type aria-hidden /> {pref.texto === "normal" ? "Agrandar texto" : pref.texto === "grande" ? "Texto más grande" : "Texto normal"}
       </Button>
@@ -99,7 +99,7 @@ export function Asistente({ opciones, sesion, encabezadoExtra }: Props) {
       <header className="flex flex-none items-center gap-3 border-b border-border bg-background px-3 py-2 sm:px-5">
         <AvatarNeo className="size-11 shrink-0" />
         <div className="min-w-0 flex-1">
-          <h1 className="truncate text-lg leading-tight font-extrabold text-[var(--neo-morado)] sm:text-xl">{CONFIG.nombreProducto}</h1>
+          <h1 className="truncate text-lg leading-tight font-extrabold text-primary sm:text-xl">{CONFIG.nombreProducto}</h1>
           <p className="truncate text-sm text-muted-foreground">Registro persona natural · prototipo académico</p>
         </div>
         {encabezadoExtra}
