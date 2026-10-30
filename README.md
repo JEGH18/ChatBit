@@ -21,7 +21,8 @@ Muchas personas (microempresarios personas naturales, negocios informales y adul
 | **Ventas del último año** | Entiende «unos 2 millones al mes» o «10 palos»; si la persona no sabe, calcula con ella (venta diaria × días × semanas), muestra la cuenta y pide confirmación. |
 | **Consentimientos** | Resumen en 3 viñetas y enlace al texto completo. La aceptación siempre es un botón que toca la persona. |
 | **Accesibilidad** | Voz (es-CO) para hablar y para escuchar, texto grande, modo oscuro de alto contraste con los colores de la marca (fondo índigo muy oscuro, texto casi blanco y acentos verde agua; texto entre 10,9:1 y 19:1, nivel AAA), botones de 44 px o más, trato de «usted». Auditado con axe: 0 violaciones WCAG 2.1 AA. |
-| **Siempre hay salida** | Pasar al formulario manual sin perder nada, o hablar con un asesor (WhatsApp/teléfono configurables). |
+| **Chat o formulario** | Un selector «Chat \| Formulario» cambia entre conversar y llenar el formulario uno mismo a pantalla completa, sin perder nada. Desde el formulario se revisan todos los datos en una ventana antes de finalizar. |
+| **Siempre hay salida** | Llenar el formulario por cuenta propia o hablar con un asesor (WhatsApp/teléfono configurables). |
 | **Resumen final y encuesta** | Tarjeta para revisar todo antes de «Finalizar registro» y encuesta de 1 pregunta (😞 😐 🙂). |
 | **Aprende sin datos personales** | Analítica de fricción anonimizada, bandeja de preguntas sin resolver (humano en el bucle) y sinónimos CIIU confirmados. Panel en `/admin`. |
 | **Funciona sin internet** | Si la red o la IA fallan, el mismo motor corre en el navegador. `/demo` reproduce las 3 personas de prueba sin conexión. |
@@ -68,7 +69,7 @@ Medidos en este repositorio el 2026-10-30:
 | Qué | Resultado |
 |---|---|
 | Pruebas unitarias (Vitest) | 81 de 81 |
-| Pruebas E2E (Playwright, escritorio y celular) | 11 de 11 |
+| Pruebas E2E (Playwright, escritorio y celular) | 12 de 12 |
 | Accesibilidad (axe, WCAG 2.1 AA) | 0 violaciones en `/`, modo oscuro, `/demo` y `/como-funciona` |
 | Extracción con reglas, **conjunto de prueba** (8 mensajes no usados para ajustar) | Precisión 100 %, cobertura 87 %, F1 93 % |
 | CIIU con búsqueda léxica, **conjunto de prueba** (7 descripciones) | Top-1 85,7 %, top-3 100 % |

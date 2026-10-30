@@ -1,12 +1,13 @@
 "use client";
 // Vista previa en vivo del "Formulario de registro persona natural". Se llena mientras la persona
-// conversa; cualquier campo se puede tocar para corregirlo. En modo manual funciona como el
-// formulario real, por pasos, con "Anterior", "Siguiente" y "Finalizar registro".
+// conversa; cualquier campo se puede tocar para corregirlo. En la vista "Formulario" (manual) ocupa
+// toda la pantalla y funciona como el formulario real, por pasos, con "Anterior", "Siguiente",
+// revisión de los datos y "Finalizar registro".
 import { useEffect, useRef, useState } from "react";
-import { BadgeCheck, ChevronDown, ChevronLeft, ChevronRight, HandCoins, UserRound } from "lucide-react";
+import { BadgeCheck, ChevronDown, ChevronLeft, ChevronRight, HandCoins, MessagesSquare, UserRound } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
-import { campoActual, listoParaRevision, pasoCompleto, progreso, type EstadoConversacion } from "@/lib/conversacion/estado";
+import { campoActual, listoParaRevision, pasoActual, pasoCompleto, progreso, type EstadoConversacion } from "@/lib/conversacion/estado";
 import type { Accion } from "@/lib/conversacion/tipos";
 import { CAMPOS, PASOS, type CampoId, type DefinicionCampo, type Paso } from "@/lib/form/campos";
 import { valorLegible } from "@/lib/form/presentacion";
@@ -18,13 +19,17 @@ type Props = {
   recienLlenados: string[];
   editar: (c: CampoId) => void;
   enviarAccion: (a: Accion, texto?: string) => void;
+  /** Vista Formulario: abre la revisión de todos los datos antes de finalizar. */
+  alRevisar?: () => void;
+  alVolverAlChat?: () => void;
   ocupado: boolean;
 };
 
-export function VistaFormulario({ estado, manual, recienLlenados, editar, enviarAccion, ocupado }: Props) {
+export function VistaFormulario({ estado, manual, recienLlenados, editar, enviarAccion, alRevisar, alVolverAlChat, ocupado }: Props) {
   const actual = campoActual(estado);
   const { completos, total, porcentaje } = progreso(estado);
-  const [paso, setPaso] = useState<Paso>(1);
+  // En la vista Formulario se abre en el paso donde va la persona.
+  const [paso, setPaso] = useState<Paso>(() => pasoActual(estado));
   const contenedor = useRef<HTMLDivElement>(null);
   const terminado = estado.fase === "encuesta" || estado.fase === "fin" || estado.fase === "enviado";
 
@@ -64,6 +69,22 @@ export function VistaFormulario({ estado, manual, recienLlenados, editar, enviar
           </span>
         </div>
 
+        {manual && !terminado && (
+          <p className="mt-3 flex flex-wrap items-center justify-center gap-x-2 text-center text-[0.95rem] text-[var(--neo-panel-suave)]">
+            Está llenando el formulario usted mismo: toque cada campo. Lo que ya respondió en el chat sigue aquí.
+            {alVolverAlChat && (
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={alVolverAlChat}
+                className="text-[var(--neo-panel-texto)] underline hover:bg-[var(--neo-panel-pista)] hover:text-[var(--neo-panel-texto)]"
+              >
+                <MessagesSquare aria-hidden /> Volver al chat
+              </Button>
+            )}
+          </p>
+        )}
+
         {terminado && estado.radicado && (
           <div className="mt-4 flex items-start gap-3 rounded-xl bg-[var(--neo-verde)] p-3 text-[#07332b]">
             <BadgeCheck className="size-6 shrink-0" aria-hidden />
@@ -97,6 +118,7 @@ export function VistaFormulario({ estado, manual, recienLlenados, editar, enviar
                   editar={editar}
                   enviarAccion={enviarAccion}
                   bloqueado={terminado || ocupado}
+                  manual={manual}
                 />
               ))}
             </div>
@@ -127,11 +149,13 @@ export function VistaFormulario({ estado, manual, recienLlenados, editar, enviar
               size="lg"
               disabled={!listoParaRevision(estado) || ocupado}
               onClick={() =>
-                enviarAccion(estado.fase === "revision" ? { tipo: "finalizar" } : { tipo: "revisar" }, estado.fase === "revision" ? "Finalizar registro" : "Revisar mis datos")
+                manual && alRevisar
+                  ? alRevisar()
+                  : enviarAccion(estado.fase === "revision" ? { tipo: "finalizar" } : { tipo: "revisar" }, estado.fase === "revision" ? "Finalizar registro" : "Revisar mis datos")
               }
               className="min-w-64 bg-[var(--neo-verde)] text-[#07332b] hover:bg-[var(--neo-verde)]/90"
             >
-              {estado.fase === "revision" ? "Finalizar registro" : "Revisar y finalizar"} <UserRound aria-hidden />
+              {estado.fase === "revision" && !manual ? "Finalizar registro" : "Revisar y finalizar"} <UserRound aria-hidden />
             </Button>
             {!listoParaRevision(estado) && <p className="text-sm text-[var(--neo-panel-suave)]">Se activa cuando estén todos los campos obligatorios.</p>}
           </div>
@@ -149,11 +173,13 @@ function Campo({
   editar,
   enviarAccion,
   bloqueado,
+  manual,
 }: {
   def: DefinicionCampo;
   estado: EstadoConversacion;
   actual: boolean;
   recien: boolean;
+  manual: boolean;
   editar: (c: CampoId) => void;
   enviarAccion: (a: Accion, texto?: string) => void;
   bloqueado: boolean;
@@ -221,7 +247,7 @@ function Campo({
         )}
       >
         <span className={cn("min-w-0 flex-1 truncate", !valor && "text-[var(--neo-campo-vacio)]")}>
-          {valor || (def.id === "confirmacionDocumento" ? (estado.valores.numeroDocumento ? "Pendiente de confirmar" : "") : omitido ? "Sin responder" : actual ? "Respondiendo en el chat…" : "")}
+          {valor || (def.id === "confirmacionDocumento" ? (estado.valores.numeroDocumento ? "Pendiente de confirmar" : "") : omitido ? "Sin responder" : actual ? (manual ? "Toque para llenar" : "Respondiendo en el chat…") : "")}
         </span>
         {def.control === "select" && <ChevronDown className="size-4 shrink-0 text-[var(--neo-campo-texto)]" aria-hidden />}
       </button>

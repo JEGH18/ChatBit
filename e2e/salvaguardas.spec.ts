@@ -34,14 +34,18 @@ test("si se cae la red, el asistente sigue funcionando en el navegador", async (
   await expect(page.getByText("Sin conexión · modo básico")).toBeVisible();
 });
 
-test("la sesión se puede retomar al recargar y se puede pasar al formulario manual", async ({ page }) => {
+test("la sesión se puede retomar al recargar y se puede cambiar entre Chat y Formulario", async ({ page }) => {
   await abrir(page);
   await escribir(page, "Luis");
   await page.reload();
   await expect(page.getByText("Retomamos donde iba.")).toBeVisible();
-  await page.getByRole("button", { name: "Llenar el formulario yo" }).click();
+  // El mismo selector lleva al formulario completo (sin chat) y de vuelta.
+  await page.getByRole("tab", { name: /Formulario \(/ }).click();
+  await expect(page.getByLabel("Chat con el asistente")).toBeHidden();
   await expect(page.getByRole("button", { name: "Siguiente" })).toBeVisible();
   await expect(page.locator("[data-campo=primerNombre]")).toContainText("Luis");
+  await page.getByRole("tab", { name: "Chat" }).click();
+  await expect(page.getByLabel("Chat con el asistente")).toBeVisible();
 });
 
 test("panel /admin: la bandeja convierte una pregunta sin respuesta en conocimiento", async ({ page }) => {
@@ -99,4 +103,46 @@ test("la página no crece más que la ventana (sin espacio en blanco debajo)", a
   const { alto, ventana, desplazado } = await page.evaluate(() => ({ alto: document.documentElement.scrollHeight, ventana: innerHeight, desplazado: scrollY }));
   expect(alto).toBe(ventana);
   expect(desplazado).toBe(0);
+});
+
+test("vista Formulario: llenarlo uno mismo a pantalla completa, revisar y finalizar", async ({ page }) => {
+  await abrir(page);
+  await escribir(
+    page,
+    "Soy Andrés Gómez, cédula de ciudadanía 1020304050, género masculino, celular 310 456 7890, correo andres.gomez@ejemplo.com. " +
+      "Sí tengo RUT y me enteré por redes sociales. Mi negocio queda en Medellín, Antioquia; prefiero que me contacten por WhatsApp. " +
+      "No pertenezco a ninguna minoría. Desarrollo software, CIIU 6201. Mis ventas de 2025 fueron de 180 millones.",
+  );
+  await page.getByRole("tab", { name: /Formulario \(/ }).click();
+  await expect(page.getByLabel("Chat con el asistente")).toBeHidden();
+  await expect(page.getByText(/Está llenando el formulario usted mismo/)).toBeVisible();
+  // Abre en el paso donde va la persona: falta confirmar el documento (Información general).
+  await expect(page.getByRole("heading", { name: "Información general" })).toBeVisible();
+
+  // Confirma el documento y acepta política y términos desde el formulario.
+  await page.locator("[data-campo=numeroDocumento] button").click();
+  await page.getByRole("dialog").getByRole("textbox").first().fill("1020304050");
+  await page.getByRole("dialog").getByLabel("Confirma tu número de documento").fill("1020304050");
+  await page.getByRole("dialog").getByRole("button", { name: "Guardar" }).click();
+  await esperarRespuesta(page);
+  await page.getByRole("button", { name: "Siguiente" }).click();
+  await expect(page.getByRole("button", { name: /Revisar y finalizar/ })).toBeDisabled();
+  for (const nombre of [/política de tratamiento/, /términos y condiciones/]) {
+    await page.getByRole("checkbox", { name: nombre }).click();
+    await page.getByRole("dialog").getByRole("checkbox").check();
+    await page.getByRole("dialog").getByRole("button", { name: "Guardar" }).click();
+    await esperarRespuesta(page);
+  }
+
+  // Revisión de todos los datos antes de finalizar, con opción de corregir.
+  await page.getByRole("button", { name: /Revisar y finalizar/ }).click();
+  const revision = page.getByRole("dialog", { name: "Revise sus datos antes de finalizar" });
+  await expect(revision.getByText("$180.000.000")).toBeVisible();
+  await expect(revision.getByRole("button", { name: /Corregir Ventas del último año/ })).toBeVisible();
+  await revision.getByRole("button", { name: "Finalizar registro" }).click();
+  await esperarRespuesta(page);
+
+  // Vuelve al chat con la confirmación, el JSON y la encuesta.
+  await expect(page.getByLabel("Chat con el asistente")).toBeVisible();
+  await expect(page.getByText("Registro generado (modo demostración)")).toBeVisible();
 });

@@ -13,11 +13,75 @@ import type { CampoId } from "@/lib/form/campos";
 import { cn } from "@/lib/utils";
 import { AvatarNeo } from "./Avatar";
 import { Chat } from "./Chat";
+import { DialogoRevision } from "./DialogoRevision";
 import { EditorCampo } from "./EditorCampo";
 import { useAsistente, type ApiAsistente, type OpcionesAsistente } from "./useAsistente";
 import { usePreferencias } from "./usePreferencias";
 import { useLecturaVoz } from "./voz";
 import { VistaFormulario } from "./VistaFormulario";
+
+type Vista = "chat" | "formulario";
+
+/**
+ * Un solo control para cambiar de vista: «Chat» (conversación) o «Formulario» (llenarlo uno mismo,
+ * a pantalla completa). En escritorio va en el encabezado; en celular, como pestañas.
+ */
+function SelectorVista({
+  vista,
+  cambiar,
+  completos,
+  total,
+  pestanas = false,
+  className,
+}: {
+  vista: Vista;
+  cambiar: (v: Vista) => void;
+  completos: number;
+  total: number;
+  pestanas?: boolean;
+  className?: string;
+}) {
+  const opciones: { v: Vista; icono: React.ReactNode; etiqueta: string }[] = [
+    { v: "chat", icono: <MessagesSquare aria-hidden />, etiqueta: "Chat" },
+    { v: "formulario", icono: <FileText aria-hidden />, etiqueta: `Formulario (${completos}/${total})` },
+  ];
+  if (pestanas) {
+    return (
+      <div className={cn("flex flex-none border-b border-border", className)} role="tablist" aria-label="Vista">
+        {opciones.map((o) => (
+          <button
+            key={o.v}
+            role="tab"
+            aria-selected={vista === o.v}
+            onClick={() => cambiar(o.v)}
+            className={cn("min-h-12 flex-1 border-b-4 font-bold", vista === o.v ? "border-[var(--neo-verde-oscuro)] text-foreground" : "border-transparent text-muted-foreground")}
+          >
+            {o.etiqueta}
+          </button>
+        ))}
+      </div>
+    );
+  }
+  return (
+    <div className={cn("items-center rounded-xl border-2 border-primary p-0.5", className)} role="tablist" aria-label="Vista">
+      {opciones.map((o) => (
+        <button
+          key={o.v}
+          role="tab"
+          aria-selected={vista === o.v}
+          onClick={() => cambiar(o.v)}
+          className={cn(
+            "inline-flex min-h-10 items-center gap-1.5 rounded-lg px-3 text-sm font-semibold transition-colors [&_svg]:size-4",
+            vista === o.v ? "bg-primary text-primary-foreground" : "text-primary hover:bg-secondary",
+          )}
+        >
+          {o.icono}
+          {o.etiqueta}
+        </button>
+      ))}
+    </div>
+  );
+}
 
 type Props = {
   /** Permite inyectar una sesión externa (modo demo). */
@@ -29,9 +93,11 @@ type Props = {
 export function Asistente({ opciones, sesion, encabezadoExtra }: Props) {
   const [pref, setPref] = usePreferencias();
   const lectura = useLecturaVoz(pref.leer);
-  const [manual, setManual] = useState(false);
-  const [pestana, setPestana] = useState<"chat" | "formulario">("chat");
+  // Vista: "chat" (conversación, con la vista previa al lado en escritorio) o "formulario"
+  // (el formulario completo para llenarlo uno mismo, sin chat).
+  const [vista, setVista] = useState<Vista>("chat");
   const [editando, setEditando] = useState<CampoId | null>(null);
+  const [revisando, setRevisando] = useState(false);
   const [opcionesAbiertas, setOpcionesAbiertas] = useState(false);
 
   const propia = useAsistente({
@@ -39,30 +105,23 @@ export function Asistente({ opciones, sesion, encabezadoExtra }: Props) {
     inactivo: !!sesion,
     alResponder: (textos) => lectura.leer(textos.join(". ")),
     alUi: (ui) => {
-      if (ui.abrirFormulario) {
-        setManual(true);
-        setPestana("formulario");
-        setPref({ soloChat: false });
-      }
+      if (ui.abrirFormulario) setVista("formulario");
       if (ui.abrirCampo) setEditando(ui.abrirCampo);
     },
   });
   const a = sesion ?? propia;
   const soloLectura = !!sesion;
   const { completos, total, porcentaje } = progreso(a.estado);
-  // Modo solo chat: la vista previa se oculta (no aplica al formulario manual ni a la demo).
-  const soloChat = pref.soloChat && !manual && !soloLectura;
+  const formulario = vista === "formulario";
+  // Modo solo chat: oculta la vista previa al lado del chat (no aplica a la vista Formulario ni a la demo).
+  const soloChat = pref.soloChat && !formulario && !soloLectura;
 
   const enviarAccion = useCallback(
     (accion: Accion, texto?: string) => {
-      if (accion.tipo === "formularioManual") {
-        setManual(true);
-        setPestana("formulario");
-        setPref({ soloChat: false });
-      }
+      if (accion.tipo === "formularioManual") setVista("formulario");
       void a.enviarAccion(accion, texto);
     },
-    [a, setPref],
+    [a],
   );
 
   const guardarDesdeFormulario = useCallback(
@@ -73,16 +132,16 @@ export function Asistente({ opciones, sesion, encabezadoExtra }: Props) {
     [a],
   );
 
-  const alternarManual = () => {
-    setManual((m) => !m);
-    setPestana(manual ? "chat" : "formulario");
-    if (!manual) setPref({ soloChat: false });
-  };
-
   const alternarSoloChat = () => {
     setPref({ soloChat: !pref.soloChat });
-    setPestana("chat");
-    if (manual) setManual(false);
+    setVista("chat");
+  };
+
+  // Revisión y finalización desde la vista Formulario (el chat no está visible ahí).
+  const finalizarDesdeFormulario = async () => {
+    await a.enviarAccion({ tipo: "finalizar" }, "Finalizar registro", "formulario");
+    setRevisando(false);
+    setVista("chat"); // la confirmación, el JSON y la encuesta aparecen en el chat
   };
 
   const botonSoloChat = (clase?: string) => (
@@ -127,10 +186,8 @@ export function Asistente({ opciones, sesion, encabezadoExtra }: Props) {
             <Button variant="secondary" size="sm" onClick={pedirAsesor} className="hidden sm:inline-flex">
               <Headset aria-hidden /> Hablar con un asesor
             </Button>
-            {botonSoloChat("hidden lg:inline-flex")}
-            <Button variant="secondary" size="sm" onClick={alternarManual} aria-pressed={manual} className="hidden md:inline-flex">
-              {manual ? <MessagesSquare aria-hidden /> : <FileText aria-hidden />} {manual ? "Volver al chat" : "Llenar el formulario yo"}
-            </Button>
+            {!formulario && botonSoloChat("hidden lg:inline-flex")}
+            <SelectorVista vista={vista} cambiar={setVista} completos={completos} total={total} className="hidden md:flex" />
           </>
         )}
         <Sheet open={opcionesAbiertas} onOpenChange={setOpcionesAbiertas}>
@@ -151,11 +208,11 @@ export function Asistente({ opciones, sesion, encabezadoExtra }: Props) {
                   <Button variant="outline" size="sm" onClick={pedirAsesor}>
                     <Headset aria-hidden /> Hablar con un asesor
                   </Button>
-                  <Button variant="outline" size="sm" onClick={alternarSoloChat} aria-pressed={soloChat}>
-                    {soloChat ? <PanelRightOpen aria-hidden /> : <PanelRightClose aria-hidden />} {soloChat ? "Mostrar el formulario" : "Ocultar el formulario (solo chat)"}
+                  <Button variant="outline" size="sm" onClick={() => setVista(formulario ? "chat" : "formulario")}>
+                    {formulario ? <MessagesSquare aria-hidden /> : <FileText aria-hidden />} {formulario ? "Volver al chat" : "Ver el formulario completo"}
                   </Button>
-                  <Button variant="outline" size="sm" onClick={alternarManual}>
-                    <FileText aria-hidden /> {manual ? "Volver al chat" : "Llenar el formulario yo"}
+                  <Button variant="outline" size="sm" onClick={alternarSoloChat} aria-pressed={soloChat} className="hidden md:inline-flex">
+                    {soloChat ? <PanelRightOpen aria-hidden /> : <PanelRightClose aria-hidden />} {soloChat ? "Mostrar la vista previa" : "Ocultar la vista previa (solo chat)"}
                   </Button>
                   <Button variant="outline" size="sm" onClick={a.reiniciar}>
                     <RotateCcw aria-hidden /> Empezar de nuevo
@@ -198,7 +255,7 @@ export function Asistente({ opciones, sesion, encabezadoExtra }: Props) {
 
       {/* Modo solo chat: el avance se ve aquí y la revisión completa llega al final, en el chat. */}
       {soloChat && (
-        <div className="flex flex-none items-center gap-2 border-b border-border bg-muted px-3 py-1 text-sm whitespace-nowrap sm:gap-3 sm:px-5" aria-live="polite">
+        <div className="hidden flex-none items-center gap-2 border-b border-border bg-muted px-3 py-1 text-sm whitespace-nowrap sm:gap-3 sm:px-5 md:flex" aria-live="polite">
           <span className="font-semibold">Formulario oculto</span>
           <span className="h-2 w-16 shrink-0 overflow-hidden rounded-full bg-border sm:w-48" aria-hidden>
             <span className="block h-full rounded-full bg-[var(--neo-verde-oscuro)]" style={{ width: `${porcentaje}%` }} />
@@ -213,28 +270,16 @@ export function Asistente({ opciones, sesion, encabezadoExtra }: Props) {
         </div>
       )}
 
-      {/* Pestañas en celular */}
-      <div className={cn("flex flex-none border-b border-border md:hidden", soloChat && "hidden")} role="tablist" aria-label="Vista">
-        {(["chat", "formulario"] as const).map((t) => (
-          <button
-            key={t}
-            role="tab"
-            aria-selected={pestana === t}
-            onClick={() => setPestana(t)}
-            className={cn("min-h-12 flex-1 border-b-4 font-bold", pestana === t ? "border-[var(--neo-verde-oscuro)] text-foreground" : "border-transparent text-muted-foreground")}
-          >
-            {t === "chat" ? "Chat" : `Formulario (${completos}/${total})`}
-          </button>
-        ))}
-      </div>
+      {/* En celular, el mismo selector como pestañas */}
+      <SelectorVista vista={vista} cambiar={setVista} completos={completos} total={total} pestanas className="md:hidden" />
 
       <main
         className={cn(
           "grid min-h-0 flex-1",
-          soloChat ? "grid-cols-1" : manual ? "md:grid-cols-[minmax(0,0.8fr)_minmax(0,1.6fr)]" : "md:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)]",
+          formulario || soloChat ? "grid-cols-1" : "md:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)]",
         )}
       >
-        <section className={cn("min-h-0", pestana !== "chat" && !soloChat && "hidden md:block")} aria-label="Chat con el asistente">
+        <section className={cn("min-h-0", formulario && "hidden")} aria-label="Chat con el asistente">
           <Chat
             mensajes={a.mensajes}
             chips={a.chips}
@@ -248,18 +293,32 @@ export function Asistente({ opciones, sesion, encabezadoExtra }: Props) {
             soloLectura={soloLectura}
           />
         </section>
-        <section className={cn("min-h-0", soloChat ? "hidden" : pestana !== "formulario" && "hidden md:block")} aria-label="Formulario de registro">
+        <section className={cn("min-h-0", !formulario && (soloChat ? "hidden" : "hidden md:block"))} aria-label="Formulario de registro">
           <VistaFormulario
+            key={vista}
             estado={a.estado}
-            manual={manual}
+            manual={formulario}
             recienLlenados={a.recienLlenados}
             editar={soloLectura ? () => undefined : setEditando}
             enviarAccion={enviarAccion}
+            alRevisar={() => setRevisando(true)}
+            alVolverAlChat={() => setVista("chat")}
             ocupado={a.ocupado || soloLectura}
           />
         </section>
       </main>
 
+      <DialogoRevision
+        abierto={revisando}
+        estado={a.estado}
+        ocupado={a.ocupado}
+        alCerrar={() => setRevisando(false)}
+        alCorregir={(c) => {
+          setRevisando(false);
+          setEditando(c);
+        }}
+        alFinalizar={finalizarDesdeFormulario}
+      />
       <EditorCampo campo={editando} estado={a.estado} alCerrar={() => setEditando(null)} alGuardar={guardarDesdeFormulario} />
     </div>
   );
