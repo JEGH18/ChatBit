@@ -58,7 +58,7 @@ export function Chat(p: Props) {
 
   return (
     <div className="flex h-full min-h-0 flex-col bg-background">
-      <div ref={lista} tabIndex={0} className="min-h-0 flex-1 overflow-y-auto px-3 py-4 outline-none focus-visible:ring-3 focus-visible:ring-ring/50 sm:px-5" role="log" aria-live="polite" aria-label="Conversación con el asistente">
+      <div ref={lista} tabIndex={0} className="relative min-h-0 flex-1 overflow-y-auto px-3 py-4 outline-none focus-visible:ring-3 focus-visible:ring-ring/50 sm:px-5" role="log" aria-live="polite" aria-label="Conversación con el asistente">
         <ol className="mx-auto flex max-w-2xl flex-col gap-3">
           {p.mensajes.map((m) =>
             m.rol === "nota" ? (
@@ -66,7 +66,7 @@ export function Chat(p: Props) {
                 {m.texto}
               </li>
             ) : m.rol === "usuario" ? (
-              <li key={m.id} className="max-w-[85%] self-end rounded-2xl rounded-br-md bg-primary px-4 py-2.5 text-primary-foreground">
+              <li key={m.id} className="max-w-[85%] self-end rounded-2xl rounded-br-md bg-[var(--neo-burbuja-usuario)] px-4 py-2.5 text-[var(--neo-burbuja-usuario-texto)]">
                 <span className="sr-only">Usted dijo: </span>
                 {m.canal === "voz" && (
                   <Mic className="mr-1 inline size-4 opacity-80" aria-label="(por voz)" />

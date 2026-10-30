@@ -32,7 +32,8 @@ export default function ComoFunciona() {
       <Bloque titulo="¿Qué es?">
         <p>
           Es un asistente con <strong>inteligencia artificial (IA)</strong> que le ayuda a llenar el formulario de registro de persona natural de Neocrédito, paso a paso, conversando. Puede
-          escribir o hablar. A la derecha (o en la pestaña «Formulario») ve cómo se llena el formulario y puede corregir cualquier dato tocándolo.
+          escribir o hablar. A la derecha (o en la pestaña «Formulario») ve cómo se llena el formulario y puede corregir cualquier dato tocándolo. Si prefiere no
+          verlo, toque «Solo chat»: lo llena conversando y al final revisa todos los datos antes de enviar.
         </p>
         <p>
           Está hablando con una máquina, no con una persona. Si prefiere una persona, escriba <strong>«asesor»</strong> en cualquier momento.

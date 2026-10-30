@@ -58,6 +58,19 @@
   --neo-verde-claro: #e2faf4;
   --neo-rojo: #ff9b9b; /* asterisco sobre morado (contraste 5.2:1) */
   --neo-error: #b4233d;
+  /* Panel del formulario, campos, burbujas y marcas: cambian juntos en el modo pastel. */
+  --neo-panel-fondo: var(--neo-morado);
+  --neo-panel-texto: #ffffff;
+  --neo-panel-suave: rgb(255 255 255 / 0.88);
+  --neo-panel-linea: rgb(255 255 255 / 0.7);
+  --neo-panel-pista: rgb(255 255 255 / 0.2);
+  --neo-panel-acento: var(--neo-verde);
+  --neo-campo-fondo: #ffffff;
+  --neo-campo-texto: #23223f;
+  --neo-campo-borde: transparent;
+  --neo-marca: #2563eb;
+  --neo-burbuja-usuario: var(--neo-morado);
+  --neo-burbuja-usuario-texto: #ffffff;
 
   --background: #ffffff;
   --foreground: #23223f;
@@ -93,34 +106,49 @@
   --sidebar-ring: var(--neo-verde-oscuro);
 }
 
-/* Alto contraste (WCAG AAA en texto): fondo negro, texto blanco, acentos amarillos. */
+/* Alto contraste en colores pastel de la marca: fondos lavanda y menta suaves con texto muy oscuro.
+   Contrastes WCAG medidos: texto 13–18:1, texto secundario ≥ 8.7:1, acentos ≥ 5.1:1, bordes ≥ 3:1. */
 html.alto-contraste {
-  --neo-morado: #000000;
-  --neo-morado-oscuro: #ffffff;
-  --neo-morado-claro: #1a1a1a;
-  --neo-verde: #ffeb3b;
-  --neo-verde-oscuro: #ffeb3b;
-  --neo-verde-claro: #000000;
-  --neo-rojo: #ffeb3b;
-  --background: #000000;
-  --foreground: #ffffff;
-  --card: #000000;
-  --card-foreground: #ffffff;
-  --popover: #000000;
-  --popover-foreground: #ffffff;
-  --primary: #ffeb3b;
-  --primary-foreground: #000000;
-  --secondary: #1a1a1a;
-  --secondary-foreground: #ffffff;
-  --muted: #111111;
-  --muted-foreground: #e6e6e6;
-  --accent: #000000;
-  --accent-foreground: #ffeb3b;
-  --border: #ffffff;
-  --input: #ffffff;
-  --ring: #ffeb3b;
+  --neo-morado: #3f3a7a;
+  --neo-morado-oscuro: #1f1b45;
+  --neo-morado-claro: #ddf6ee;
+  --neo-verde: #8ee3cf;
+  --neo-verde-oscuro: #0b6e5b;
+  --neo-verde-claro: #e3faf4;
+  --neo-rojo: #a3203a;
+
+  --neo-panel-fondo: #ece8ff;
+  --neo-panel-texto: #1f1b45;
+  --neo-panel-suave: #3d3870;
+  --neo-panel-linea: #8c87b8;
+  --neo-panel-pista: #d6d0f5;
+  --neo-panel-acento: #0b6e5b;
+  --neo-campo-fondo: #ffffff;
+  --neo-campo-texto: #17142e;
+  --neo-campo-borde: #8c87b8;
+  --neo-marca: #3f3a7a;
+  --neo-burbuja-usuario: #cdefe5;
+  --neo-burbuja-usuario-texto: #0a3a31;
+
+  --background: #faf8ff;
+  --foreground: #17142e;
+  --card: #ffffff;
+  --card-foreground: #17142e;
+  --popover: #ffffff;
+  --popover-foreground: #17142e;
+  --primary: #3f3a7a;
+  --primary-foreground: #ffffff;
+  --secondary: #e9e5fb;
+  --secondary-foreground: #26214f;
+  --muted: #f0edfc;
+  --muted-foreground: #3b3763;
+  --accent: #d7f5ec;
+  --accent-foreground: #0a4237;
+  --border: #8c87b8;
+  --input: #6f6aa0;
+  --ring: #0b6e5b;
 }
-html.alto-contraste a { color: #ffeb3b; }
+html.alto-contraste a { color: #0b6e5b; }
 
 /* Tamaño de texto ajustable (todo el diseño usa rem). */
 html[data-texto="grande"] { font-size: 112.5%; }

@@ -210,3 +210,12 @@ describe("salvaguardas", () => {
     expect(ultimo.estado.fase).toBe("recolectando");
   });
 });
+
+describe("preguntas sobre los campos", () => {
+  it("«¿si tengo dos nombres?» explica el campo y no responde sobre ofertas", () => {
+    const { ultimo } = conversar(["si tengo dos nombres?"]);
+    expect(textoDe(ultimo)).toMatch(/escriba solo el primero/);
+    expect(textoDe(ultimo)).not.toMatch(/ofertas/);
+    expect(ultimo.eventos.some((e) => e.tipo === "pregunta_faq")).toBe(false);
+  });
+});

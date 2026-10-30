@@ -15,7 +15,8 @@ export default defineConfig({
     { name: "celular", use: { ...devices["Pixel 7"] }, testMatch: /celular\.spec\.ts/ },
   ],
   webServer: {
-    command: `npx next dev -p ${PUERTO}`,
+    // E2E_PROD=1 usa la compilación de producción (npm run build antes); útil si ya hay un `next dev` abierto.
+    command: process.env.E2E_PROD ? `npx next start -p ${PUERTO}` : `npx next dev -p ${PUERTO}`,
     url: `http://localhost:${PUERTO}`,
     reuseExistingServer: !process.env.CI,
     timeout: 120_000,

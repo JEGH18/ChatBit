@@ -55,7 +55,7 @@ export const CAMPOS: DefinicionCampo[] = [
     obligatorio: true,
     control: "texto",
     pregunta: { usted: "¿Cuál es su primer nombre?", tu: "¿Cuál es tu primer nombre?" },
-    ayuda: "Es el primer nombre que aparece en su documento de identidad. Solo el primero.",
+    ayuda: "Es el primer nombre que aparece en su documento de identidad. Si tiene dos nombres (por ejemplo «María José»), escriba solo el primero: «María».",
     ejemplo: "María",
   },
   {
@@ -65,7 +65,7 @@ export const CAMPOS: DefinicionCampo[] = [
     obligatorio: true,
     control: "texto",
     pregunta: { usted: "¿Cuál es su primer apellido?", tu: "¿Cuál es tu primer apellido?" },
-    ayuda: "Es el primer apellido que aparece en su documento de identidad.",
+    ayuda: "Es el primer apellido que aparece en su documento de identidad. Si tiene dos apellidos, escriba solo el primero.",
     ejemplo: "Rincón",
   },
   {

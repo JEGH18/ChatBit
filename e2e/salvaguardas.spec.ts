@@ -64,3 +64,39 @@ test("panel /admin: la bandeja convierte una pregunta sin respuesta en conocimie
   await escribir(page, "¿atienden en alguna sede los domingos?");
   await expect(page.getByText(/no tiene sedes de atención presencial/)).toBeVisible();
 });
+
+test("modo solo chat: el formulario se oculta, se ve el avance y al final se revisa todo", async ({ page }) => {
+  await abrir(page);
+  await page.getByRole("button", { name: "Solo chat" }).click();
+  await expect(page.getByLabel("Formulario de registro")).toBeHidden();
+  await expect(page.getByText("Formulario oculto")).toBeVisible();
+  await escribir(
+    page,
+    "Soy Andrés Gómez, cédula de ciudadanía 1020304050, género masculino, celular 310 456 7890, correo andres.gomez@ejemplo.com. " +
+      "Sí tengo RUT y me enteré por redes sociales. Mi negocio queda en Medellín, Antioquia; prefiero que me contacten por WhatsApp. " +
+      "No pertenezco a ninguna minoría. Desarrollo software, CIIU 6201. Mis ventas de 2025 fueron de 180 millones.",
+  );
+  await expect(page.getByText(/16\/19 datos/)).toBeVisible();
+  for (const b of ["Sí, es correcto", "Acepto la política de datos", "Acepto los términos"]) {
+    await page.getByRole("group", { name: "Respuestas rápidas" }).getByRole("button", { name: b }).click();
+    await esperarRespuesta(page);
+  }
+  // Revisión final en el chat, con opción de corregir cada dato.
+  await expect(page.getByText("¡Ya tenemos todo! Revise sus datos.")).toBeVisible();
+  await expect(page.getByRole("button", { name: /Corregir Ventas del último año/ })).toBeVisible();
+  // La preferencia se conserva al recargar.
+  await page.reload();
+  await expect(page.getByText("Formulario oculto")).toBeVisible();
+  await page.getByRole("button", { name: "Mostrar formulario" }).first().click();
+  await expect(page.getByLabel("Formulario de registro")).toBeVisible();
+});
+
+test("la página no crece más que la ventana (sin espacio en blanco debajo)", async ({ page }) => {
+  await page.setViewportSize({ width: 1920, height: 1015 });
+  await abrir(page);
+  await page.getByRole("button", { name: "Agrandar texto" }).click();
+  for (const t of ["Ana", "Pérez", "cc", "12345678", "sí"]) await escribir(page, t);
+  const { alto, ventana, desplazado } = await page.evaluate(() => ({ alto: document.documentElement.scrollHeight, ventana: innerHeight, desplazado: scrollY }));
+  expect(alto).toBe(ventana);
+  expect(desplazado).toBe(0);
+});

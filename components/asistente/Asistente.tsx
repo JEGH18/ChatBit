@@ -2,7 +2,7 @@
 // Pantalla principal: chat a la izquierda y formulario oficial a la derecha (pestañas en celular).
 import { useCallback, useState } from "react";
 import Link from "next/link";
-import { Contrast, FileText, Headset, MessagesSquare, MoreHorizontal, RotateCcw, Trash2, Type, Volume2, VolumeX } from "lucide-react";
+import { Contrast, FileText, Headset, MessagesSquare, MoreHorizontal, PanelRightClose, PanelRightOpen, RotateCcw, Trash2, Type, Volume2, VolumeX } from "lucide-react";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
@@ -42,23 +42,27 @@ export function Asistente({ opciones, sesion, encabezadoExtra }: Props) {
       if (ui.abrirFormulario) {
         setManual(true);
         setPestana("formulario");
+        setPref({ soloChat: false });
       }
       if (ui.abrirCampo) setEditando(ui.abrirCampo);
     },
   });
   const a = sesion ?? propia;
   const soloLectura = !!sesion;
-  const { completos, total } = progreso(a.estado);
+  const { completos, total, porcentaje } = progreso(a.estado);
+  // Modo solo chat: la vista previa se oculta (no aplica al formulario manual ni a la demo).
+  const soloChat = pref.soloChat && !manual && !soloLectura;
 
   const enviarAccion = useCallback(
     (accion: Accion, texto?: string) => {
       if (accion.tipo === "formularioManual") {
         setManual(true);
         setPestana("formulario");
+        setPref({ soloChat: false });
       }
       void a.enviarAccion(accion, texto);
     },
-    [a],
+    [a, setPref],
   );
 
   const guardarDesdeFormulario = useCallback(
@@ -72,7 +76,20 @@ export function Asistente({ opciones, sesion, encabezadoExtra }: Props) {
   const alternarManual = () => {
     setManual((m) => !m);
     setPestana(manual ? "chat" : "formulario");
+    if (!manual) setPref({ soloChat: false });
   };
+
+  const alternarSoloChat = () => {
+    setPref({ soloChat: !pref.soloChat });
+    setPestana("chat");
+    if (manual) setManual(false);
+  };
+
+  const botonSoloChat = (clase?: string) => (
+    <Button variant="secondary" size="sm" onClick={alternarSoloChat} aria-pressed={soloChat} className={cn(clase, "aria-pressed:bg-accent aria-pressed:text-accent-foreground")}>
+      {soloChat ? <PanelRightOpen aria-hidden /> : <PanelRightClose aria-hidden />} {soloChat ? "Mostrar formulario" : "Solo chat"}
+    </Button>
+  );
 
   const pedirAsesor = () => enviarAccion({ tipo: "asesor" }, "Quiero hablar con un asesor");
 
@@ -86,17 +103,17 @@ export function Asistente({ opciones, sesion, encabezadoExtra }: Props) {
       >
         <Type aria-hidden /> {pref.texto === "normal" ? "Agrandar texto" : pref.texto === "grande" ? "Texto más grande" : "Texto normal"}
       </Button>
-      <Button variant="outline" size="sm" onClick={() => setPref({ contraste: !pref.contraste })} aria-pressed={pref.contraste}>
+      <Button variant="outline" size="sm" className="aria-pressed:border-[var(--neo-verde-oscuro)] aria-pressed:bg-accent aria-pressed:text-accent-foreground" onClick={() => setPref({ contraste: !pref.contraste })} aria-pressed={pref.contraste}>
         <Contrast aria-hidden /> Alto contraste
       </Button>
-      <Button variant="outline" size="sm" onClick={() => setPref({ leer: !pref.leer })} aria-pressed={pref.leer}>
+      <Button variant="outline" size="sm" className="aria-pressed:border-[var(--neo-verde-oscuro)] aria-pressed:bg-accent aria-pressed:text-accent-foreground" onClick={() => setPref({ leer: !pref.leer })} aria-pressed={pref.leer}>
         {pref.leer ? <Volume2 aria-hidden /> : <VolumeX aria-hidden />} Leer en voz alta
       </Button>
     </>
   );
 
   return (
-    <div className="flex h-dvh flex-col" data-ocupado={a.ocupado}>
+    <div className="relative flex h-dvh flex-col overflow-hidden" data-ocupado={a.ocupado}>
       <header className="flex flex-none items-center gap-3 border-b border-border bg-background px-3 py-2 sm:px-5">
         <AvatarNeo className="size-11 shrink-0" />
         <div className="min-w-0 flex-1">
@@ -110,6 +127,7 @@ export function Asistente({ opciones, sesion, encabezadoExtra }: Props) {
             <Button variant="secondary" size="sm" onClick={pedirAsesor} className="hidden sm:inline-flex">
               <Headset aria-hidden /> Hablar con un asesor
             </Button>
+            {botonSoloChat("hidden lg:inline-flex")}
             <Button variant="secondary" size="sm" onClick={alternarManual} aria-pressed={manual} className="hidden md:inline-flex">
               {manual ? <MessagesSquare aria-hidden /> : <FileText aria-hidden />} {manual ? "Volver al chat" : "Llenar el formulario yo"}
             </Button>
@@ -132,6 +150,9 @@ export function Asistente({ opciones, sesion, encabezadoExtra }: Props) {
                 <>
                   <Button variant="outline" size="sm" onClick={pedirAsesor}>
                     <Headset aria-hidden /> Hablar con un asesor
+                  </Button>
+                  <Button variant="outline" size="sm" onClick={alternarSoloChat} aria-pressed={soloChat}>
+                    {soloChat ? <PanelRightOpen aria-hidden /> : <PanelRightClose aria-hidden />} {soloChat ? "Mostrar el formulario" : "Ocultar el formulario (solo chat)"}
                   </Button>
                   <Button variant="outline" size="sm" onClick={alternarManual}>
                     <FileText aria-hidden /> {manual ? "Volver al chat" : "Llenar el formulario yo"}
@@ -175,8 +196,25 @@ export function Asistente({ opciones, sesion, encabezadoExtra }: Props) {
         </span>
       </p>
 
+      {/* Modo solo chat: el avance se ve aquí y la revisión completa llega al final, en el chat. */}
+      {soloChat && (
+        <div className="flex flex-none items-center gap-2 border-b border-border bg-muted px-3 py-1 text-sm whitespace-nowrap sm:gap-3 sm:px-5" aria-live="polite">
+          <span className="font-semibold">Formulario oculto</span>
+          <span className="h-2 w-16 shrink-0 overflow-hidden rounded-full bg-border sm:w-48" aria-hidden>
+            <span className="block h-full rounded-full bg-[var(--neo-verde-oscuro)]" style={{ width: `${porcentaje}%` }} />
+          </span>
+          <span className="tabular-nums text-muted-foreground">
+            {completos}/{total}
+            <span className="hidden md:inline"> datos · al final revisará todo antes de enviar</span>
+          </span>
+          <Button variant="link" size="sm" className="ml-auto px-1" onClick={alternarSoloChat}>
+            Mostrar<span className="hidden sm:inline">&nbsp;formulario</span>
+          </Button>
+        </div>
+      )}
+
       {/* Pestañas en celular */}
-      <div className="flex flex-none border-b border-border md:hidden" role="tablist" aria-label="Vista">
+      <div className={cn("flex flex-none border-b border-border md:hidden", soloChat && "hidden")} role="tablist" aria-label="Vista">
         {(["chat", "formulario"] as const).map((t) => (
           <button
             key={t}
@@ -190,8 +228,13 @@ export function Asistente({ opciones, sesion, encabezadoExtra }: Props) {
         ))}
       </div>
 
-      <main className={cn("grid min-h-0 flex-1", manual ? "md:grid-cols-[minmax(0,0.8fr)_minmax(0,1.6fr)]" : "md:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)]")}>
-        <section className={cn("min-h-0", pestana !== "chat" && "hidden md:block")} aria-label="Chat con el asistente">
+      <main
+        className={cn(
+          "grid min-h-0 flex-1",
+          soloChat ? "grid-cols-1" : manual ? "md:grid-cols-[minmax(0,0.8fr)_minmax(0,1.6fr)]" : "md:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)]",
+        )}
+      >
+        <section className={cn("min-h-0", pestana !== "chat" && !soloChat && "hidden md:block")} aria-label="Chat con el asistente">
           <Chat
             mensajes={a.mensajes}
             chips={a.chips}
@@ -205,7 +248,7 @@ export function Asistente({ opciones, sesion, encabezadoExtra }: Props) {
             soloLectura={soloLectura}
           />
         </section>
-        <section className={cn("min-h-0", pestana !== "formulario" && "hidden md:block")} aria-label="Formulario de registro">
+        <section className={cn("min-h-0", soloChat ? "hidden" : pestana !== "formulario" && "hidden md:block")} aria-label="Formulario de registro">
           <VistaFormulario
             estado={a.estado}
             manual={manual}

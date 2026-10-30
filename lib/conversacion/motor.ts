@@ -66,8 +66,8 @@ const chipAsesor = (): Chip => ({ etiqueta: "Hablar con un asesor", texto: "Quie
 
 /** Palabras con las que la persona puede referirse a un campo ("corregir el celular"). */
 const PALABRAS_CAMPO: Record<CampoId, string[]> = {
-  primerNombre: ["nombre", "primer nombre"],
-  primerApellido: ["apellido", "primer apellido"],
+  primerNombre: ["nombre", "nombres", "primer nombre", "segundo nombre"],
+  primerApellido: ["apellido", "apellidos", "primer apellido", "segundo apellido"],
   tipoDocumento: ["tipo de documento", "tipo documento"],
   numeroDocumento: ["numero de documento", "documento", "cedula", "numero de cedula"],
   confirmacionDocumento: ["confirmacion"],

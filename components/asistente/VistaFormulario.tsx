@@ -28,11 +28,14 @@ export function VistaFormulario({ estado, manual, recienLlenados, editar, enviar
   const contenedor = useRef<HTMLDivElement>(null);
   const terminado = estado.fase === "encuesta" || estado.fase === "fin" || estado.fase === "enviado";
 
-  // Sigue al campo que el asistente está preguntando.
+  // Sigue al campo que el asistente está preguntando. Se desplaza solo el panel (no la página):
+  // scrollIntoView también movía la ventana y dejaba un espacio en blanco debajo.
   useEffect(() => {
-    if (!actual) return;
-    const el = contenedor.current?.querySelector<HTMLElement>(`[data-campo="${actual}"]`);
-    el?.scrollIntoView({ block: "nearest", behavior: "smooth" });
+    const cont = contenedor.current;
+    const el = actual ? cont?.querySelector<HTMLElement>(`[data-campo="${actual}"]`) : null;
+    if (!cont || !el) return;
+    const arriba = el.offsetTop - cont.scrollTop;
+    if (arriba < 0 || arriba + el.offsetHeight > cont.clientHeight) cont.scrollTo({ top: el.offsetTop - cont.clientHeight / 3, behavior: "smooth" });
   }, [actual]);
 
   const pasosVisibles: Paso[] = manual ? [paso] : [1, 2];
@@ -42,7 +45,7 @@ export function VistaFormulario({ estado, manual, recienLlenados, editar, enviar
       ref={contenedor}
       tabIndex={0}
       role="region"
-      className="flex h-full flex-col overflow-y-auto bg-[var(--neo-morado)] text-white outline-none focus-visible:ring-3 focus-visible:ring-[var(--neo-verde)]"
+      className="relative flex h-full flex-col overflow-y-auto bg-[var(--neo-panel-fondo)] text-[var(--neo-panel-texto)] outline-none focus-visible:ring-3 focus-visible:ring-[var(--neo-verde)]"
       aria-label="Vista previa del formulario oficial"
     >
       <div className="mx-auto w-full max-w-4xl px-4 py-5 sm:px-6">
@@ -50,12 +53,12 @@ export function VistaFormulario({ estado, manual, recienLlenados, editar, enviar
           Toque un campo para llenarlo o corregirlo.
         </p>
         <h2 className="text-center text-xl font-bold sm:text-2xl">
-          Formulario de registro <span className="text-[var(--neo-verde)]">persona natural</span>
+          Formulario de registro <span className="text-[var(--neo-panel-acento)]">persona natural</span>
         </h2>
-        <hr className="mt-3 border-white/70" />
+        <hr className="mt-3 border-[var(--neo-panel-linea)]" />
 
         <div className="mt-3 flex items-center gap-3" aria-live="polite">
-          <Progress value={porcentaje} className="h-2.5 flex-1 bg-white/20 [&>div]:bg-[var(--neo-verde)]" aria-label="Avance del formulario" />
+          <Progress value={porcentaje} className="h-2.5 flex-1 bg-[var(--neo-panel-pista)] [&>div]:bg-[var(--neo-verde)]" aria-label="Avance del formulario" />
           <span className="text-sm font-semibold tabular-nums">
             {completos} de {total} campos
           </span>
@@ -78,7 +81,7 @@ export function VistaFormulario({ estado, manual, recienLlenados, editar, enviar
             <h3 id={`paso-${p}`} className="text-lg font-semibold sm:text-xl">
               {PASOS[p].titulo}
             </h3>
-            <p className="mt-1 flex items-center gap-1.5 text-white/90">
+            <p className="mt-1 flex items-center gap-1.5 text-[var(--neo-panel-suave)]">
               {p === 1 ? <UserRound className="size-4" aria-hidden /> : <HandCoins className="size-4" aria-hidden />}
               {PASOS[p].subtitulo}
               {pasoCompleto(estado, p) && <BadgeCheck className="ml-1 size-4 text-[var(--neo-verde)]" aria-label="paso completo" />}
@@ -109,10 +112,10 @@ export function VistaFormulario({ estado, manual, recienLlenados, editar, enviar
 
         {manual && (
           <nav className="mt-6 flex items-center justify-center gap-4" aria-label="Pasos del formulario">
-            <Button variant="ghost" className="text-white underline hover:bg-white/10 hover:text-white" disabled={paso === 1} onClick={() => setPaso(1)}>
+            <Button variant="ghost" className="text-[var(--neo-panel-texto)] underline hover:bg-[var(--neo-panel-pista)] hover:text-[var(--neo-panel-texto)]" disabled={paso === 1} onClick={() => setPaso(1)}>
               <ChevronLeft aria-hidden /> Anterior
             </Button>
-            <Button variant="ghost" className="text-white underline hover:bg-white/10 hover:text-white" disabled={paso === 2} onClick={() => setPaso(2)}>
+            <Button variant="ghost" className="text-[var(--neo-panel-texto)] underline hover:bg-[var(--neo-panel-pista)] hover:text-[var(--neo-panel-texto)]" disabled={paso === 2} onClick={() => setPaso(2)}>
               Siguiente <ChevronRight aria-hidden />
             </Button>
           </nav>
@@ -130,7 +133,7 @@ export function VistaFormulario({ estado, manual, recienLlenados, editar, enviar
             >
               {estado.fase === "revision" ? "Finalizar registro" : "Revisar y finalizar"} <UserRound aria-hidden />
             </Button>
-            {!listoParaRevision(estado) && <p className="text-sm text-white/85">Se activa cuando estén todos los campos obligatorios.</p>}
+            {!listoParaRevision(estado) && <p className="text-sm text-[var(--neo-panel-suave)]">Se activa cuando estén todos los campos obligatorios.</p>}
           </div>
         )}
       </div>
@@ -179,14 +182,14 @@ function Campo({
                 onClick={() => enviarAccion({ tipo: "responder", campo: def.id, valor: op }, `Formulario · ${def.etiqueta} ${op}`)}
                 className={cn("flex min-h-11 items-center gap-2 rounded-lg px-1", recien && "neo-recien-llenado")}
               >
-                <span className={cn("grid size-5 place-items-center rounded-full border-2 border-white bg-white")} aria-hidden>
-                  {marcado && <span className="size-2.5 rounded-full bg-[#2563eb]" />}
+                <span className="grid size-5 place-items-center rounded-full border-2 border-[var(--neo-campo-borde)] bg-[var(--neo-campo-fondo)]" aria-hidden>
+                  {marcado && <span className="size-2.5 rounded-full bg-[var(--neo-marca)]" />}
                 </span>
                 {op}
               </button>
             );
           })}
-          {omitido && <span className="text-sm text-white/85">Sin responder</span>}
+          {omitido && <span className="text-sm text-[var(--neo-panel-suave)]">Sin responder</span>}
         </div>
       </div>
     );
@@ -211,7 +214,7 @@ function Campo({
         onClick={() => editar(def.id)}
         aria-describedby="ayuda-tocar-campo"
         className={cn(
-          "mt-1 flex min-h-11 w-full items-center gap-2 rounded-md border-2 border-transparent bg-white px-3 py-2 text-left text-[0.95rem] text-[#23223f] shadow-sm transition-shadow",
+          "mt-1 flex min-h-11 w-full items-center gap-2 rounded-md border-2 border-[var(--neo-campo-borde)] bg-[var(--neo-campo-fondo)] px-3 py-2 text-left text-[0.95rem] text-[var(--neo-campo-texto)] shadow-sm transition-shadow",
           "hover:border-[var(--neo-verde)] focus-visible:border-[var(--neo-verde)] disabled:cursor-default",
           actual && "border-[var(--neo-verde)] ring-3 ring-[var(--neo-verde)]/60",
           recien && "neo-recien-llenado",
@@ -220,7 +223,7 @@ function Campo({
         <span className={cn("min-w-0 flex-1 truncate", !valor && "text-[#6b6a85]")}>
           {valor || (def.id === "confirmacionDocumento" ? (estado.valores.numeroDocumento ? "Pendiente de confirmar" : "") : omitido ? "Sin responder" : actual ? "Respondiendo en el chat…" : "")}
         </span>
-        {def.control === "select" && <ChevronDown className="size-4 shrink-0 text-[#23223f]" aria-hidden />}
+        {def.control === "select" && <ChevronDown className="size-4 shrink-0 text-[var(--neo-campo-texto)]" aria-hidden />}
       </button>
     </div>
   );
@@ -251,7 +254,10 @@ function Consentimiento({
         onClick={() => editar(def.id)}
         className="flex min-h-11 items-center gap-3 text-left text-[0.95rem]"
       >
-        <span className={cn("grid size-5 shrink-0 place-items-center rounded border-2 border-white", marcado ? "bg-[#2563eb]" : "bg-white")} aria-hidden>
+        <span
+          className={cn("grid size-5 shrink-0 place-items-center rounded border-2", marcado ? "border-[var(--neo-marca)] bg-[var(--neo-marca)]" : "border-[var(--neo-campo-borde)] bg-[var(--neo-campo-fondo)]")}
+          aria-hidden
+        >
           {marcado && (
             <svg viewBox="0 0 16 16" className="size-3.5 text-white">
               <path d="M3 8.5l3 3 7-7" stroke="currentColor" strokeWidth="2.2" fill="none" />

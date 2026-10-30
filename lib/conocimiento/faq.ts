@@ -37,6 +37,9 @@ export function buscarFaq(pregunta: string, extra: EntradaFaq[] = []): Resultado
     let comunes = 0;
     for (const t of tq) if (te.has(t)) comunes++;
     const cobertura = comunes / tq.size;
+    // Una sola palabra en común no basta en preguntas de varias palabras
+    // ("¿si tengo dos nombres?" no es "¿puedo aceptar dos ofertas?").
+    if (!frase && comunes < 2 && tq.size > 1) continue;
     const puntaje = Math.min(1, frase + cobertura * 0.7);
     if (!mejor || puntaje > mejor.puntaje) mejor = { entrada: e, puntaje };
   }

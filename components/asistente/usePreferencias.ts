@@ -1,12 +1,18 @@
 "use client";
-// Preferencias de accesibilidad: tamaño de texto, alto contraste y lectura en voz alta.
+// Preferencias: tamaño de texto, alto contraste (pastel), lectura en voz alta y modo solo chat.
 // Se guardan en localStorage y se leen con useSyncExternalStore (sin desajustes de hidratación).
 import { useCallback, useEffect, useSyncExternalStore } from "react";
 
-export type Preferencias = { texto: "normal" | "grande" | "muy-grande"; contraste: boolean; leer: boolean };
+export type Preferencias = {
+  texto: "normal" | "grande" | "muy-grande";
+  contraste: boolean;
+  leer: boolean;
+  /** Oculta la vista previa del formulario: se llena solo conversando y se revisa al final. */
+  soloChat: boolean;
+};
 
 const CLAVE = "asistente-neo:preferencias";
-const INICIAL: Preferencias = { texto: "normal", contraste: false, leer: false };
+const INICIAL: Preferencias = { texto: "normal", contraste: false, leer: false, soloChat: false };
 const EVENTO = "asistente-neo:preferencias";
 
 let cache: { crudo: string | null; valor: Preferencias } = { crudo: null, valor: INICIAL };

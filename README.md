@@ -16,10 +16,11 @@ Muchas personas (microempresarios personas naturales, negocios informales y adul
 |---|---|
 | **Conversación natural** | La persona responde como quiera («me llamo Domiciano Rincón y vivo en Cali») y el asistente llena varios campos a la vez. Si algo es ambiguo, pregunta; nunca adivina. |
 | **Vista previa en vivo** | A la derecha (pestaña en celular) se ve el formulario oficial llenándose. Cualquier campo se corrige tocándolo. |
+| **Solo chat** | Quien prefiera no ver el formulario lo oculta con «Solo chat»: lo llena conversando, ve el avance en una barra y al final revisa todo en una tarjeta antes de enviar. La preferencia se recuerda. |
 | **Actividad económica (CIIU)** | «Vendo empanadas en la esquina» → las 3 actividades más probables, explicadas en lenguaje sencillo, para que la persona elija. |
 | **Ventas del último año** | Entiende «unos 2 millones al mes» o «10 palos»; si la persona no sabe, calcula con ella (venta diaria × días × semanas), muestra la cuenta y pide confirmación. |
 | **Consentimientos** | Resumen en 3 viñetas y enlace al texto completo. La aceptación siempre es un botón que toca la persona. |
-| **Accesibilidad** | Voz (es-CO) para hablar y para escuchar, texto grande, alto contraste, botones de 44 px o más, trato de «usted». Auditado con axe: 0 violaciones WCAG 2.1 AA. |
+| **Accesibilidad** | Voz (es-CO) para hablar y para escuchar, texto grande, alto contraste en colores pastel de la marca (fondos lavanda y menta con texto muy oscuro, contraste de texto entre 8,4:1 y 17,9:1), botones de 44 px o más, trato de «usted». Auditado con axe: 0 violaciones WCAG 2.1 AA. |
 | **Siempre hay salida** | Pasar al formulario manual sin perder nada, o hablar con un asesor (WhatsApp/teléfono configurables). |
 | **Resumen final y encuesta** | Tarjeta para revisar todo antes de «Finalizar registro» y encuesta de 1 pregunta (😞 😐 🙂). |
 | **Aprende sin datos personales** | Analítica de fricción anonimizada, bandeja de preguntas sin resolver (humano en el bucle) y sinónimos CIIU confirmados. Panel en `/admin`. |
@@ -53,7 +54,7 @@ npm run dev                            # http://localhost:3000
 |---|---|
 | `npm run dev` / `build` / `start` | Desarrollo, compilación y servidor de producción |
 | `npm test` | Pruebas unitarias (Vitest): montos, validadores, máquina de estados, motor con 3 personas, **equidad**, IA con modelo simulado, analítica |
-| `npm run test:e2e` | Pruebas E2E (Playwright): las 3 personas de punta a punta, accesibilidad, red caída, panel |
+| `npm run test:e2e` | Pruebas E2E (Playwright): las 3 personas de punta a punta, accesibilidad, solo chat, red caída, panel. Si ya tiene un `next dev` abierto: `npm run build && E2E_PROD=1 npm run test:e2e` |
 | `npm run evals` | Evaluación de extracción y CIIU (`-- --ia` para incluir Claude; `-- --dataset evals/dataset-prueba.json` para el conjunto de prueba) |
 | `npm run demo:grabar` | Regenera las conversaciones de `/demo` (`-- --ia` graba respuestas reales de Claude) |
 | `npm run db:demo` | Carga 150 sesiones sintéticas (conversaciones simuladas contra el motor real); `-- borrar` las elimina |
@@ -66,9 +67,9 @@ Medidos en este repositorio el 2026-10-30:
 
 | Qué | Resultado |
 |---|---|
-| Pruebas unitarias (Vitest) | 80 de 80 |
-| Pruebas E2E (Playwright, escritorio y celular) | 9 de 9 |
-| Accesibilidad (axe, WCAG 2.1 AA) | 0 violaciones en `/`, alto contraste, `/demo` y `/como-funciona` |
+| Pruebas unitarias (Vitest) | 81 de 81 |
+| Pruebas E2E (Playwright, escritorio y celular) | 11 de 11 |
+| Accesibilidad (axe, WCAG 2.1 AA) | 0 violaciones en `/`, alto contraste pastel, `/demo` y `/como-funciona` |
 | Extracción con reglas, **conjunto de prueba** (8 mensajes no usados para ajustar) | Precisión 100 %, cobertura 87 %, F1 93 % |
 | CIIU con búsqueda léxica, **conjunto de prueba** (7 descripciones) | Top-1 85,7 %, top-3 100 % |
 | Extracción y CIIU, conjunto de desarrollo (32 casos, usado para ajustar) | F1 100 %; CIIU top-1 94,4 %, top-3 100 % |

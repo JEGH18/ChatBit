@@ -1,7 +1,7 @@
 {
  "conjunto": "evals/dataset.json",
  "informe": {
-  "fecha": "2026-10-30T04:51:12.016Z",
+  "fecha": "2026-10-30T05:21:59.461Z",
   "modelo": null,
   "extraccion_reglas": {
    "precision": 1,
