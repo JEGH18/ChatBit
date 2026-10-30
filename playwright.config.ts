@@ -20,6 +20,6 @@ export default defineConfig({
     reuseExistingServer: !process.env.CI,
     timeout: 120_000,
     // Pruebas deterministas: sin IA y sin base de datos en disco.
-    env: { ASISTENTE_MODO: "guiado", DB_DRIVER: "memoria", ADMIN_PASSWORD: "clave-e2e", ADMIN_SECRET: "secreto-e2e-de-prueba" },
+    env: { ASISTENTE_MODO: "guiado", DB_DRIVER: "memoria", ADMIN_PASSWORD: "clave-e2e", ADMIN_SECRET: "secreto-e2e-de-prueba", LIMITE_IP_MINUTO: "10000" },
   },
 });

@@ -11,10 +11,13 @@ async function crear(): Promise<Repositorio> {
     try {
       const { crearClientePrisma, RepositorioPrisma } = await import("./prisma");
       const db = await crearClientePrisma(driver);
-      await db.$queryRawUnsafe("SELECT 1");
+      await db.sesion.count(); // falla si no se han aplicado las migraciones
       return new RepositorioPrisma(db, driver);
     } catch (e) {
-      console.warn(`No se pudo conectar a la base de datos (${driver}); se usa memoria.`, e instanceof Error ? e.message : e);
+      console.warn(
+        `No se pudo usar la base de datos (${driver}); se usa memoria. ¿Ejecutó "npx prisma migrate deploy"?`,
+        e instanceof Error ? e.message.split("\n")[0] : e,
+      );
     }
   }
   return new RepositorioMemoria();

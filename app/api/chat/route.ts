@@ -9,6 +9,7 @@ import { iaDisponible } from "@/lib/ia/modelo";
 import { turnoConIA } from "@/lib/ia/turno";
 import { obtenerContextoMotor } from "@/lib/servidor/contexto";
 import { escribirTurno } from "@/lib/servidor/flujo";
+import { permitir } from "@/lib/servidor/limites";
 import { esquemaPeticionChat } from "@/lib/servidor/peticion";
 
 export const maxDuration = 30;
@@ -19,6 +20,14 @@ export async function POST(req: Request) {
   if (!peticion.success) return Response.json({ error: "Solicitud inválida." }, { status: 400 });
 
   const { sesionId, entrada, historial = [], modo } = peticion.data;
+  const ip = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "local";
+  const limite = permitir(ip, sesionId);
+  if (!limite.ok) {
+    return Response.json(
+      { error: "Demasiados mensajes en poco tiempo. Espere un momento o hable con un asesor." },
+      { status: 429, headers: { "Retry-After": "60" } },
+    );
+  }
   // Nunca se confía en el estado del navegador: se revalida campo por campo.
   const estado = sanitizarEstado(peticion.data.estado);
   const ctx = await obtenerContextoMotor();
