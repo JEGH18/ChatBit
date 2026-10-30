@@ -220,7 +220,7 @@ function Campo({
           recien && "neo-recien-llenado",
         )}
       >
-        <span className={cn("min-w-0 flex-1 truncate", !valor && "text-[#6b6a85]")}>
+        <span className={cn("min-w-0 flex-1 truncate", !valor && "text-[var(--neo-campo-vacio)]")}>
           {valor || (def.id === "confirmacionDocumento" ? (estado.valores.numeroDocumento ? "Pendiente de confirmar" : "") : omitido ? "Sin responder" : actual ? "Respondiendo en el chat…" : "")}
         </span>
         {def.control === "select" && <ChevronDown className="size-4 shrink-0 text-[var(--neo-campo-texto)]" aria-hidden />}
@@ -259,7 +259,7 @@ function Consentimiento({
           aria-hidden
         >
           {marcado && (
-            <svg viewBox="0 0 16 16" className="size-3.5 text-white">
+            <svg viewBox="0 0 16 16" className="size-3.5 text-[var(--neo-marca-texto)]">
               <path d="M3 8.5l3 3 7-7" stroke="currentColor" strokeWidth="2.2" fill="none" />
             </svg>
           )}

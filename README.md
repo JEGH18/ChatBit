@@ -20,7 +20,7 @@ Muchas personas (microempresarios personas naturales, negocios informales y adul
 | **Actividad económica (CIIU)** | «Vendo empanadas en la esquina» → las 3 actividades más probables, explicadas en lenguaje sencillo, para que la persona elija. |
 | **Ventas del último año** | Entiende «unos 2 millones al mes» o «10 palos»; si la persona no sabe, calcula con ella (venta diaria × días × semanas), muestra la cuenta y pide confirmación. |
 | **Consentimientos** | Resumen en 3 viñetas y enlace al texto completo. La aceptación siempre es un botón que toca la persona. |
-| **Accesibilidad** | Voz (es-CO) para hablar y para escuchar, texto grande, alto contraste en colores pastel de la marca (fondos lavanda y menta con texto muy oscuro, contraste de texto entre 8,4:1 y 17,9:1), botones de 44 px o más, trato de «usted». Auditado con axe: 0 violaciones WCAG 2.1 AA. |
+| **Accesibilidad** | Voz (es-CO) para hablar y para escuchar, texto grande, modo oscuro de alto contraste con los colores de la marca (fondo índigo muy oscuro, texto casi blanco y acentos verde agua; texto entre 10,9:1 y 19:1, nivel AAA), botones de 44 px o más, trato de «usted». Auditado con axe: 0 violaciones WCAG 2.1 AA. |
 | **Siempre hay salida** | Pasar al formulario manual sin perder nada, o hablar con un asesor (WhatsApp/teléfono configurables). |
 | **Resumen final y encuesta** | Tarjeta para revisar todo antes de «Finalizar registro» y encuesta de 1 pregunta (😞 😐 🙂). |
 | **Aprende sin datos personales** | Analítica de fricción anonimizada, bandeja de preguntas sin resolver (humano en el bucle) y sinónimos CIIU confirmados. Panel en `/admin`. |
@@ -69,7 +69,7 @@ Medidos en este repositorio el 2026-10-30:
 |---|---|
 | Pruebas unitarias (Vitest) | 81 de 81 |
 | Pruebas E2E (Playwright, escritorio y celular) | 11 de 11 |
-| Accesibilidad (axe, WCAG 2.1 AA) | 0 violaciones en `/`, alto contraste pastel, `/demo` y `/como-funciona` |
+| Accesibilidad (axe, WCAG 2.1 AA) | 0 violaciones en `/`, modo oscuro, `/demo` y `/como-funciona` |
 | Extracción con reglas, **conjunto de prueba** (8 mensajes no usados para ajustar) | Precisión 100 %, cobertura 87 %, F1 93 % |
 | CIIU con búsqueda léxica, **conjunto de prueba** (7 descripciones) | Top-1 85,7 %, top-3 100 % |
 | Extracción y CIIU, conjunto de desarrollo (32 casos, usado para ajustar) | F1 100 %; CIIU top-1 94,4 %, top-3 100 % |

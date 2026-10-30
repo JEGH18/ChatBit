@@ -2,7 +2,7 @@ import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
 import { abrir, escribir, esperarRespuesta } from "./ayudas";
 
-test("accesibilidad WCAG 2.1 AA (axe) en el asistente, alto contraste, demo y Cómo funciona", async ({ page }) => {
+test("accesibilidad WCAG 2.1 AA (axe) en el asistente, modo oscuro, demo y Cómo funciona", async ({ page }) => {
   await abrir(page);
   await escribir(page, "Ana");
   for (const ruta of ["/", "/como-funciona", "/demo"]) {
@@ -11,10 +11,10 @@ test("accesibilidad WCAG 2.1 AA (axe) en el asistente, alto contraste, demo y C�
     expect(r.violations.map((v) => `${ruta}: ${v.id}`)).toEqual([]);
   }
   await page.goto("/");
-  await page.getByRole("button", { name: "Alto contraste" }).first().click();
+  await page.getByRole("button", { name: /Modo oscuro/ }).first().click();
   await expect(page.locator("html")).toHaveClass(/alto-contraste/);
   const r = await new AxeBuilder({ page }).withTags(["wcag2aa"]).analyze();
-  expect(r.violations.map((v) => v.id)).toEqual([]);
+  expect(r.violations.flatMap((v) => v.nodes.map((n) => `${v.id}: ${n.target.join(" ")} — ${n.failureSummary?.split("\n")[1] ?? ""}`))).toEqual([]);
 });
 
 test("aviso de IA visible, advertencia de fraude y nunca acepta claves", async ({ page }) => {

@@ -2,7 +2,7 @@
 // Pantalla principal: chat a la izquierda y formulario oficial a la derecha (pestañas en celular).
 import { useCallback, useState } from "react";
 import Link from "next/link";
-import { Contrast, FileText, Headset, MessagesSquare, MoreHorizontal, PanelRightClose, PanelRightOpen, RotateCcw, Trash2, Type, Volume2, VolumeX } from "lucide-react";
+import { FileText, Headset, MessagesSquare, Moon, MoreHorizontal, PanelRightClose, PanelRightOpen, RotateCcw, Trash2, Type, Volume2, VolumeX } from "lucide-react";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
@@ -104,7 +104,7 @@ export function Asistente({ opciones, sesion, encabezadoExtra }: Props) {
         <Type aria-hidden /> {pref.texto === "normal" ? "Agrandar texto" : pref.texto === "grande" ? "Texto más grande" : "Texto normal"}
       </Button>
       <Button variant="outline" size="sm" className="aria-pressed:border-[var(--neo-verde-oscuro)] aria-pressed:bg-accent aria-pressed:text-accent-foreground" onClick={() => setPref({ contraste: !pref.contraste })} aria-pressed={pref.contraste}>
-        <Contrast aria-hidden /> Alto contraste
+        <Moon aria-hidden /> Modo oscuro<span className="sr-only"> de alto contraste</span>
       </Button>
       <Button variant="outline" size="sm" className="aria-pressed:border-[var(--neo-verde-oscuro)] aria-pressed:bg-accent aria-pressed:text-accent-foreground" onClick={() => setPref({ leer: !pref.leer })} aria-pressed={pref.leer}>
         {pref.leer ? <Volume2 aria-hidden /> : <VolumeX aria-hidden />} Leer en voz alta

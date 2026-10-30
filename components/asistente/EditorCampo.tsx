@@ -68,7 +68,7 @@ function Contenido({ campo, estado, alCerrar, alGuardar }: Props & { campo: Camp
       case "anioVentas":
         return aniosVentas().map((a) => ({ valor: String(a), etiqueta: String(a) }));
       case "departamento":
-        return DEPARTAMENTOS.map((d) => ({ valor: d.codigo, etiqueta: nombreDepartamento(d.codigo) }));
+        return DEPARTAMENTOS.map((d) => ({ valor: d.codigo, etiqueta: nombreDepartamento(d.codigo) })).sort((x, y) => x.etiqueta.localeCompare(y.etiqueta, "es"));
       case "ciudad":
         return v.departamento ? municipiosDe(v.departamento).map((m) => ({ valor: m.codigo, etiqueta: tipoTitulo(m.nombre) })) : [];
       case "actividadEconomica": {

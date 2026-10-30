@@ -1,5 +1,5 @@
 "use client";
-// Preferencias: tamaño de texto, alto contraste (pastel), lectura en voz alta y modo solo chat.
+// Preferencias: tamaño de texto, modo oscuro de alto contraste, lectura en voz alta y modo solo chat.
 // Se guardan en localStorage y se leen con useSyncExternalStore (sin desajustes de hidratación).
 import { useCallback, useEffect, useSyncExternalStore } from "react";
 
@@ -50,8 +50,12 @@ export function usePreferencias(): [Preferencias, (cambio: Partial<Preferencias>
 
   useEffect(() => {
     const html = document.documentElement;
+    // Sin transiciones durante el cambio de tema: evita colores intermedios (destellos de bajo contraste).
+    html.classList.add("neo-cambiando-tema");
     html.dataset.texto = pref.texto;
     html.classList.toggle("alto-contraste", pref.contraste);
+    const id = requestAnimationFrame(() => requestAnimationFrame(() => html.classList.remove("neo-cambiando-tema")));
+    return () => cancelAnimationFrame(id);
   }, [pref]);
 
   const cambiar = useCallback((cambio: Partial<Preferencias>) => {
