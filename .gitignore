@@ -1,5 +1,31 @@
-node_modules/
+# dependencias
+/node_modules
+
+# pruebas
+/coverage
+/test-results
+/playwright-report
+/blob-report
+/playwright/.cache
+
+# next.js
+/.next/
+/out/
+/build
+next-env.d.ts
+*.tsbuildinfo
+
+# prisma / sqlite
+/prisma/*.db
+/prisma/*.db-journal
+/lib/generated
+
+# variables de entorno (solo se versiona el ejemplo)
 .env
 .env*.local
-.vercel/
+
+# varios
 .DS_Store
+*.pem
+npm-debug.log*
+.vercel
