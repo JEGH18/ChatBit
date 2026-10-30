@@ -50,7 +50,7 @@ export type Canal = (typeof CANALES)[number]["valor"];
 
 export const MEDIOS_CONTACTO = [
   { valor: "WHATSAPP", etiqueta: "WhatsApp", alias: ["whatsapp", "wasap", "guasap", "wpp", "whats", "wsp", "wasa"] },
-  { valor: "LLAMADA", etiqueta: "Llamada", alias: ["llamada", "llamar", "llamarme", "telefono", "llamada telefonica", "que me llamen"] },
+  { valor: "LLAMADA", etiqueta: "Llamada", alias: ["llamada", "llamar", "llamarme", "llamen", "me llamen", "telefono", "llamada telefonica", "que me llamen"] },
   { valor: "CORREO", etiqueta: "Correo electrónico", alias: ["correo", "email", "mail", "e mail", "correo electronico", "gmail"] },
 ] as const satisfies readonly Opcion[];
 export type MedioContacto = (typeof MEDIOS_CONTACTO)[number]["valor"];

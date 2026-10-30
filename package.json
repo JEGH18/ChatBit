@@ -16,14 +16,15 @@
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "test:e2e": "playwright test",
-    "evals": "tsx evals/ejecutar.ts",
+    "evals": "tsx evals/ejecutar.mts",
     "datos:divipola": "tsx scripts/datos/importar-divipola.ts",
     "datos:ciiu": "tsx scripts/datos/importar-ciiu.ts",
     "datos:faq": "tsx scripts/datos/compilar-faq.ts",
     "postinstall": "prisma generate && tsx scripts/datos/esquema-postgres.mts && prisma generate --schema prisma/postgres/schema.prisma",
     "db:migrar": "prisma migrate deploy",
     "db:esquema-postgres": "tsx scripts/datos/esquema-postgres.mts",
-    "db:demo": "tsx scripts/datos/sembrar-demo.ts"
+    "db:demo": "tsx scripts/datos/sembrar-demo.ts",
+    "demo:grabar": "tsx scripts/grabar-demo.mts"
   },
   "dependencies": {
     "@ai-sdk/anthropic": "^4.0.92",

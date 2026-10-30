@@ -49,8 +49,10 @@ function cargar(): Guardado | null {
 export type OpcionesAsistente = {
   /** Fuerza el modo guiado (sin IA). Útil en pruebas E2E. */
   forzarGuiado?: boolean;
-  /** No persiste en localStorage (modo demo). */
+  /** No persiste en localStorage. */
   efimero?: boolean;
+  /** No arranca ninguna sesión (la conversación la maneja otro componente, p. ej. el modo demo). */
+  inactivo?: boolean;
   alResponder?: (textos: string[]) => void;
   alUi?: (ui: NonNullable<Turno["ui"]>) => void;
 };
@@ -200,6 +202,7 @@ export function useAsistente(opciones: OpcionesAsistente = {}) {
 
   // Arranque: retoma la sesión guardada o empieza una nueva.
   useEffect(() => {
+    if (opts.current.inactivo) return;
     const g = opts.current.efimero ? null : cargar();
     if (g) {
       setSesionId(g.sesionId);

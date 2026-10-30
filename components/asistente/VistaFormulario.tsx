@@ -38,7 +38,13 @@ export function VistaFormulario({ estado, manual, recienLlenados, editar, enviar
   const pasosVisibles: Paso[] = manual ? [paso] : [1, 2];
 
   return (
-    <div ref={contenedor} className="flex h-full flex-col overflow-y-auto bg-[var(--neo-morado)] text-white" aria-label="Vista previa del formulario oficial">
+    <div
+      ref={contenedor}
+      tabIndex={0}
+      role="region"
+      className="flex h-full flex-col overflow-y-auto bg-[var(--neo-morado)] text-white outline-none focus-visible:ring-3 focus-visible:ring-[var(--neo-verde)]"
+      aria-label="Vista previa del formulario oficial"
+    >
       <div className="mx-auto w-full max-w-4xl px-4 py-5 sm:px-6">
         <p id="ayuda-tocar-campo" className="sr-only">
           Toque un campo para llenarlo o corregirlo.

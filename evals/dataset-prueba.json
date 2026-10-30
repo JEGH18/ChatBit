@@ -1,0 +1,124 @@
+{
+ "descripcion": "Conjunto de PRUEBA (held-out): escrito después de ajustar el extractor y el buscador con evals/dataset.json, y no se usó para ajustar nada. Mide la generalización.",
+ "casos": [
+  {
+   "id": "p01",
+   "mensaje": "buenos días, mi nombre es Gloria Patiño, cc 43.567.890",
+   "campos": {
+    "primerNombre": "Gloria",
+    "primerApellido": "Patiño",
+    "tipoDocumento": "CC",
+    "numeroDocumento": "43567890"
+   }
+  },
+  {
+   "id": "p02",
+   "mensaje": "soy hombre, tengo rut, mi número es 320 555 6677",
+   "campos": {
+    "genero": "MASCULINO",
+    "tieneRut": true,
+    "celular": "3205556677"
+   }
+  },
+  {
+   "id": "p03",
+   "mensaje": "el local está en Pereira y me pueden escribir por whatsapp",
+   "campos": {
+    "ciudad": "66001",
+    "departamento": "66",
+    "medioContacto": "WHATSAPP"
+   }
+  },
+  {
+   "id": "p04",
+   "mensaje": "Me llamo Wilson Arboleda, vivo en Tumaco y vendo pescado",
+   "campos": {
+    "primerNombre": "Wilson",
+    "primerApellido": "Arboleda",
+    "ciudad": "52835",
+    "departamento": "52"
+   },
+   "ciiu": [
+    "4723"
+   ]
+  },
+  {
+   "id": "p05",
+   "mensaje": "mi correo es nidia.r@ejemplo.com, no hago parte de ninguna minoría",
+   "campos": {
+    "correo": "nidia.r@ejemplo.com",
+    "perteneceMinoria": false
+   }
+  },
+  {
+   "id": "p06",
+   "mensaje": "en el 2024 vendí 40 millones",
+   "campos": {
+    "anioVentas": 2024,
+    "ventasUltimoAnio": 40000000
+   }
+  },
+  {
+   "id": "p07",
+   "mensaje": "supe de neocrédito en una feria de emprendimiento",
+   "campos": {
+    "comoSeEntero": "EVENTOS"
+   }
+  },
+  {
+   "id": "p08",
+   "mensaje": "tengo PPT número 1234567 y soy de Riohacha",
+   "campos": {
+    "tipoDocumento": "PPT",
+    "numeroDocumento": "1234567",
+    "ciudad": "44001",
+    "departamento": "44"
+   }
+  },
+  {
+   "id": "q01",
+   "mensaje": "hago chorizos y morcillas para vender en la plaza",
+   "ciiu": [
+    "1011"
+   ]
+  },
+  {
+   "id": "q02",
+   "mensaje": "tengo una papelería al lado del colegio",
+   "ciiu": [
+    "4761"
+   ]
+  },
+  {
+   "id": "q03",
+   "mensaje": "le hago mantenimiento a neveras y lavadoras",
+   "ciiu": [
+    "9522"
+   ]
+  },
+  {
+   "id": "q04",
+   "mensaje": "vendo jugos y salpicón en un carrito",
+   "ciiu": [
+    "5619",
+    "4781",
+    "5613"
+   ]
+  },
+  {
+   "id": "q05",
+   "mensaje": "soy maestro de obra, hago remodelaciones",
+   "ciiu": [
+    "4330",
+    "4390"
+   ]
+  },
+  {
+   "id": "q06",
+   "mensaje": "tengo una droguería",
+   "ciiu": [
+    "4773"
+   ]
+  }
+ ]
+}

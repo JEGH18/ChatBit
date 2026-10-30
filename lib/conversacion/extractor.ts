@@ -19,7 +19,7 @@ export type Extraccion = {
 };
 
 const NO_NOMBRE = new Set(
-  "de del la el los las un una uno mi su microempresario microempresaria comerciante emprendedor emprendedora vendedor vendedora tendero tendera independiente madre padre cabeza hombre mujer senor senora don dona y e que muy bien nuevo nueva".split(
+  "de del la el los las un una uno mi su con en por para tengo vivo vendo trabajo estoy quiero soy hago necesito busco microempresario microempresaria comerciante emprendedor emprendedora vendedor vendedora tendero tendera independiente madre padre cabeza hombre mujer senor senora don dona y e que muy bien nuevo nueva".split(
     " ",
   ),
 );
@@ -32,14 +32,12 @@ function extraerNombre(original: string): { nombre?: string; apellido?: string }
   );
   if (!m) return {};
   const explicito = !/^soy$/i.test(m[0].split(/\s+/)[0]);
-  const tokens = m[1]
-    .split(/\s+/)
-    .filter(Boolean)
-    .filter((t) => PALABRA_NOMBRE.test(t));
+  const tokens = m[1].split(/\s+/).filter(Boolean);
   const nombre: string[] = [];
   for (const t of tokens) {
     const n = normalizar(t);
-    if (NO_NOMBRE.has(n)) break;
+    // Se corta en la primera palabra que no es un nombre ("y", "tengo", "vivo"…).
+    if (!PALABRA_NOMBRE.test(t) || NO_NOMBRE.has(n)) break;
     // Con "soy" se exige mayúscula inicial ("soy comerciante" no es un nombre).
     if (!explicito && t[0] !== t[0].toUpperCase()) break;
     nombre.push(t);
@@ -55,7 +53,7 @@ const RE_CELULAR = /(?:\+?57[\s-]*)?\b3\d{2}[\s.-]?\d{3}[\s.-]?\d{2}[\s.-]?\d{2}
 
 function extraerDocumento(original: string, t: string) {
   const m = original.match(
-    /\b(c\.?\s?c\.?|c[ée]dula(?: de ciudadan[íi]a| de extranjer[íi]a)?|c\.?\s?e\.?|pasaporte|ppt|permiso por protecci[óo]n temporal|documento|identificaci[óo]n)\b[^\dA-Z]{0,25}([A-Z]{0,2}[\d][\d.\s]{4,16}\d)/i,
+    /\b(c\.?\s?c\.?|c[ée]dula(?: de ciudadan[íi]a| de extranjer[íi]a)?|c\.?\s?e\.?|pasaporte|ppt|permiso por protecci[óo]n temporal|documento|identificaci[óo]n)(?![\wáéíóú])[^\d]{0,25}?([A-Z]{0,2}[\d][\d.\s]{4,16}\d)/i,
   );
   if (!m) return {};
   const etiqueta = normalizar(m[1]);
@@ -73,7 +71,7 @@ function extraerDocumento(original: string, t: string) {
 function frasesDeLugar(original: string): string[] {
   const res: string[] = [];
   const re =
-    /\b(?:vivo en|queda en|est[áa] en|ubicad[oa] en|negocio en|tienda en|local en|trabajo en|ciudad de|municipio de|desde|en el municipio de|en la ciudad de|soy de|en)\s+([A-ZÁÉÍÓÚÑ][\wÁÉÍÓÚÜÑáéíóúüñ.]*(?:\s+(?:de|del|la|el|los|las)?\s*[A-ZÁÉÍÓÚÑ][\wÁÉÍÓÚÜÑáéíóúüñ.]*){0,3})/g;
+    /\b(?:vivo en|queda en|est[áa] en|ubicad[oa] en|negocio en|tienda en|local en|trabajo en|ciudad de|municipio de|desde|en el municipio de|en la ciudad de|soy de|en|de)\s+([A-ZÁÉÍÓÚÑ][\wÁÉÍÓÚÜÑáéíóúüñ.]*(?:\s+(?:de|del|la|el|los|las)?\s*[A-ZÁÉÍÓÚÑ][\wÁÉÍÓÚÜÑáéíóúüñ.]*){0,3})/g;
   for (const m of original.matchAll(re)) res.push(m[1].replace(/[.,;]$/, ""));
   // Departamento después de una coma: "Medellín, Antioquia"
   for (const m of original.matchAll(/,\s*([A-ZÁÉÍÓÚÑ][\wÁÉÍÓÚÜÑáéíóúüñ]+(?:\s+(?:del|de)\s+[A-ZÁÉÍÓÚÑ][\wáéíóúñ]+)?)/g)) res.push(m[1]);

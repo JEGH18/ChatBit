@@ -29,3 +29,6 @@ next-env.d.ts
 *.pem
 npm-debug.log*
 .vercel
+
+# resultados de evaluaciones con IA (consumen tokens; se regeneran con npm run evals -- --ia)
+/evals/resultados/*-ia.json

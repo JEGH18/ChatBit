@@ -58,7 +58,7 @@ export function Chat(p: Props) {
 
   return (
     <div className="flex h-full min-h-0 flex-col bg-background">
-      <div ref={lista} className="min-h-0 flex-1 overflow-y-auto px-3 py-4 sm:px-5" role="log" aria-live="polite" aria-label="Conversación con el asistente">
+      <div ref={lista} tabIndex={0} className="min-h-0 flex-1 overflow-y-auto px-3 py-4 outline-none focus-visible:ring-3 focus-visible:ring-ring/50 sm:px-5" role="log" aria-live="polite" aria-label="Conversación con el asistente">
         <ol className="mx-auto flex max-w-2xl flex-col gap-3">
           {p.mensajes.map((m) =>
             m.rol === "nota" ? (

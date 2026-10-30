@@ -36,6 +36,7 @@ export function Asistente({ opciones, sesion, encabezadoExtra }: Props) {
 
   const propia = useAsistente({
     ...opciones,
+    inactivo: !!sesion,
     alResponder: (textos) => lectura.leer(textos.join(". ")),
     alUi: (ui) => {
       if (ui.abrirFormulario) {
