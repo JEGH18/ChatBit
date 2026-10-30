@@ -59,6 +59,7 @@ export function crearHerramientas(s: SesionIA) {
             if (def.obligatorio) errores.push({ campo, error: "Es obligatorio; no se puede omitir." });
             else {
               s.turnero.e = omitir(s.turnero.e, campo);
+              s.turnero.eventos.push({ tipo: "campo_omitido", campo });
               guardados.push({ campo, valor: "(prefirió no responder)" });
             }
             continue;

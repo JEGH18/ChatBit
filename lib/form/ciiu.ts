@@ -42,7 +42,7 @@ const VACIAS = new Set(
     "a al algo algunos alla aqui asi casa con como de del desde donde el ella ellos en entre era es esa ese eso esta este esto estoy hace hacer hago " +
     "la las le lo los me mi mis mucho muy negocio nos o para pero por porque que se ser si sin sobre soy su sus tambien tengo tiene trabajo trabajar " +
     "un una uno unos vendo venta ventas vender y ya yo dedico dedica dedicamos hacemos tenemos vendemos mio mia propio propia pequeno pequena " +
-    "cosas tipo clase otros otras producto productos servicio servicios actividad empresa emprendimiento micro microempresa esquina barrio"
+    "cosas tipo clase otros otras producto productos servicio servicios actividad empresa emprendimiento micro microempresa"
   ).split(" "),
 );
 
@@ -108,10 +108,19 @@ export function sugerirCiiu(descripcion: string, aprendidos: SinonimoAprendido[]
   if (!consulta.length) return [];
   const puntajes = new Map<string, number>();
   const sumar = (cod: string, p: number) => puntajes.set(cod, (puntajes.get(cod) ?? 0) + p);
+  // El verbo orienta la sección CIIU: vender → comercio; hacer → industria; arreglar → reparación.
+  const n = normalizar(descripcion);
+  const sesgo = (cod: string) =>
+    (/\b(vendo|vendemos|vender|venta|ventas|revendo|comercializo|distribuyo)\b/.test(n) && /^4[67]/.test(cod) ? 1 : 0) +
+    (/\b(hago|hacemos|fabrico|fabricamos|elaboro|confecciono|produzco|preparo|cocino)\b/.test(n) && /^(1\d|2\d|3[0-3]|56)/.test(cod) ? 1 : 0) +
+    (/\b(arreglo|arreglar|reparo|reparar|reparacion|mantenimiento|taller)\b/.test(n) && /^(95|45[24]|33)/.test(cod) ? 1 : 0) +
+    // Mayorista solo si la persona lo dice; ventas por redes o internet → comercio electrónico.
+    (/^46/.test(cod) && !/\b(por mayor|mayorista|al mayor|distribuidora|distribuyo|distribucion)\b/.test(n) ? -1.5 : 0) +
+    (cod === "4791" && /\b(whatsapp|wasap|internet|redes|instagram|facebook|tiktok|online|en linea|pagina web|tienda virtual)\b/.test(n) ? 2 : 0);
 
   for (const idx of INDICE_FRECUENTES) {
     const p = puntuar(consulta, idx);
-    if (p > 0) sumar(idx.clase.codigo, p);
+    if (p > 0) sumar(idx.clase.codigo, p + sesgo(idx.clase.codigo));
   }
   // El catálogo completo solo aporta si el curado no encontró nada fuerte.
   const mejorCurado = Math.max(0, ...puntajes.values());

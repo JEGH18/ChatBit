@@ -9,7 +9,7 @@
   "scripts": {
     "predev": "tsx scripts/datos/compilar-faq.ts",
     "dev": "next dev",
-    "prebuild": "tsx scripts/datos/compilar-faq.ts",
+    "prebuild": "tsx scripts/datos/compilar-faq.ts && prisma generate",
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
@@ -19,17 +19,26 @@
     "evals": "tsx evals/ejecutar.ts",
     "datos:divipola": "tsx scripts/datos/importar-divipola.ts",
     "datos:ciiu": "tsx scripts/datos/importar-ciiu.ts",
-    "datos:faq": "tsx scripts/datos/compilar-faq.ts"
+    "datos:faq": "tsx scripts/datos/compilar-faq.ts",
+    "postinstall": "prisma generate && tsx scripts/datos/esquema-postgres.mts && prisma generate --schema prisma/postgres/schema.prisma",
+    "db:migrar": "prisma migrate deploy",
+    "db:esquema-postgres": "tsx scripts/datos/esquema-postgres.mts",
+    "db:demo": "tsx scripts/datos/sembrar-demo.ts"
   },
   "dependencies": {
     "@ai-sdk/anthropic": "^4.0.92",
     "@ai-sdk/react": "^4.0.161",
+    "@prisma/adapter-better-sqlite3": "^7.10.1",
+    "@prisma/adapter-pg": "^7.10.1",
+    "@prisma/client": "^7.10.1",
     "ai": "^7.0.157",
+    "better-sqlite3": "^12.11.1",
     "class-variance-authority": "^0.7.1",
     "cn": "^0.5.0",
     "lucide-react": "^1.64.0",
     "next": "^16.4.3",
     "next-themes": "^0.4.6",
+    "pg": "^8.23.1",
     "radix-ui": "^1.8.1",
     "react": "^19.3.0",
     "react-dom": "^19.3.0",
@@ -42,11 +51,14 @@
     "@axe-core/playwright": "^4.14.0",
     "@playwright/test": "^1.64.1",
     "@tailwindcss/postcss": "^4.3.3",
+    "@types/better-sqlite3": "^9.6.0",
     "@types/node": "^24.19.2",
+    "@types/pg": "^8.23.1",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
     "eslint": "^9.39.5",
     "eslint-config-next": "^16.4.3",
+    "prisma": "^7.10.1",
     "tailwindcss": "^4.3.3",
     "tsx": "^4.23.15",
     "typescript": "^6.0.3",
@@ -54,6 +66,9 @@
   },
   "allowScripts": {
     "esbuild@0.28.2": true,
-    "unrs-resolver@1.12.2": true
+    "unrs-resolver@1.12.2": true,
+    "@prisma/engines@7.10.1": true,
+    "better-sqlite3@12.11.1": true,
+    "prisma@7.10.1": true
   }
 }

@@ -1,0 +1,89 @@
+// Esquema de persistencia del Asistente Neo.
+// Principio: aquí NO se guardan datos personales del formulario (nombre, documento, celular, correo,
+// género, minoría). Solo progreso de la sesión, eventos de fricción y textos ya anonimizados.
+// La versión para Postgres (prisma/postgres/schema.prisma) se genera desde este archivo con
+// `npm run db:esquema-postgres`.
+
+generator client {
+  provider = "prisma-client"
+  output   = "../lib/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+/// Una conversación (identificador aleatorio generado en el navegador).
+model Sesion {
+  id              String    @id
+  creadaEn        DateTime  @default(now())
+  actualizadaEn   DateTime  @updatedAt
+  modo            String    @default("guiado") // ia | guiado
+  ultimoCampo     String?
+  camposCompletos Int       @default(0)
+  mensajes        Int       @default(0)
+  finalizada      Boolean   @default(false)
+  finalizadaEn    DateTime?
+  usoVoz          Boolean   @default(false)
+  usoFormulario   Boolean   @default(false)
+  escalada        Boolean   @default(false)
+  /// Rango de edad aproximado, solo si la persona lo dio (opcional y anónimo) en la encuesta.
+  rangoEdad       String?
+  sintetica       Boolean   @default(false)
+  eventos         Evento[]
+  encuesta        Encuesta?
+}
+
+/// Evento de analítica de fricción. Nunca contiene valores del formulario.
+model Evento {
+  id       Int      @id @default(autoincrement())
+  sesionId String
+  sesion   Sesion   @relation(fields: [sesionId], references: [id], onDelete: Cascade)
+  tipo     String // campo_mostrado | campo_completado | error_validacion | ayuda | pregunta_faq | ...
+  campo    String?
+  detalle  String? // código de error, id de la pregunta frecuente, código CIIU, origen…
+  canal    String? // texto | voz | boton | formulario
+  creadoEn DateTime @default(now())
+
+  @@index([sesionId])
+  @@index([tipo, campo])
+}
+
+model Encuesta {
+  id         Int      @id @default(autoincrement())
+  sesionId   String   @unique
+  sesion     Sesion   @relation(fields: [sesionId], references: [id], onDelete: Cascade)
+  puntaje    Int // 1 😞 | 2 😐 | 3 🙂
+  comentario String? // anonimizado
+  rangoEdad  String?
+  creadaEn   DateTime @default(now())
+}
+
+/// Bandeja humano-en-el-bucle: preguntas que el asistente no supo responder (anonimizadas).
+model PreguntaPendiente {
+  id               Int       @id @default(autoincrement())
+  texto            String
+  clave            String    @unique
+  veces            Int       @default(1)
+  estado           String    @default("pendiente") // pendiente | aprobada | descartada
+  preguntaAprobada String?
+  respuesta        String?
+  palabras         String?
+  sintetica        Boolean   @default(false)
+  creadaEn         DateTime  @default(now())
+  revisadaEn       DateTime?
+}
+
+/// Aprendizaje de sinónimos: descripción anonimizada → código CIIU que la persona confirmó.
+model SinonimoCiiu {
+  id            Int      @id @default(autoincrement())
+  descripcion   String
+  codigo        String
+  veces         Int      @default(1)
+  /// Los pares de datos sintéticos se muestran en el panel, pero NO alimentan el aprendizaje.
+  sintetica     Boolean  @default(false)
+  creadoEn      DateTime @default(now())
+  actualizadoEn DateTime @updatedAt
+
+  @@unique([descripcion, codigo, sintetica])
+}

@@ -79,14 +79,12 @@ describe("trato no diferenciado (equidad)", () => {
   it("las acciones del asistente son idénticas sin importar género, minoría, ciudad o actividad", () => {
     const base = corridas[0].r.turnos.map(acciones);
     for (const { r } of corridas.slice(1)) {
-      // La única diferencia permitida es el campo omitido (minoría "prefiero no responder").
+      // Única diferencia permitida: si la persona respondió u omitió (su elección, no un trato distinto).
+      const sinRespuesta = (ev: string[]) => ev.filter((e) => e !== "campo_completado" && e !== "campo_omitido");
       const otra = r.turnos.map(acciones);
       expect(otra.length).toBe(base.length);
       otra.forEach((a, i) => {
-        expect({ ...a, eventos: a.eventos.filter((e) => e !== "campo_completado") }).toEqual({
-          ...base[i],
-          eventos: base[i].eventos.filter((e) => e !== "campo_completado"),
-        });
+        expect({ ...a, eventos: sinRespuesta(a.eventos) }).toEqual({ ...base[i], eventos: sinRespuesta(base[i].eventos) });
       });
     }
   });

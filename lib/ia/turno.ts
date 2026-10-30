@@ -39,7 +39,7 @@ export async function turnoConIA(
   historial: MensajeHistorial[],
   ctx: ContextoMotor,
   opciones: OpcionesTurnoIA = {},
-): Promise<{ eventos: EventoMotor[]; modo: "ia" | "guiado" }> {
+): Promise<{ eventos: EventoMotor[]; modo: "ia" | "guiado"; estado: EstadoConversacion }> {
   const turnero = new Turnero(estado, ctx);
   const sesion: SesionIA = {
     turnero,
@@ -96,7 +96,7 @@ export async function turnoConIA(
     console.error("IA no disponible en este turno, se usa el modo guiado:", fallo instanceof Error ? fallo.message : fallo);
     const turno = procesarTurno(estado, entrada, ctx);
     escribirTurno(writer, turno, "guiado", "La IA no respondió; seguimos en modo guiado.");
-    return { eventos: turno.eventos, modo: "guiado" };
+    return { eventos: turno.eventos, modo: "guiado", estado: turno.estado };
   }
 
   // Botones y tarjetas del siguiente paso: los decide la máquina de estados, no la IA.
@@ -111,5 +111,5 @@ export async function turnoConIA(
     escribirBloque(writer, ui.bloque);
   }
   escribirEstado(writer, { estado: ui.estado, chips: ui.chips, modo: "ia" });
-  return { eventos: turnero.eventos, modo: "ia" };
+  return { eventos: turnero.eventos, modo: "ia", estado: ui.estado };
 }

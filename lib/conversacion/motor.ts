@@ -390,6 +390,7 @@ export class Turnero {
           return this.preguntarSiguiente();
         }
         this.e = { ...omitir(this.e, a.campo), subdialogo: null };
+        this.eventos.push({ tipo: "campo_omitido", campo: a.campo });
         return this.preguntarSiguiente(this.t("Entendido, no hay problema.", "Entendido, no hay problema."));
 
       case "explicar":
@@ -987,8 +988,8 @@ export class Turnero {
         return this.trasGuardar([c]);
       }
       if (this.responderPregunta(texto)) return;
-      const desc = ext.descripcionActividad ?? texto;
-      if (this.sugerirActividad(desc)) return;
+      // Se busca con el texto completo: los verbos importan ("arreglo" vs "vendo").
+      if (this.sugerirActividad(texto)) return;
       this.eventos.push({ tipo: "error_validacion", campo: c, codigo: "no_encontrado" });
       this.e = sumarIntento(this.e, c);
       return this.accion({ tipo: "ningunCiiu" });
@@ -1031,6 +1032,7 @@ export class Turnero {
     // Campos sensibles opcionales: nunca se insiste.
     if (CAMPO[c].sensible && !CAMPO[c].obligatorio) {
       this.e = omitir(this.e, c);
+      this.eventos.push({ tipo: "campo_omitido", campo: c });
       return this.preguntarSiguiente(this.t("No hay problema, lo dejamos sin responder.", "No hay problema, lo dejamos sin responder."));
     }
     const resultado = interpretarCampo(c, texto, this.e.valores);

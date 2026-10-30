@@ -80,8 +80,12 @@ function frasesDeLugar(original: string): string[] {
   return res;
 }
 
+// Frases que introducen la actividad. Los verbos con significado ("arreglo", "vendo", "cultivo")
+// se conservan en la descripción: "arreglo celulares" no es lo mismo que "vendo celulares".
 const VERBOS_ACTIVIDAD =
-  /\b(?:me dedico a|nos dedicamos a|mi negocio es|mi negocio se dedica a|el negocio es|tengo un[a]?|vendo|vendemos|hago|hacemos|fabrico|fabricamos|arreglo|reparo|preparo|cocino|cultivo|crio|ofrezco|presto servicios? de|trabajo con|trabajo en|negocio de)\s+([^.;\n]{3,120})/i;
+  /\b(?:me dedico a|nos dedicamos a|mi negocio es|mi negocio se dedica a|el negocio es|negocio de|tengo|trabajo con|trabajo en)?\s*((?:vendo|vendemos|hago|hacemos|fabrico|fabricamos|arreglo|reparo|preparo|cocino|cultivo|crio|ofrezco|presto servicios? de|un[a]? |una )?[^.;\n]{3,120})/i;
+const INICIO_ACTIVIDAD =
+  /\b(me dedico a|nos dedicamos a|mi negocio es|mi negocio se dedica a|el negocio es|negocio de|tengo un[a]?|vendo|vendemos|hago|hacemos|fabrico|fabricamos|arreglo|reparo|preparo|cocino|cultivo|crio|ofrezco|presto servicios? de|desarrollo)\b/i;
 
 export function extraerCampos(original: string): Extraccion {
   const t = normalizar(original);
@@ -140,8 +144,12 @@ export function extraerCampos(original: string): Extraccion {
 
   const ciiu = t.match(/\b(?:ciiu|codigo|actividad)\s*(?:es\s*)?(\d{4})\b/)?.[1];
   if (ciiu && existeCiiu(ciiu)) campos.actividadEconomica = ciiu;
-  const act = original.match(VERBOS_ACTIVIDAD)?.[1];
-  if (act && !/\brut\b/i.test(act)) out.descripcionActividad = act.replace(/\(.*?\)/g, "").split(/,| y mi | y me | y vend/)[0].trim();
+  const inicio = original.match(INICIO_ACTIVIDAD);
+  if (inicio) {
+    const desde = original.slice(inicio.index!).replace(/^(me dedico a|nos dedicamos a|mi negocio es|mi negocio se dedica a|el negocio es|negocio de)\s+/i, "");
+    const act = desde.match(VERBOS_ACTIVIDAD)?.[1];
+    if (act && !/\brut\b/i.test(act)) out.descripcionActividad = act.replace(/\(.*?\)/g, "").split(/,|;| y mi | y me | y vend| desde hace/)[0].trim();
+  }
 
   const anio = t.match(/\b(?:ventas|vendi|vendimos|facture|ingresos)\b[^.]{0,30}?\b(20\d{2})\b/)?.[1] ?? t.match(/\b(?:en|del|de|ano)\s+(20\d{2})\b[^.]{0,30}\b(?:vendi|ventas|facture)/)?.[1];
   if (anio) campos.anioVentas = anio;

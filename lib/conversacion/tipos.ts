@@ -56,6 +56,7 @@ export type MensajeBot = { texto: string; bloque?: Bloque };
 export type EventoMotor =
   | { tipo: "campo_completado"; campo: CampoId; origen: "respuesta" | "extraccion" | "boton" | "ia" }
   | { tipo: "error_validacion"; campo: CampoId; codigo: CodigoError }
+  | { tipo: "campo_omitido"; campo: CampoId }
   | { tipo: "ayuda"; campo: CampoId | null }
   | { tipo: "pregunta_faq"; id: string }
   | { tipo: "pregunta_sin_respuesta"; texto: string }
