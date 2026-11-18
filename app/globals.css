@@ -1,0 +1,197 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-sans);
+  --font-mono: ui-monospace, monospace;
+  --font-heading: var(--font-sans);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+:root {
+  /* Identidad del prototipo: inspirada en el canal, sin logotipos oficiales. */
+  --neo-morado: #4b4a7a;
+  --neo-morado-oscuro: #37365c;
+  --neo-morado-claro: #eeeef6;
+  --neo-verde: #22ddb8;
+  --neo-verde-oscuro: #0a7562; /* verde con contraste AA sobre blanco (5.4:1) */
+  --neo-verde-claro: #e2faf4;
+  --neo-rojo: #ff9b9b; /* asterisco sobre morado (contraste 5.2:1) */
+  --neo-error: #b4233d;
+  /* Panel del formulario, campos, burbujas y marcas: cambian juntos en el modo pastel. */
+  --neo-panel-fondo: var(--neo-morado);
+  --neo-panel-texto: #ffffff;
+  --neo-panel-suave: rgb(255 255 255 / 0.88);
+  --neo-panel-linea: rgb(255 255 255 / 0.7);
+  --neo-panel-pista: rgb(255 255 255 / 0.2);
+  --neo-panel-acento: var(--neo-verde);
+  --neo-campo-fondo: #ffffff;
+  --neo-campo-texto: #23223f;
+  --neo-campo-borde: transparent;
+  --neo-marca: #2563eb;
+  --neo-marca-texto: #ffffff;
+  --neo-campo-vacio: #6b6a85;
+  --neo-burbuja-usuario: var(--neo-morado);
+  --neo-burbuja-usuario-texto: #ffffff;
+
+  --background: #ffffff;
+  --foreground: #23223f;
+  --card: #ffffff;
+  --card-foreground: #23223f;
+  --popover: #ffffff;
+  --popover-foreground: #23223f;
+  --primary: var(--neo-morado);
+  --primary-foreground: #ffffff;
+  --secondary: var(--neo-morado-claro);
+  --secondary-foreground: var(--neo-morado-oscuro);
+  --muted: #f4f4f8;
+  --muted-foreground: #5b5a76;
+  --accent: var(--neo-verde-claro);
+  --accent-foreground: #08483d;
+  --destructive: var(--neo-error);
+  --border: #dcdce8;
+  --input: #c9c9da;
+  --ring: var(--neo-verde-oscuro);
+  --chart-1: #4b4a7a;
+  --chart-2: #22ddb8;
+  --chart-3: #0a7562;
+  --chart-4: #8f8ec0;
+  --chart-5: #c2c1dc;
+  --radius: 0.75rem;
+  --sidebar: #fafafe;
+  --sidebar-foreground: #23223f;
+  --sidebar-primary: var(--neo-morado);
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: var(--neo-morado-claro);
+  --sidebar-accent-foreground: #23223f;
+  --sidebar-border: #dcdce8;
+  --sidebar-ring: var(--neo-verde-oscuro);
+}
+
+/* Modo oscuro de alto contraste con los colores de la marca: fondo índigo muy oscuro, texto casi
+   blanco y acentos verde agua y lavanda. Contrastes WCAG medidos: texto 10,9–19:1 (AAA),
+   acentos ≥ 8,2:1, bordes ≥ 5,4:1. */
+html.alto-contraste {
+  color-scheme: dark;
+  --neo-morado: #c9c4ff;
+  --neo-morado-oscuro: #f4f3ff;
+  --neo-morado-claro: #2a2747;
+  --neo-verde: #22ddb8;
+  --neo-verde-oscuro: #22ddb8;
+  --neo-verde-claro: #0e3b33;
+  --neo-rojo: #ff9baa;
+
+  --neo-panel-fondo: #1e1b3a;
+  --neo-panel-texto: #f4f3ff;
+  --neo-panel-suave: #d3d0f0;
+  --neo-panel-linea: #8a85c2;
+  --neo-panel-pista: #3a3666;
+  --neo-panel-acento: #22ddb8;
+  --neo-campo-fondo: #0f0e1f;
+  --neo-campo-texto: #ffffff;
+  --neo-campo-borde: #a39fd6;
+  --neo-campo-vacio: #b9b5e0;
+  --neo-marca: #22ddb8;
+  --neo-marca-texto: #06201a;
+  --neo-burbuja-usuario: #4b4a7a;
+  --neo-burbuja-usuario-texto: #ffffff;
+
+  --background: #121124;
+  --foreground: #f4f3ff;
+  --card: #1c1a33;
+  --card-foreground: #f4f3ff;
+  --popover: #1c1a33;
+  --popover-foreground: #f4f3ff;
+  --primary: #22ddb8;
+  --primary-foreground: #06201a;
+  --secondary: #2a2747;
+  --secondary-foreground: #f4f3ff;
+  --muted: #1f1d38;
+  --muted-foreground: #d3d0f0;
+  --accent: #0e3b33;
+  --accent-foreground: #7ef2da;
+  --destructive: #ff8a9a;
+  --border: #8a85c2;
+  --input: #a39fd6;
+  --ring: #22ddb8;
+}
+html.alto-contraste a { color: #5cebcf; }
+
+html.neo-cambiando-tema *, html.neo-cambiando-tema *::before, html.neo-cambiando-tema *::after { transition: none !important; }
+
+/* Tamaño de texto ajustable (todo el diseño usa rem). */
+html[data-texto="grande"] { font-size: 112.5%; }
+html[data-texto="muy-grande"] { font-size: 131.25%; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+
+@keyframes neo-resaltar {
+  0% { box-shadow: 0 0 0 0 color-mix(in oklab, var(--neo-verde) 90%, transparent); background-color: var(--neo-verde-claro); }
+  100% { box-shadow: 0 0 0 8px transparent; }
+}
+.neo-recien-llenado { animation: neo-resaltar 1.4s ease-out; }
+
+@keyframes neo-punto {
+  0%, 80%, 100% { opacity: 0.25; transform: translateY(0); }
+  40% { opacity: 1; transform: translateY(-3px); }
+}
+.neo-escribiendo span { animation: neo-punto 1.2s infinite; }
+.neo-escribiendo span:nth-child(2) { animation-delay: 0.15s; }
+.neo-escribiendo span:nth-child(3) { animation-delay: 0.3s; }
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  button:not(:disabled), [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+  html {
+    @apply font-sans;
+  }
+}

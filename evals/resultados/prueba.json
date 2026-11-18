@@ -1,0 +1,247 @@
+{
+ "conjunto": "evals/dataset-prueba.json",
+ "informe": {
+  "fecha": "2026-10-30T04:51:11.478Z",
+  "modelo": null,
+  "extraccion_reglas": {
+   "precision": 1,
+   "recall": 0.8695652173913043,
+   "f1": 0.9302325581395349,
+   "vp": 20,
+   "fp": 0,
+   "fn": 3,
+   "exactos": 6,
+   "casos": 8
+  },
+  "ciiu_reglas": {
+   "top1": 0.8571428571428571,
+   "top3": 1,
+   "casos": 7
+  }
+ },
+ "detalle": [
+  {
+   "sistema": "reglas",
+   "tipo": "extraccion",
+   "id": "p01",
+   "ok": true,
+   "esperado": {
+    "primerNombre": "Gloria",
+    "primerApellido": "Patiño",
+    "tipoDocumento": "CC",
+    "numeroDocumento": "43567890"
+   },
+   "obtenido": {
+    "primerNombre": "Gloria",
+    "primerApellido": "Patiño",
+    "tipoDocumento": "CC",
+    "numeroDocumento": "43567890"
+   }
+  },
+  {
+   "sistema": "reglas",
+   "tipo": "extraccion",
+   "id": "p02",
+   "ok": true,
+   "esperado": {
+    "genero": "MASCULINO",
+    "tieneRut": true,
+    "celular": "3205556677"
+   },
+   "obtenido": {
+    "genero": "MASCULINO",
+    "celular": "3205556677",
+    "tieneRut": true
+   }
+  },
+  {
+   "sistema": "reglas",
+   "tipo": "extraccion",
+   "id": "p03",
+   "ok": false,
+   "esperado": {
+    "ciudad": "66001",
+    "departamento": "66",
+    "medioContacto": "WHATSAPP"
+   },
+   "obtenido": {
+    "departamento": "66",
+    "ciudad": "66001"
+   }
+  },
+  {
+   "sistema": "reglas",
+   "tipo": "extraccion",
+   "id": "p04",
+   "ok": true,
+   "esperado": {
+    "primerNombre": "Wilson",
+    "primerApellido": "Arboleda",
+    "ciudad": "52835",
+    "departamento": "52"
+   },
+   "obtenido": {
+    "primerNombre": "Wilson",
+    "primerApellido": "Arboleda",
+    "departamento": "52",
+    "ciudad": "52835"
+   }
+  },
+  {
+   "sistema": "reglas",
+   "tipo": "extraccion",
+   "id": "p05",
+   "ok": true,
+   "esperado": {
+    "correo": "nidia.r@ejemplo.com",
+    "perteneceMinoria": false
+   },
+   "obtenido": {
+    "correo": "nidia.r@ejemplo.com",
+    "perteneceMinoria": false
+   }
+  },
+  {
+   "sistema": "reglas",
+   "tipo": "extraccion",
+   "id": "p06",
+   "ok": false,
+   "esperado": {
+    "anioVentas": 2024,
+    "ventasUltimoAnio": 40000000
+   },
+   "obtenido": {}
+  },
+  {
+   "sistema": "reglas",
+   "tipo": "extraccion",
+   "id": "p07",
+   "ok": true,
+   "esperado": {
+    "comoSeEntero": "EVENTOS"
+   },
+   "obtenido": {
+    "comoSeEntero": "EVENTOS"
+   }
+  },
+  {
+   "sistema": "reglas",
+   "tipo": "extraccion",
+   "id": "p08",
+   "ok": true,
+   "esperado": {
+    "tipoDocumento": "PPT",
+    "numeroDocumento": "1234567",
+    "ciudad": "44001",
+    "departamento": "44"
+   },
+   "obtenido": {
+    "tipoDocumento": "PPT",
+    "numeroDocumento": "1234567",
+    "departamento": "44",
+    "ciudad": "44001"
+   }
+  },
+  {
+   "sistema": "reglas",
+   "tipo": "ciiu",
+   "id": "p04",
+   "mensaje": "Me llamo Wilson Arboleda, vivo en Tumaco y vendo pescado",
+   "esperado": [
+    "4723"
+   ],
+   "obtenido": [
+    "4723",
+    "9007",
+    "0312"
+   ]
+  },
+  {
+   "sistema": "reglas",
+   "tipo": "ciiu",
+   "id": "q01",
+   "mensaje": "hago chorizos y morcillas para vender en la plaza",
+   "esperado": [
+    "1011"
+   ],
+   "obtenido": [
+    "1011",
+    "4721",
+    "1020"
+   ]
+  },
+  {
+   "sistema": "reglas",
+   "tipo": "ciiu",
+   "id": "q02",
+   "mensaje": "tengo una papelería al lado del colegio",
+   "esperado": [
+    "4761"
+   ],
+   "obtenido": [
+    "4761",
+    "5629",
+    "4711"
+   ]
+  },
+  {
+   "sistema": "reglas",
+   "tipo": "ciiu",
+   "id": "q03",
+   "mensaje": "le hago mantenimiento a neveras y lavadoras",
+   "esperado": [
+    "9522"
+   ],
+   "obtenido": [
+    "9522",
+    "3312",
+    "9511"
+   ]
+  },
+  {
+   "sistema": "reglas",
+   "tipo": "ciiu",
+   "id": "q04",
+   "mensaje": "vendo jugos y salpicón en un carrito",
+   "esperado": [
+    "5619",
+    "4781",
+    "5613"
+   ],
+   "obtenido": [
+    "1104",
+    "5613",
+    "5619"
+   ]
+  },
+  {
+   "sistema": "reglas",
+   "tipo": "ciiu",
+   "id": "q05",
+   "mensaje": "soy maestro de obra, hago remodelaciones",
+   "esperado": [
+    "4330",
+    "4390"
+   ],
+   "obtenido": [
+    "4390",
+    "4330",
+    "4111"
+   ]
+  },
+  {
+   "sistema": "reglas",
+   "tipo": "ciiu",
+   "id": "q06",
+   "mensaje": "tengo una droguería",
+   "esperado": [
+    "4773"
+   ],
+   "obtenido": [
+    "4773",
+    "4711",
+    "4719"
+   ]
+  }
+ ]
+}

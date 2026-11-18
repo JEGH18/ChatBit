@@ -1,0 +1,548 @@
+{
+ "conjunto": "evals/dataset.json",
+ "informe": {
+  "fecha": "2026-10-30T05:21:59.461Z",
+  "modelo": null,
+  "extraccion_reglas": {
+   "precision": 1,
+   "recall": 1,
+   "f1": 1,
+   "vp": 56,
+   "fp": 0,
+   "fn": 0,
+   "exactos": 16,
+   "casos": 16
+  },
+  "ciiu_reglas": {
+   "top1": 0.9444444444444444,
+   "top3": 1,
+   "casos": 18
+  }
+ },
+ "detalle": [
+  {
+   "sistema": "reglas",
+   "tipo": "extraccion",
+   "id": "x01",
+   "ok": true,
+   "esperado": {
+    "primerNombre": "Domiciano",
+    "primerApellido": "Rincón",
+    "ciudad": "76001",
+    "departamento": "76"
+   },
+   "obtenido": {
+    "primerNombre": "Domiciano",
+    "primerApellido": "Rincón",
+    "departamento": "76",
+    "ciudad": "76001"
+   }
+  },
+  {
+   "sistema": "reglas",
+   "tipo": "extraccion",
+   "id": "x02",
+   "ok": true,
+   "esperado": {
+    "primerNombre": "Luz",
+    "tipoDocumento": "CC",
+    "numeroDocumento": "52345678"
+   },
+   "obtenido": {
+    "primerNombre": "Luz",
+    "tipoDocumento": "CC",
+    "numeroDocumento": "52345678"
+   }
+  },
+  {
+   "sistema": "reglas",
+   "tipo": "extraccion",
+   "id": "x03",
+   "ok": true,
+   "esperado": {
+    "celular": "3152224455",
+    "correo": "luzmery.c@ejemplo.com"
+   },
+   "obtenido": {
+    "celular": "3152224455",
+    "correo": "luzmery.c@ejemplo.com"
+   }
+  },
+  {
+   "sistema": "reglas",
+   "tipo": "extraccion",
+   "id": "x04",
+   "ok": true,
+   "esperado": {
+    "primerNombre": "Jairo",
+    "primerApellido": "Mosquera",
+    "tipoDocumento": "CC",
+    "numeroDocumento": "11223344",
+    "ciudad": "27001",
+    "departamento": "27"
+   },
+   "obtenido": {
+    "primerNombre": "Jairo",
+    "primerApellido": "Mosquera",
+    "tipoDocumento": "CC",
+    "numeroDocumento": "11223344",
+    "departamento": "27",
+    "ciudad": "27001"
+   }
+  },
+  {
+   "sistema": "reglas",
+   "tipo": "extraccion",
+   "id": "x05",
+   "ok": true,
+   "esperado": {
+    "genero": "FEMENINO",
+    "tieneRut": false,
+    "comoSeEntero": "RECOMENDACION"
+   },
+   "obtenido": {
+    "genero": "FEMENINO",
+    "tieneRut": false,
+    "comoSeEntero": "RECOMENDACION"
+   }
+  },
+  {
+   "sistema": "reglas",
+   "tipo": "extraccion",
+   "id": "x06",
+   "ok": true,
+   "esperado": {
+    "ciudad": "25754",
+    "departamento": "25",
+    "medioContacto": "WHATSAPP"
+   },
+   "obtenido": {
+    "departamento": "25",
+    "ciudad": "25754",
+    "medioContacto": "WHATSAPP"
+   }
+  },
+  {
+   "sistema": "reglas",
+   "tipo": "extraccion",
+   "id": "x07",
+   "ok": true,
+   "esperado": {
+    "primerNombre": "Ana",
+    "primerApellido": "Pérez",
+    "tipoDocumento": "PA",
+    "numeroDocumento": "AB123456",
+    "celular": "3001112233"
+   },
+   "obtenido": {
+    "primerNombre": "Ana",
+    "primerApellido": "Pérez",
+    "tipoDocumento": "PA",
+    "numeroDocumento": "AB123456",
+    "celular": "3001112233"
+   }
+  },
+  {
+   "sistema": "reglas",
+   "tipo": "extraccion",
+   "id": "x08",
+   "ok": true,
+   "esperado": {},
+   "obtenido": {}
+  },
+  {
+   "sistema": "reglas",
+   "tipo": "extraccion",
+   "id": "x09",
+   "ok": true,
+   "esperado": {
+    "anioVentas": 2025,
+    "ventasUltimoAnio": 85000000
+   },
+   "obtenido": {
+    "anioVentas": 2025,
+    "ventasUltimoAnio": 85000000
+   }
+  },
+  {
+   "sistema": "reglas",
+   "tipo": "extraccion",
+   "id": "x10",
+   "ok": true,
+   "esperado": {
+    "primerNombre": "Pedro",
+    "ciudad": "68001",
+    "departamento": "68"
+   },
+   "obtenido": {
+    "primerNombre": "Pedro",
+    "departamento": "68",
+    "ciudad": "68001"
+   }
+  },
+  {
+   "sistema": "reglas",
+   "tipo": "extraccion",
+   "id": "x11",
+   "ok": true,
+   "esperado": {
+    "perteneceMinoria": false,
+    "medioContacto": "LLAMADA"
+   },
+   "obtenido": {
+    "medioContacto": "LLAMADA",
+    "perteneceMinoria": false
+   }
+  },
+  {
+   "sistema": "reglas",
+   "tipo": "extraccion",
+   "id": "x12",
+   "ok": true,
+   "esperado": {
+    "primerNombre": "Rosa"
+   },
+   "obtenido": {
+    "primerNombre": "Rosa"
+   }
+  },
+  {
+   "sistema": "reglas",
+   "tipo": "extraccion",
+   "id": "x13",
+   "ok": true,
+   "esperado": {
+    "primerNombre": "Andrés",
+    "primerApellido": "Gómez",
+    "tipoDocumento": "CC",
+    "numeroDocumento": "1020304050",
+    "genero": "MASCULINO",
+    "celular": "3104567890",
+    "correo": "andres.gomez@ejemplo.com",
+    "tieneRut": true,
+    "comoSeEntero": "REDES",
+    "ciudad": "05001",
+    "departamento": "05",
+    "medioContacto": "WHATSAPP",
+    "perteneceMinoria": false,
+    "actividadEconomica": "6201",
+    "anioVentas": 2025,
+    "ventasUltimoAnio": 180000000
+   },
+   "obtenido": {
+    "primerNombre": "Andrés",
+    "primerApellido": "Gómez",
+    "tipoDocumento": "CC",
+    "numeroDocumento": "1020304050",
+    "genero": "MASCULINO",
+    "celular": "3104567890",
+    "correo": "andres.gomez@ejemplo.com",
+    "tieneRut": true,
+    "comoSeEntero": "REDES",
+    "departamento": "05",
+    "ciudad": "05001",
+    "medioContacto": "WHATSAPP",
+    "perteneceMinoria": false,
+    "actividadEconomica": "6201",
+    "anioVentas": 2025,
+    "ventasUltimoAnio": 180000000
+   }
+  },
+  {
+   "sistema": "reglas",
+   "tipo": "extraccion",
+   "id": "x14",
+   "ok": true,
+   "esperado": {
+    "ciudad": "08001",
+    "departamento": "08"
+   },
+   "obtenido": {
+    "departamento": "08",
+    "ciudad": "08001"
+   }
+  },
+  {
+   "sistema": "reglas",
+   "tipo": "extraccion",
+   "id": "x15",
+   "ok": true,
+   "esperado": {
+    "tipoDocumento": "CE",
+    "numeroDocumento": "7654321",
+    "ciudad": "54001",
+    "departamento": "54"
+   },
+   "obtenido": {
+    "tipoDocumento": "CE",
+    "numeroDocumento": "7654321",
+    "departamento": "54",
+    "ciudad": "54001"
+   }
+  },
+  {
+   "sistema": "reglas",
+   "tipo": "extraccion",
+   "id": "x16",
+   "ok": true,
+   "esperado": {},
+   "obtenido": {}
+  },
+  {
+   "sistema": "reglas",
+   "tipo": "ciiu",
+   "id": "x04",
+   "mensaje": "Hola buenas, soy Jairo Mosquera, cc 11223344, tengo un taller de motos en Quibdó, Chocó",
+   "esperado": [
+    "4542"
+   ],
+   "obtenido": [
+    "4542",
+    "4520",
+    "4541"
+   ]
+  },
+  {
+   "sistema": "reglas",
+   "tipo": "ciiu",
+   "id": "x10",
+   "mensaje": "me llamo pedro y tengo una tienda en Bucaramanga",
+   "esperado": [
+    "4711"
+   ],
+   "obtenido": [
+    "4711",
+    "4762",
+    "4791"
+   ]
+  },
+  {
+   "sistema": "reglas",
+   "tipo": "ciiu",
+   "id": "c01",
+   "mensaje": "vendo empanadas en la esquina",
+   "esperado": [
+    "5619"
+   ],
+   "obtenido": [
+    "5619",
+    "4781",
+    "1089"
+   ]
+  },
+  {
+   "sistema": "reglas",
+   "tipo": "ciiu",
+   "id": "c02",
+   "mensaje": "arreglo celulares",
+   "esperado": [
+    "9512"
+   ],
+   "obtenido": [
+    "9512",
+    "9523",
+    "9524"
+   ]
+  },
+  {
+   "sistema": "reglas",
+   "tipo": "ciiu",
+   "id": "c03",
+   "mensaje": "tengo una peluquería y hago uñas",
+   "esperado": [
+    "9602"
+   ],
+   "obtenido": [
+    "9602",
+    "9609",
+    "9601"
+   ]
+  },
+  {
+   "sistema": "reglas",
+   "tipo": "ciiu",
+   "id": "c04",
+   "mensaje": "hago arepas y las vendo a las tiendas",
+   "esperado": [
+    "1089"
+   ],
+   "obtenido": [
+    "1089",
+    "4711",
+    "4762"
+   ]
+  },
+  {
+   "sistema": "reglas",
+   "tipo": "ciiu",
+   "id": "c05",
+   "mensaje": "vendo ropa por WhatsApp e Instagram",
+   "esperado": [
+    "4791",
+    "4771"
+   ],
+   "obtenido": [
+    "4791",
+    "4771",
+    "4775"
+   ]
+  },
+  {
+   "sistema": "reglas",
+   "tipo": "ciiu",
+   "id": "c06",
+   "mensaje": "tengo un fruver en el barrio",
+   "esperado": [
+    "4721"
+   ],
+   "obtenido": [
+    "4711",
+    "4721",
+    "5630"
+   ]
+  },
+  {
+   "sistema": "reglas",
+   "tipo": "ciiu",
+   "id": "c07",
+   "mensaje": "soy modista, hago arreglos de ropa",
+   "esperado": [
+    "9529",
+    "1410"
+   ],
+   "obtenido": [
+    "1410",
+    "9529",
+    "4771"
+   ]
+  },
+  {
+   "sistema": "reglas",
+   "tipo": "ciiu",
+   "id": "c08",
+   "mensaje": "tengo una ferretería pequeña",
+   "esperado": [
+    "4752"
+   ],
+   "obtenido": [
+    "4752",
+    "4663",
+    "4711"
+   ]
+  },
+  {
+   "sistema": "reglas",
+   "tipo": "ciiu",
+   "id": "c09",
+   "mensaje": "manejo un taxi",
+   "esperado": [
+    "4921"
+   ],
+   "obtenido": [
+    "4921",
+    "4922",
+    "4923"
+   ]
+  },
+  {
+   "sistema": "reglas",
+   "tipo": "ciiu",
+   "id": "c10",
+   "mensaje": "hago domicilios en moto",
+   "esperado": [
+    "5320"
+   ],
+   "obtenido": [
+    "5320",
+    "5629",
+    "4541"
+   ]
+  },
+  {
+   "sistema": "reglas",
+   "tipo": "ciiu",
+   "id": "c11",
+   "mensaje": "crío gallinas y vendo los huevos",
+   "esperado": [
+    "0145"
+   ],
+   "obtenido": [
+    "0145",
+    "4722",
+    "0113"
+   ]
+  },
+  {
+   "sistema": "reglas",
+   "tipo": "ciiu",
+   "id": "c12",
+   "mensaje": "vendo minutos y recargas",
+   "esperado": [
+    "6190"
+   ],
+   "obtenido": [
+    "6190",
+    "6201",
+    "6202"
+   ]
+  },
+  {
+   "sistema": "reglas",
+   "tipo": "ciiu",
+   "id": "c13",
+   "mensaje": "tengo un corrientazo, vendo almuerzos",
+   "esperado": [
+    "5611"
+   ],
+   "obtenido": [
+    "5611",
+    "5629",
+    "5612"
+   ]
+  },
+  {
+   "sistema": "reglas",
+   "tipo": "ciiu",
+   "id": "c14",
+   "mensaje": "hago tortas y postres por encargo",
+   "esperado": [
+    "1081"
+   ],
+   "obtenido": [
+    "1081",
+    "1082",
+    "5629"
+   ]
+  },
+  {
+   "sistema": "reglas",
+   "tipo": "ciiu",
+   "id": "c15",
+   "mensaje": "vendo productos de belleza por catálogo",
+   "esperado": [
+    "4792",
+    "4799",
+    "4773"
+   ],
+   "obtenido": [
+    "4773",
+    "4792",
+    "8559"
+   ]
+  },
+  {
+   "sistema": "reglas",
+   "tipo": "ciiu",
+   "id": "c16",
+   "mensaje": "tengo una cancha sintética que alquilo",
+   "esperado": [
+    "9311"
+   ],
+   "obtenido": [
+    "9311",
+    "9319",
+    "9329"
+   ]
+  }
+ ]
+}

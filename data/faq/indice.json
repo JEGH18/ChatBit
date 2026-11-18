@@ -1,0 +1,242 @@
+{
+ "entradas": [
+  {
+   "id": "aprobacion",
+   "pregunta": "¿Me van a aprobar el crédito?",
+   "palabras": [
+    "me aprueban",
+    "aprobar",
+    "aprobacion",
+    "me van a dar",
+    "voy a quedar",
+    "probabilidad",
+    "puntaje",
+    "me prestan",
+    "cuanto me prestan",
+    "monto"
+   ],
+   "respuesta": "Este asistente no evalúa ni predice si le aprueban un crédito, ni cuánto le prestarían. Solo le ayuda a llenar el registro. Cada entidad hace su propio estudio y le cuenta el resultado.",
+   "fuente": "data/faq/aprobacion.md"
+  },
+  {
+   "id": "asistente-ia",
+   "pregunta": "¿Estoy hablando con una persona?",
+   "palabras": [
+    "eres un robot",
+    "es una persona",
+    "inteligencia artificial",
+    "ia",
+    "maquina",
+    "humano",
+    "quien eres",
+    "con quien hablo"
+   ],
+   "respuesta": "Soy un asistente con inteligencia artificial, no una persona. Le ayudo a llenar el formulario paso a paso. Si prefiere hablar con un asesor humano, escriba \"asesor\" en cualquier momento.",
+   "fuente": "data/faq/asistente-ia.md"
+  },
+  {
+   "id": "cobra",
+   "pregunta": "¿Neocrédito cobra por el trámite?",
+   "palabras": [
+    "cobra",
+    "cuesta",
+    "cuanto vale",
+    "pagar",
+    "costo",
+    "precio",
+    "gratis",
+    "comision",
+    "tengo que pagar",
+    "consignar",
+    "deposito"
+   ],
+   "respuesta": "No. **Neocrédito no cobra por el registro ni por el trámite.** Si alguien le pide dinero, consignaciones o pagos por adelantado para \"aprobarle\" un crédito, es un intento de fraude: no pague y repórtelo.",
+   "fuente": "data/faq/cobra.md"
+  },
+  {
+   "id": "datos-personales",
+   "pregunta": "¿Qué hacen con mis datos?",
+   "palabras": [
+    "mis datos",
+    "privacidad",
+    "habeas data",
+    "proteccion de datos",
+    "quien ve mis datos",
+    "guardan",
+    "seguridad",
+    "datos personales",
+    "borrar mis datos"
+   ],
+   "respuesta": "Sus datos se usan solo para el registro, según la Ley 1581 de 2012 (habeas data): usted puede conocerlos, actualizarlos, corregirlos y pedir que se borren. Este prototipo guarda su avance únicamente en su navegador; las estadísticas de uso no incluyen su nombre, documento, celular ni correo. Más detalles en la página \"Cómo funciona\".",
+   "fuente": "data/faq/datos-personales.md"
+  },
+  {
+   "id": "despues-del-registro",
+   "pregunta": "¿Qué pasa después de registrarme?",
+   "palabras": [
+    "despues",
+    "que sigue",
+    "siguiente paso",
+    "cuando me llaman",
+    "cuanto tarda",
+    "cuando me contactan",
+    "que pasa luego",
+    "tiempo"
+   ],
+   "respuesta": "Después del registro, las entidades aliadas revisan sus datos y, si tienen una oferta para usted, le contactan por el medio que eligió (WhatsApp, llamada o correo). El tiempo depende de cada entidad. Recuerde: las ofertas no son en firme y solo puede aceptar una.",
+   "fuente": "data/faq/despues-del-registro.md"
+  },
+  {
+   "id": "fraude",
+   "pregunta": "¿Cómo evito fraudes?",
+   "palabras": [
+    "fraude",
+    "estafa",
+    "me pidieron plata",
+    "clave",
+    "contrasena",
+    "codigo",
+    "otp",
+    "sms",
+    "enganio",
+    "robo"
+   ],
+   "respuesta": "Neocrédito no cobra por el trámite y **nunca le pedirá contraseñas, claves bancarias ni códigos que le lleguen por mensaje (OTP)**. No comparta esos datos con nadie. Si alguien se los pide en nombre de Neocrédito, es fraude.",
+   "fuente": "data/faq/fraude.md"
+  },
+  {
+   "id": "ofertas-no-en-firme",
+   "pregunta": "¿Las ofertas que recibo ya están aprobadas?",
+   "palabras": [
+    "oferta aprobada",
+    "en firme",
+    "seguro me dan",
+    "ya me aprobaron",
+    "garantizado",
+    "oferta segura",
+    "me prestan"
+   ],
+   "respuesta": "No. Las ofertas que envían las entidades **no son en firme**: son una propuesta inicial. Cada entidad hace su propio estudio antes de aprobar el crédito, y puede pedirle más información o documentos.",
+   "fuente": "data/faq/ofertas-no-en-firme.md"
+  },
+  {
+   "id": "que-es-ciiu",
+   "pregunta": "¿Qué es el código CIIU?",
+   "palabras": [
+    "ciiu",
+    "codigo ciiu",
+    "actividad economica",
+    "que actividad pongo",
+    "codigo de actividad"
+   ],
+   "respuesta": "El CIIU es un código de 4 números que describe a qué se dedica un negocio (por ejemplo, 5619 es \"comidas rápidas o venta de comida en la calle\"). Si no lo conoce, cuénteme con sus palabras qué hace y le propongo las opciones más parecidas para que usted elija.",
+   "fuente": "data/faq/que-es-ciiu.md"
+  },
+  {
+   "id": "que-es-neocredito",
+   "pregunta": "¿Qué es Neocrédito?",
+   "palabras": [
+    "que es neocredito",
+    "para que sirve",
+    "quienes son",
+    "bancoldex",
+    "plataforma",
+    "comparador",
+    "de que se trata"
+   ],
+   "respuesta": "Neocrédito es un canal digital de Bancóldex que conecta a microempresarios con unas 30 entidades financieras aliadas. Usted se registra una sola vez y las entidades le pueden enviar ofertas de crédito para que las compare.",
+   "fuente": "data/faq/que-es-neocredito.md"
+  },
+  {
+   "id": "que-es-rut",
+   "pregunta": "¿Qué es el RUT?",
+   "palabras": [
+    "rut",
+    "que es el rut",
+    "registro unico tributario",
+    "dian",
+    "sacar el rut"
+   ],
+   "respuesta": "El RUT (Registro Único Tributario) es la inscripción ante la DIAN de quienes tienen un negocio o pagan impuestos. Para este registro no es obligatorio: solo le preguntamos si lo tiene. Se tramita gratis en la página de la DIAN.",
+   "fuente": "data/faq/que-es-rut.md"
+  },
+  {
+   "id": "reportes",
+   "pregunta": "¿Puedo registrarme si estoy reportado?",
+   "palabras": [
+    "reportado",
+    "datacredito",
+    "centrales de riesgo",
+    "mora",
+    "deudas",
+    "cifin",
+    "reporte negativo",
+    "mal historial"
+   ],
+   "respuesta": "Sí, puede registrarse. Este asistente no consulta centrales de riesgo ni evalúa su historial. Cada entidad decide con su propio estudio, según la ley (Ley 1266 de 2008), y le informa el resultado.",
+   "fuente": "data/faq/reportes.md"
+  },
+  {
+   "id": "requisitos",
+   "pregunta": "¿Qué necesito para registrarme?",
+   "palabras": [
+    "requisitos",
+    "que necesito",
+    "documentos",
+    "que piden",
+    "camara de comercio",
+    "informal",
+    "formal",
+    "papeles",
+    "necesito rut"
+   ],
+   "respuesta": "Para el registro necesita su documento de identidad, un número de celular, un correo electrónico y algunos datos de su negocio: dónde queda, a qué se dedica y cuánto vendió el último año (una cifra aproximada sirve). El RUT no es obligatorio para registrarse. Cada entidad le dirá después si necesita otros documentos.",
+   "fuente": "data/faq/requisitos.md"
+  },
+  {
+   "id": "sin-correo",
+   "pregunta": "No tengo correo electrónico, ¿qué hago?",
+   "palabras": [
+    "no tengo correo",
+    "no tengo email",
+    "crear correo",
+    "sin correo",
+    "como hago un correo",
+    "abrir correo"
+   ],
+   "respuesta": "El correo es obligatorio en el formulario. Puede crear uno gratis en pocos minutos (por ejemplo en gmail.com), usar el de un familiar de confianza que le avise de los mensajes, o pedir ayuda a un asesor. Su avance queda guardado mientras tanto.",
+   "fuente": "data/faq/sin-correo.md"
+  },
+  {
+   "id": "tasas",
+   "pregunta": "¿Qué tasa de interés manejan?",
+   "palabras": [
+    "tasa",
+    "interes",
+    "intereses",
+    "cuota",
+    "plazo",
+    "condiciones",
+    "cuanto pago",
+    "mejor oferta",
+    "cual me conviene"
+   ],
+   "respuesta": "Cada entidad define sus propias condiciones (tasa, plazo y cuota) y se las muestra en su oferta. Este asistente no recomienda entidades ni ofertas; le sugerimos comparar el costo total antes de aceptar una.",
+   "fuente": "data/faq/tasas.md"
+  },
+  {
+   "id": "una-sola-oferta",
+   "pregunta": "¿Puedo aceptar varias ofertas?",
+   "palabras": [
+    "varias ofertas",
+    "aceptar dos",
+    "cuantas ofertas",
+    "elegir oferta",
+    "mas de una oferta",
+    "aceptar oferta"
+   ],
+   "respuesta": "Puede recibir varias ofertas y compararlas, pero **solo puede aceptar una**. Revise con calma la tasa, el plazo y la cuota antes de decidir. Este asistente no recomienda ofertas: la decisión es suya.",
+   "fuente": "data/faq/una-sola-oferta.md"
+  }
+ ]
+}
