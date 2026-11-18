@@ -1,0 +1,15 @@
+{
+ "_nota": "Mínimos que el CI exige a las evaluaciones con reglas (sin IA). Línea base medida el 2026-11-18 en v2.0.0. Si un cambio mejora las cifras, suba el umbral en el mismo PR; si las baja a propósito, explíquelo en el PR.",
+ "evals/resultados/desarrollo.json": {
+  "extraccion_reglas.precision": 1,
+  "extraccion_reglas.f1": 0.95,
+  "ciiu_reglas.top1": 0.9,
+  "ciiu_reglas.top3": 1
+ },
+ "evals/resultados/prueba.json": {
+  "extraccion_reglas.precision": 1,
+  "extraccion_reglas.f1": 0.93,
+  "ciiu_reglas.top1": 0.85,
+  "ciiu_reglas.top3": 1
+ }
+}
