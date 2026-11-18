@@ -59,7 +59,8 @@ El detalle de cada versión está en [CHANGELOG.md](../CHANGELOG.md).
 - **Claude en vivo:** la ruta con IA está probada con un modelo simulado. Falta ejecutar `npm run evals -- --ia` con clave y guardar `evals/resultados/*-ia.json` como evidencia (ver Limitaciones en el README).
 - **RF-19 (demo):** solo se verifica la accesibilidad de `/demo`, no que la reproducción llegue al final.
 - **E2E fuera del CI:** las pruebas de Playwright (RF-09 a RF-11, RF-14, RF-18, RNF-07) se ejecutan localmente. El último resultado registrado es 12 de 12 (2026-10-30).
-- **Compilación de producción fuera del CI:** `next build` se detiene porque la versión instalada de Next.js tiene un aviso de seguridad. Actualizar Next.js y añadir `npm run build` al CI.
+- **Compilación de producción fuera del CI:** Vercel compila cada push a `main`, pero en local `next build` 16.4.3 se detiene por un aviso de seguridad de Next.js (corregido a partir de 16.4.5). Actualizar Next.js y añadir `npm run build` al CI.
+- **Versión de Node:** `engines: ">=20.9"` hace que Vercel use Node 26, mientras que el CI y el desarrollo local usan Node 24. Fijar `"node": "24.x"` para que los tres entornos coincidan.
 
 ## 5. Cómo mantener esta matriz
 
