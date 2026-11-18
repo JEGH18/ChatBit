@@ -1,0 +1,57 @@
+name: CI
+
+# Verifica cada PR y cada push a main. Sin clave de Anthropic: todo corre en modo guiado
+# (reglas) para que sea gratis, rápido y reproducible.
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verificar:
+    name: Tipos, estilo, pruebas y evaluaciones
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      ASISTENTE_MODO: guiado
+      DB_DRIVER: memoria
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Instalar dependencias
+        run: npm ci
+
+      - name: Tipos (tsc)
+        run: npm run typecheck
+
+      - name: Estilo (eslint)
+        run: npm run lint
+
+      - name: Pruebas unitarias (vitest)
+        run: npm test
+
+      - name: Evaluaciones con reglas (desarrollo y prueba)
+        run: |
+          npm run evals
+          npm run evals -- --dataset evals/dataset-prueba.json
+
+      - name: Umbrales de las evaluaciones
+        run: npm run evals:umbrales
+
+      - name: La base de conocimiento compilada está al día
+        run: |
+          npx tsx scripts/datos/compilar-faq.ts
+          git diff --exit-code data/faq/indice.json

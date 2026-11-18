@@ -1,0 +1,7 @@
+# Todo el texto se guarda y se descarga con LF, también en Windows.
+# Los scripts de datos (FAQ, esquema de Postgres) analizan los archivos línea por línea.
+* text=auto eol=lf
+
+*.png binary
+*.ico binary
+*.db binary

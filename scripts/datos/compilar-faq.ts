@@ -14,7 +14,8 @@ async function main() {
   const archivos = (await readdir(DIR)).filter((f) => f.endsWith(".md")).sort();
   const entradas = [];
   for (const archivo of archivos) {
-    const texto = await readFile(join(DIR, archivo), "utf8");
+    // Normaliza CRLF (Windows con core.autocrlf) para que el encabezado se reconozca igual en todos los equipos.
+    const texto = (await readFile(join(DIR, archivo), "utf8")).replace(/\r\n/g, "\n");
     const m = texto.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
     if (!m) throw new Error(`${archivo}: falta el encabezado --- ... ---`);
     const meta = Object.fromEntries(

@@ -1,5 +1,7 @@
 # Asistente Neo — registro en Neocrédito con IA (prototipo)
 
+[![CI](https://github.com/JEGH18/ChatBit/actions/workflows/ci.yml/badge.svg)](https://github.com/JEGH18/ChatBit/actions/workflows/ci.yml) · **Demo en vivo:** https://asistente-neo.vercel.app · [Historial de versiones](CHANGELOG.md) · [Trazabilidad](docs/trazabilidad.md)
+
 Prototipo de un **asistente conversacional con inteligencia artificial** que guía a microempresarios, paso a paso y en lenguaje sencillo, hasta completar correctamente el **Formulario de registro persona natural** de [Neocrédito](https://neocredito.bancoldex.com/neocredito/home), el canal digital de Bancóldex que conecta a microempresarios con unas 30 entidades financieras aliadas.
 
 > Proyecto académico para el curso de IA de la Universidad Icesi. **No es un producto oficial** de Bancóldex ni de Neocrédito, no usa sus logotipos y **no envía nada a Neocrédito**: al final genera un JSON con la estructura del formulario.
@@ -37,7 +39,6 @@ Requisitos: Node.js 20.9 o superior (probado con Node 24) y npm.
 
 ```bash
 git clone https://github.com/JEGH18/ChatBit.git && cd ChatBit
-git checkout feat/asistente-neo        # rama de esta versión
 npm install                            # también genera el cliente de Prisma
 cp .env.example .env.local             # ponga ANTHROPIC_API_KEY (opcional) y ADMIN_PASSWORD
 npx prisma migrate deploy              # crea prisma/dev.db (SQLite)
@@ -57,6 +58,7 @@ npm run dev                            # http://localhost:3000
 | `npm test` | Pruebas unitarias (Vitest): montos, validadores, máquina de estados, motor con 3 personas, **equidad**, IA con modelo simulado, analítica |
 | `npm run test:e2e` | Pruebas E2E (Playwright): las 3 personas de punta a punta, accesibilidad, solo chat, red caída, panel. Si ya tiene un `next dev` abierto: `npm run build && E2E_PROD=1 npm run test:e2e` |
 | `npm run evals` | Evaluación de extracción y CIIU (`-- --ia` para incluir Claude; `-- --dataset evals/dataset-prueba.json` para el conjunto de prueba) |
+| `npm run evals:umbrales` | Falla si alguna métrica de las evaluaciones queda por debajo de `evals/umbrales.json` (lo usa el CI) |
 | `npm run demo:grabar` | Regenera las conversaciones de `/demo` (`-- --ia` graba respuestas reales de Claude) |
 | `npm run db:demo` | Carga 150 sesiones sintéticas (conversaciones simuladas contra el motor real); `-- borrar` las elimina |
 | `npm run datos:divipola` / `datos:ciiu` | Regeneran los catálogos desde datos.gov.co o un archivo del DANE |
@@ -64,12 +66,12 @@ npm run dev                            # http://localhost:3000
 
 ## Resultados de pruebas y evaluaciones
 
-Medidos en este repositorio el 2026-10-30:
+El [CI](.github/workflows/ci.yml) vuelve a ejecutar las pruebas unitarias y las evaluaciones con reglas en cada PR y en cada push a `main`. Últimas mediciones:
 
 | Qué | Resultado |
 |---|---|
-| Pruebas unitarias (Vitest) | 81 de 81 |
-| Pruebas E2E (Playwright, escritorio y celular) | 12 de 12 |
+| Pruebas unitarias (Vitest) | 81 de 81 (CI; reverificado el 2026-11-18) |
+| Pruebas E2E (Playwright, escritorio y celular) | 12 de 12 (local, 2026-10-30) |
 | Accesibilidad (axe, WCAG 2.1 AA) | 0 violaciones en `/`, modo oscuro, `/demo` y `/como-funciona` |
 | Extracción con reglas, **conjunto de prueba** (8 mensajes no usados para ajustar) | Precisión 100 %, cobertura 87 %, F1 93 % |
 | CIIU con búsqueda léxica, **conjunto de prueba** (7 descripciones) | Top-1 85,7 %, top-3 100 % |
@@ -141,7 +143,14 @@ Tomadas sin bloquear el trabajo (todas configurables):
 - [docs/arquitectura.md](docs/arquitectura.md): diagramas (Mermaid) del flujo, de un turno y del modelo de datos.
 - [docs/ia-responsable.md](docs/ia-responsable.md): riesgos, mitigaciones y relación con los 5 ejes del diagnóstico de justicia algorítmica del canal.
 - [docs/metricas-propuesta.md](docs/metricas-propuesta.md): KPIs del piloto con su fórmula y fuente.
+- [docs/trazabilidad.md](docs/trazabilidad.md): cada requisito (RF/RNF) con el código que lo implementa y la prueba que lo respalda.
+- [CHANGELOG.md](CHANGELOG.md): versiones y commits de cada fase. [CONTRIBUTING.md](CONTRIBUTING.md): flujo de issues, ramas, commits y PR.
 
-## Versión anterior
+## Versiones
 
-La primera versión (JavaScript sin framework, commit `4025390`) sigue en el historial de git. Esta versión portó a TypeScript su lógica de catálogos, parsers y flujo guiado.
+| Versión | Tag | Descripción |
+|---|---|---|
+| 2.0.0 | [`v2.0.0`](https://github.com/JEGH18/ChatBit/releases/tag/v2.0.0) | Esta versión (Next.js + TypeScript), desplegada en producción |
+| 1.0.0 | [`v1.0.0`](https://github.com/JEGH18/ChatBit/releases/tag/v1.0.0) | Primera versión: JavaScript sin framework. Esta versión portó a TypeScript su lógica de catálogos, parsers y flujo guiado |
+
+Para ver la v1: `git checkout v1.0.0`. El README en inglés que se escribió para la v1 quedó archivado en el tag `archivo/docs-readme`.
