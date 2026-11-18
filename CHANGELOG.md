@@ -7,7 +7,14 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/). V
 ### Corregido
 - `scripts/datos/compilar-faq.ts` y `scripts/datos/esquema-postgres.mts` fallaban en Windows con saltos de línea CRLF: `npm run dev`/`build` se detenían y cada `npm install` modificaba `prisma/postgres/schema.prisma`. El repositorio ahora fija LF con `.gitattributes`.
 
+### Seguridad
+- Next.js y eslint-config-next de 16.4.3 a 16.4.5, que corrige una vulnerabilidad moderada de Next.js (rango 16.2.0–16.4.4). La compilación local ya no se detiene.
+
+### Cambiado
+- `engines.node` pasa de `>=20.9` a `24.x`: Vercel compilaba con Node 26 mientras el CI y el desarrollo local usaban Node 24.
+
 ### Añadido
+- `next build` en el CI.
 - CI en GitHub Actions: tipos, eslint, pruebas unitarias, evaluaciones con umbrales y verificación del índice de FAQ.
 - `evals/umbrales.json` y `npm run evals:umbrales`: las evaluaciones fallan si una métrica baja.
 - Trazabilidad: `docs/trazabilidad.md` (requisitos → código → pruebas), este historial, `CONTRIBUTING.md` y plantillas de issues y PR.
