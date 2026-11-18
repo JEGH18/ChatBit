@@ -53,14 +53,15 @@ El detalle de cada versión está en [CHANGELOG.md](../CHANGELOG.md).
 | RNF-08 | Límites de uso por sesión y por IP | `lib/servidor/limites.ts › permitir` | `limites.test` (2 casos) | R12 |
 | RNF-09 | Calidad medible de la extracción y del CIIU, sin regresiones | `evals/ejecutar.mts`; `evals/umbrales.json` | `npm run evals:umbrales` (falla si una métrica baja del umbral) | R1 |
 | RNF-10 | La interfaz no desborda la ventana | `app/globals.css` | E2E `«la página no crece más que la ventana…»` | — |
+| RNF-11 | Entorno reproducible: misma versión de Node en local, CI y Vercel; compilación de producción verificada en cada PR | `package.json › engines` (`24.x`); `.gitattributes`; `.github/workflows/ci.yml` | Paso «Compilación de producción (next build)» del CI; log de build de Vercel | — |
+| RNF-12 | Sin vulnerabilidades conocidas en las dependencias que se despliegan | `package.json` (Next.js 16.4.5) | `npm audit` sin alertas para `next` | R11 |
 
 ## 4. Huecos conocidos
 
 - **Claude en vivo:** la ruta con IA está probada con un modelo simulado. Falta ejecutar `npm run evals -- --ia` con clave y guardar `evals/resultados/*-ia.json` como evidencia (ver Limitaciones en el README).
 - **RF-19 (demo):** solo se verifica la accesibilidad de `/demo`, no que la reproducción llegue al final.
 - **E2E fuera del CI:** las pruebas de Playwright (RF-09 a RF-11, RF-14, RF-18, RNF-07) se ejecutan localmente. El último resultado registrado es 12 de 12 (2026-10-30).
-- **Compilación de producción fuera del CI:** Vercel compila cada push a `main`, pero en local `next build` 16.4.3 se detiene por un aviso de seguridad de Next.js (corregido a partir de 16.4.5). Actualizar Next.js y añadir `npm run build` al CI.
-- **Versión de Node:** `engines: ">=20.9"` hace que Vercel use Node 26, mientras que el CI y el desarrollo local usan Node 24. Fijar `"node": "24.x"` para que los tres entornos coincidan.
+- **Alertas de `npm audit` en herramientas de desarrollo:** quedan 22 (vitest, shadcn CLI, eslint-config-next y sus dependencias). Ninguna llega al código desplegado. Su «arreglo» automático baja de versión mayor, así que se revisan una por una.
 
 ## 5. Cómo mantener esta matriz
 

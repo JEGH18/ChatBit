@@ -35,7 +35,7 @@ Una **máquina de estados determinista** decide el orden de los campos, qué fal
 
 ## Correrlo en local
 
-Requisitos: Node.js 20.9 o superior (probado con Node 24) y npm.
+Requisitos: Node.js 24 (la misma versión en local, en el CI y en Vercel; fijada en `engines`) y npm.
 
 ```bash
 git clone https://github.com/JEGH18/ChatBit.git && cd ChatBit

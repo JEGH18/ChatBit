@@ -55,3 +55,6 @@ jobs:
         run: |
           npx tsx scripts/datos/compilar-faq.ts
           git diff --exit-code data/faq/indice.json
+
+      - name: Compilación de producción (next build)
+        run: npm run build
